@@ -1,0 +1,22 @@
+[
+  { "fromCity": "Rome", "toAirport": "FCO", "price": 8, "duration": 0.55, "mode": "train", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Rome", "toAirport": "CIA", "price": 6, "duration": 0.75, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Milan", "toAirport": "MXP", "price": 13, "duration": 0.75, "mode": "train", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Milan", "toAirport": "LIN", "price": 5, "duration": 0.25, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Milan", "toAirport": "BGY", "price": 10, "duration": 0.67, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Venice", "toAirport": "VCE", "price": 15, "duration": 0.5, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Venice", "toAirport": "TSF", "price": 8, "duration": 0.5, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Florence", "toAirport": "FLR", "price": 6, "duration": 0.33, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Florence", "toAirport": "PSA", "price": 15, "duration": 1.0, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Bologna", "toAirport": "BLQ", "price": 6, "duration": 0.3, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Naples", "toAirport": "NAP", "price": 5, "duration": 0.25, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Turin", "toAirport": "TRN", "price": 7, "duration": 0.33, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Palermo", "toAirport": "PMO", "price": 6, "duration": 0.5, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Catania", "toAirport": "CTA", "price": 5, "duration": 0.25, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Bari", "toAirport": "BRI", "price": 4, "duration": 0.33, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Genoa", "toAirport": "GEN", "price": 6, "duration": 0.25, "mode": "bus", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "London", "toAirport": "LHR", "price": 6, "duration": 0.5, "mode": "train", "currency": "GBP", "captureDate": "2024-11-15" },
+  { "fromCity": "Paris", "toAirport": "CDG", "price": 12, "duration": 0.5, "mode": "train", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Amsterdam", "toAirport": "AMS", "price": 5, "duration": 0.25, "mode": "train", "currency": "EUR", "captureDate": "2024-11-15" },
+  { "fromCity": "Frankfurt", "toAirport": "FRA", "price": 5, "duration": 0.25, "mode": "train", "currency": "EUR", "captureDate": "2024-11-15" }
+]

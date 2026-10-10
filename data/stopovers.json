@@ -1,0 +1,36 @@
+[
+  {
+    "id": "flr-scenic",
+    "name": "Tuscan Wine & Art Stopover",
+    "homeAirport": "FCO",
+    "destination": "NRT",
+    "stopoverCity": "Florence",
+    "stopoverAirport": "FLR",
+    "groundMode": "train",
+    "groundFare": 25,
+    "groundDurationHours": 1.5,
+    "extraDays": 2,
+    "extraCost": 120,
+    "description": "High-speed Frecciarossa train from Rome to Florence. Spend 2 days exploring the Uffizi & Chianti before your long-haul flight.",
+    "flightFare": 420,
+    "totalCost": 565,
+    "captureDate": "2024-11-15"
+  },
+  {
+    "id": "blq-scenic",
+    "name": "Bologna Food Capital Stopover",
+    "homeAirport": "FCO",
+    "destination": "BKK",
+    "stopoverCity": "Bologna",
+    "stopoverAirport": "BLQ",
+    "groundMode": "train",
+    "groundFare": 29,
+    "groundDurationHours": 2.1,
+    "extraDays": 1,
+    "extraCost": 85,
+    "description": "High-speed rail direct to Bologna Centrale. 24 hours of handmade tagliatelle and tortellini before flying to Thailand.",
+    "flightFare": 360,
+    "totalCost": 474,
+    "captureDate": "2024-11-15"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "modes": [
+    {
+      "mode": "taxi",
+      "costPerKm": 0.9,
+      "avgSpeedKph": 60,
+      "minDistanceKm": 0,
+      "maxDistanceKm": 80,
+      "note": "Short distances only; taxi is rarely used for longer trips"
+    },
+    {
+      "mode": "bus",
+      "costPerKm": 0.08,
+      "avgSpeedKph": 70,
+      "minDistanceKm": 0,
+      "maxDistanceKm": 400,
+      "note": "Coach / express bus to airport"
+    },
+    {
+      "mode": "train",
+      "costPerKm": 0.12,
+      "avgSpeedKph": 100,
+      "minDistanceKm": 30,
+      "maxDistanceKm": 600,
+      "note": "Regional or high-speed rail"
+    },
+    {
+      "mode": "drive",
+      "costPerKm": 0.15,
+      "avgSpeedKph": 100,
+      "minDistanceKm": 0,
+      "maxDistanceKm": 800,
+      "note": "Self-drive including fuel; parking not included"
+    }
+  ]
+}
