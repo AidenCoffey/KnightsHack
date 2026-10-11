@@ -1,4 +1,4 @@
-# 🎯 FlightDeck — Judge & Audience Q&A Defense Bank
+# 🎯 Venture — Judge & Audience Q&A Defense Bank
 
 > **Purpose:** Master-level answers to the 12 hardest questions judges will ask during the Q&A session.  
 > **Rule of Thumb:** Lead with the **10-second punchline**, support with **data/architecture**, and avoid common traps.
@@ -11,7 +11,7 @@
 - **10-Second Punchline:** *"Because airlines pay Google billions in sponsored placement, and promoting rail directly cannibalizes airline feeder flights."*
 - **Detailed Defense:**
   - Google Flights and Skyscanner monetize heavily via airline partnerships and GDS distribution contracts (Amadeus, Sabre). Major airlines despise multimodal ground routing because it strips away lucrative regional connecting flights (e.g., Delta flying TPA → ATL → ZRH instead of letting the user take a $25 train to MCO).
-  - Furthermore, Google's ITA Software engine is built on standard IATA flight schedules. It has zero native awareness of Brightline, Amtrak, or regional coach schedules. FlightDeck operates on an independent multimodal graph 100% aligned with the traveler's savings.
+  - Furthermore, Google's ITA Software engine is built on standard IATA flight schedules. It has zero native awareness of Brightline, Amtrak, or regional coach schedules. Venture operates on an independent multimodal graph 100% aligned with the traveler's savings.
 - **Trap to Avoid:** Don't say "Google is too big and slow to care." Focus on **misaligned incentives and airline ad revenue**.
 
 ---
@@ -20,7 +20,7 @@
 - **10-Second Punchline:** *"Cognitive load and time. Today, that takes 4 open tabs, 20 minutes of schedule cross-referencing, and complex mental math."*
 - **Detailed Defense:**
   - In our user research, travelers only check alternate hubs if they happen to know they exist and have the patience to open 4 tabs, search Brightline schedules, calculate whether a 2-hour rail ride arrives with sufficient check-in buffer, and add up the fares.
-  - FlightDeck automates that entire 20-minute cognitive workflow into a **1.2-second streaming query** with mathematical precision.
+  - Venture automates that entire 20-minute cognitive workflow into a **1.2-second streaming query** with mathematical precision.
 
 ---
 
@@ -29,7 +29,7 @@
 ### Q3: "What happens if the train is delayed or traffic is bad, and the user misses their flight?"
 - **10-Second Punchline:** *"We enforce a strict 3-hour minimum intermodal transfer buffer on all recommended itineraries."*
 - **Detailed Defense:**
-  - FlightDeck does not schedule tight connections. Our Ground Corridor Matrix automatically calculates the intermodal handoff: ground arrival time must be at least **180 minutes prior to international departure** (120 minutes for domestic).
+  - Venture does not schedule tight connections. Our Ground Corridor Matrix automatically calculates the intermodal handoff: ground arrival time must be at least **180 minutes prior to international departure** (120 minutes for domestic).
   - On our product roadmap, we are integrating real-time train tracking and push notifications that alert the traveler hours before departure if regional rail experiences a delay, offering automated alternative express routing.
 
 ---
@@ -46,7 +46,7 @@
 ### Q5: "Does this only work in Florida and Europe, or does it work across America?"
 - **10-Second Punchline:** *"It works everywhere. In rail-dense corridors we use trains; in car corridors like Texas and the Midwest, we model express coaches and highway drive economics."*
 - **Detailed Defense:**
-  - The FlightDeck Ground Transit Matrix is modular:
+  - The Venture Ground Transit Matrix is modular:
     - **Florida:** Brightline & RedCoach (Tampa ↔ Orlando ↔ Miami).
     - **Northeast Corridor:** Amtrak Acela & Northeast Regional (Philly ↔ Newark ↔ JFK ↔ Boston).
     - **Texas Triangle:** Express coach and fuel/parking calculations (Austin ↔ San Antonio ↔ Houston ↔ Dallas DFW).
@@ -69,7 +69,7 @@
 ### Q7: "Why did you use native SQLite instead of PostgreSQL or Supabase?"
 - **10-Second Punchline:** *"Node 22 native `node:sqlite` provides zero external latency, zero network dependencies, and 100% offline persistence."*
 - **Detailed Defense:**
-  - FlightDeck uses Node.js 22's built-in `node:sqlite` engine. It requires zero cloud database provisioning, introduces zero cold-start database latency, and allows itineraries to be queried in sub-millisecond time directly from disk.
+  - Venture uses Node.js 22's built-in `node:sqlite` engine. It requires zero cloud database provisioning, introduces zero cold-start database latency, and allows itineraries to be queried in sub-millisecond time directly from disk.
   - To ensure multi-tier safety, our storage module implements an automated dual-engine backup sync: every database transaction writes to `trips.db` and immediately mirrors to an offline JSON backup snapshot.
 
 ---
@@ -84,7 +84,7 @@
 
 ## 💰 Category 4: Monetization, Unit Economics & Growth
 
-### Q9: "How much money does FlightDeck actually make per booking?"
+### Q9: "How much money does Venture actually make per booking?"
 - **10-Second Punchline:** *"A blended average of $18.50 per international itinerary across airfare and ground affiliate links."*
 - **Detailed Defense:**
   - **Flight Affiliate:** Through Travelpayouts / Aviasales, we earn between 1.5% and 3.0% of the gross airline ticket value. On an international ticket of $400 - $800, that is **$12 to $24**.
@@ -102,9 +102,9 @@
 ---
 
 ### Q11: "What about business travelers? Won't they always refuse to take a train to save a few hundred bucks?"
-- **10-Second Punchline:** *"FlightDeck isn't just for budget travelers; our opportunity cost slider lets business travelers dial in their exact hourly rate."*
+- **10-Second Punchline:** *"Venture isn't just for budget travelers; our opportunity cost slider lets business travelers dial in their exact hourly rate."*
 - **Detailed Defense:**
-  - If a corporate traveler sets their wage to $150/hr, FlightDeck automatically filters out routes where ground transit time exceeds the economic benefit.
+  - If a corporate traveler sets their wage to $150/hr, Venture automatically filters out routes where ground transit time exceeds the economic benefit.
   - More importantly, many corporate teams in Europe and the US actually prefer high-speed rail: trains have reliable Wi-Fi and power outlets, allowing travelers to work productively during the 1.5-hour journey—something impossible while driving or sitting at a crowded regional TSA line.
 
 ---

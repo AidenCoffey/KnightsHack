@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
 
     const res = await fetch(url, {
       headers: {
-        "User-Agent": "FlightDeck-Hackathon/1.0",
+        "User-Agent": "Venture-Hackathon/1.0",
       },
       signal: controller.signal,
     });

@@ -1,16 +1,16 @@
-# FlightDeck — Reverse Multi-Hub Flight & Overland Discovery
+# Venture — Curated Flight & Overland Travel Atlas
 
-> **Discover Cheaper Long-Haul Departures via Regional Hubs & Ground Transit Corridors.**
+> **Curiosity-driven expedition flight & rail discovery. Discover cheaper long-haul departures via regional hubs & ground transit corridors with all-in trip economics.**
 
-FlightDeck reverses conventional flight search: instead of searching from a single airport, it scans all commercial airports within a traveler's overland transit radius, factors in ground transit costs (high-speed rail, coach, drive) and travel time, and determines if departing from an alternate airport yields net economic savings.
+Venture is a premium travel discovery platform and atlas designed for modern travelers. Venture reverses conventional flight search: instead of being trapped in a single airport silo, it scans all commercial departure hubs within a traveler's overland transit radius, factors in ground transit costs (high-speed rail, express coach, drive) and travel time, and calculates the true opportunity cost to determine if departing from an alternate hub delivers net savings and an elevated journey.
 
 ---
 
 ## ⚡ The Core Problem & Value Proposition
 
-Traditional flight search engines (Google Flights, Skyscanner) search from a single airport silo. If you live in **Tampa (TPA)** and want to fly to **Zurich (ZRH)**, a direct or low-cost flight might exist from **Orlando (MCO)** or **Miami (MIA)** that saves **\$300+**, but traditional search engines never show it to you.
+Traditional flight search engines (Google Flights, Skyscanner) search from a single airport silo. If you live in **Tampa (TPA)** and want to fly to **Zurich (ZRH)**, a direct or low-cost flight might exist from **Orlando (MCO)** or **Miami (MIA)** that saves **$300+**, but traditional search engines never show it to you.
 
-FlightDeck implements **Reverse Multi-Hub Flight Discovery**:
+Venture implements **Reverse Multi-Hub Flight Discovery**:
 1. **Home Base & Radius Discovery:** Scans all commercial airports within a customizable driving/rail radius (up to 300+ miles).
 2. **Ground Corridor Costing:** Computes realistic overland transit time and ground fare (Brightline, Amtrak, Frecciarossa, SBB, ICE, TGV, express coaches, or driving fuel).
 3. **Flight Pricing:** Concurrently queries live flight fare caches via the Travelpayouts / Aviasales Data API with metro-code resolution.
@@ -28,8 +28,6 @@ The technical documentation has been modularized into focused deep-dive guides:
 
 | Document | Focus & Highlights |
 | :--- | :--- |
-| **[Pitch Deck PowerPoint](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/FlightDeck_Presentation.pptx)** | Complete 10-slide native `.pptx` deck formatted for Microsoft PowerPoint, Google Slides, and Apple Keynote. |
-| **[Interactive Pitch Slides](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/docs/presentation.html)** | Interactive HTML5 presentation deck with live 6-minute clock, speaker notes drawer (`N`), and dynamic SVG graphs. |
 | **[6-Minute Pitch Script & Timing](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/docs/PITCH_SCRIPT_AND_TIMING.md)** | Verbatim minute-by-minute pitch script, audience opening hook, demo commentary, and closing ask. |
 | **[Live Demo Runbook](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/docs/DEMO_RUNBOOK.md)** | Pre-flight laptop checklist, step-by-step click choreography, and stage fallback kill-switches. |
 | **[Judge Q&A Defense Bank](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/docs/JUDGE_QA_DEFENSE.md)** | 12 battle-tested answers to the toughest judge questions (Google moat, luggage logistics, API limits, unit economics). |
@@ -59,7 +57,7 @@ Client (Next.js 14 / React / Leaflet)
 
 ## 🧪 Testing & Quality Assurance
 
-FlightDeck includes an automated test suite with **67 passing tests** using Vitest:
+Venture includes an automated test suite with **79 passing tests** across 10 test suites using Vitest:
 
 ```bash
 npm test
@@ -67,16 +65,18 @@ npm test
 
 ```
 ✓ tests/airports.test.ts (5 tests)
+✓ tests/cultural.test.ts (6 tests)
+✓ tests/currency_and_cache.test.ts (8 tests)
+✓ tests/flexible_dates.test.ts (6 tests)
 ✓ tests/haversine.test.ts (7 tests)
-✓ tests/scoring.test.ts (13 tests)
-✓ tests/currency_and_cache.test.ts (7 tests)
-✓ tests/cultural.test.ts (5 tests)
 ✓ tests/providers.test.ts (22 tests)
-✓ tests/trips_db.test.ts (5 tests)
-✓ tests/trips_api.test.ts (3 tests)
+✓ tests/scoring.test.ts (13 tests)
+✓ tests/suitcase_transition.test.ts (2 tests)
+✓ tests/trips_api.test.ts (4 tests)
+✓ tests/trips_db.test.ts (6 tests)
 
-Test Files  8 passed (8)
-     Tests  67 passed (67)
+Test Files  10 passed (10)
+     Tests  79 passed (79)
 ```
 
 ---
@@ -102,4 +102,4 @@ npm test
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to launch FlightDeck.
+Open [http://localhost:3000](http://localhost:3000) to launch Venture.

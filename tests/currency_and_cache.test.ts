@@ -53,6 +53,23 @@ describe("Currency Utilities", () => {
     expect(gbp).toBeLessThanOrEqual(87);
   });
 
+  it("converts Central and Eastern European currencies (HUF, CZK, PLN) accurately to USD", () => {
+    // 8,000 HUF (Budapest) should be ~$21-$24 USD, NOT $8,644
+    const hufUsd = convertCurrency(8000, "HUF", "USD");
+    expect(hufUsd).toBeGreaterThanOrEqual(19);
+    expect(hufUsd).toBeLessThanOrEqual(25);
+
+    // 1,300 CZK (Prague) should be ~$50-$60 USD, NOT $1,400
+    const czkUsd = convertCurrency(1300, "CZK", "USD");
+    expect(czkUsd).toBeGreaterThanOrEqual(48);
+    expect(czkUsd).toBeLessThanOrEqual(60);
+
+    // 210 PLN (Wroclaw/Krakow) should be ~$50-$58 USD, NOT $227
+    const plnUsd = convertCurrency(210, "PLN", "USD");
+    expect(plnUsd).toBeGreaterThanOrEqual(48);
+    expect(plnUsd).toBeLessThanOrEqual(58);
+  });
+
   it("returns same amount when from and to currencies match", () => {
     expect(convertCurrency(500, "USD", "USD")).toBe(500);
     expect(convertCurrency(500, "EUR", "EUR")).toBe(500);

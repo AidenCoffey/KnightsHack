@@ -1,12 +1,12 @@
-# 🎨 FlightDeck — Frontend Architecture & UI Systems
+# 🎨 Venture — Frontend Architecture & UI Systems
 
-> Comprehensive technical breakdown of the FlightDeck client-side application, component hierarchy, streaming state lifecycle, geospatial visualization layer, and design system.
+> Comprehensive technical breakdown of the Venture client-side application, component hierarchy, streaming state lifecycle, geospatial visualization layer, and design system.
 
 ---
 
 ## 1. Architectural Overview & Component Hierarchy
 
-FlightDeck's frontend is built on **Next.js 14 (App Router)**, **React 18**, **Tailwind CSS**, and **Framer Motion**. It is designed around sub-second perceived latency, progressive stream rendering, and multimodal route exploration.
+Venture's frontend is built on **Next.js 14 (App Router)**, **React 18**, **Tailwind CSS**, and **Framer Motion**. It is designed around sub-second perceived latency, progressive stream rendering, and multimodal route exploration.
 
 ```
 src/app/page.tsx (Master Coordinator)
@@ -48,7 +48,7 @@ src/app/page.tsx (Master Coordinator)
 
 ## 2. Real-Time Streaming Lifecycle (NDJSON / SSE)
 
-Rather than waiting 5–10 seconds for all 10–25 candidate hubs to finish querying third-party flight APIs, FlightDeck uses **streaming NDJSON events** over HTTP.
+Rather than waiting 5–10 seconds for all 10–25 candidate hubs to finish querying third-party flight APIs, Venture uses **streaming NDJSON events** over HTTP.
 
 ```mermaid
 sequenceDiagram
@@ -111,7 +111,7 @@ Located in [`src/app/page.tsx`](file:///Users/travelwolf/.gemini/antigravity/scr
 
 ## 3. Geospatial Visualization Engine (`MapViewInner.tsx`)
 
-FlightDeck renders an interactive, multi-layered map using **Leaflet** with dynamic client-only dynamic loading to avoid Next.js Server-Side Rendering (SSR) window errors.
+Venture renders an interactive, multi-layered map using **Leaflet** with dynamic client-only dynamic loading to avoid Next.js Server-Side Rendering (SSR) window errors.
 
 ### Visual Layers
 1. **Home Base Catchment Radius:** A translucent SVG circle rendered around the traveler's home base (e.g., Tampa `TPA`) representing the user's selected search radius (e.g., 300 miles).
@@ -146,7 +146,7 @@ The user can manipulate economic trade-off variables in real time without trigge
 
 ## 5. Travel Readiness & Cultural Intelligence Hub
 
-Located in [`src/app/travel-readiness/page.tsx`](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/src/app/travel-readiness/page.tsx), this post-discovery interface turns FlightDeck into an all-in-one travel companion:
+Located in [`src/app/travel-readiness/page.tsx`](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/src/app/travel-readiness/page.tsx), this post-discovery interface turns Venture into an all-in-one travel companion:
 
 1. **Interactive Packing Checklist:**
    - Pre-populated lists tailored for the destination (e.g., power plug adapters for Switzerland Type J or UK Type G, local transit passes, weather attire).

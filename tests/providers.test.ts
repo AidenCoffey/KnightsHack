@@ -56,7 +56,7 @@ describe("Aviasales Search URL Builder", () => {
 
     // Must be MAD + 0911 + NRT + 1611 + 1 (depart Nov 9, return Nov 16)
     expect(roundTripUrl).toBe(
-      "https://www.aviasales.com/search/MAD0911NRT16111?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=MAD-NRT"
+      "https://www.aviasales.com/search/MAD0911NRT16111?marker=708226&utm_source=venture&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=MAD-NRT"
     );
     // Must NOT be the broken one-way departing on 11/16:
     expect(roundTripUrl).not.toContain("MAD1611NRT1");
@@ -74,7 +74,7 @@ describe("Aviasales Search URL Builder", () => {
 
     // Must be MAD + 0911 + NRT + 1 (depart Nov 9, 1 passenger)
     expect(oneWayUrl).toBe(
-      "https://www.aviasales.com/search/MAD0911NRT1?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=MAD-NRT"
+      "https://www.aviasales.com/search/MAD0911NRT1?marker=708226&utm_source=venture&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=MAD-NRT"
     );
   });
 

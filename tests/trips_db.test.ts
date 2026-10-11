@@ -28,7 +28,7 @@ describe("trips-db backend database", () => {
     transferPrice: 60,
     transferDurationHours: 1.5,
     airline: "Zipair",
-    bookingUrl: "https://flightdeck.travel/book/test",
+    bookingUrl: "https://venture.travel/book/test",
     notes: "Must visit Akihabara & try ramen!",
   };
 

@@ -90,7 +90,7 @@ export default function MyTripsPage() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const savedCurr = localStorage.getItem("flightdeck_currency");
+      const savedCurr = localStorage.getItem("venture_currency");
       if (savedCurr && ["USD", "EUR", "GBP"].includes(savedCurr)) {
         setCurrency(savedCurr);
       }
@@ -100,7 +100,7 @@ export default function MyTripsPage() {
   const handleCurrencyChange = (newCurr: string) => {
     setCurrency(newCurr);
     if (typeof window !== "undefined") {
-      localStorage.setItem("flightdeck_currency", newCurr);
+      localStorage.setItem("venture_currency", newCurr);
     }
   };
 
@@ -161,7 +161,7 @@ export default function MyTripsPage() {
       loadedTrips.forEach((trip) => {
         const destKey = trip.destinationIata.toUpperCase();
         if (typeof window !== "undefined") {
-          const cached = localStorage.getItem(`flightdeck_packing_${destKey}`);
+          const cached = localStorage.getItem(`venture_packing_${destKey}`);
           if (cached) {
             try {
               const parsed = JSON.parse(cached);
@@ -312,7 +312,7 @@ export default function MyTripsPage() {
     }));
 
     if (typeof window !== "undefined") {
-      localStorage.setItem(`flightdeck_packing_${destKey}`, JSON.stringify(nextChecks));
+      localStorage.setItem(`venture_packing_${destKey}`, JSON.stringify(nextChecks));
     }
 
     fetch("/api/packing-checklist", {

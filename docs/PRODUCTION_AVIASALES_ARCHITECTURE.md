@@ -1,11 +1,11 @@
-# FlightDeck Production Architecture & Aviasales API Integration Guide
+# Venture Production Architecture & Aviasales API Integration Guide
 
 ## 1. Executive Summary & Core Logic
 
-**FlightDeck** solves a fundamental inefficiency in modern flight booking: traditional search engines only search from the single airport code you type into the box. If you live in **Tampa (TPA)** and want to fly to **Zurich (ZRH)**, a direct or low-cost charter might exist from **Orlando (MCO)** or **Miami (MIA)** that saves **$300+**, but traditional search engines never show it to you.
+**Venture** solves a fundamental inefficiency in modern flight booking: traditional search engines only search from the single airport code you type into the box. If you live in **Tampa (TPA)** and want to fly to **Zurich (ZRH)**, a direct or low-cost charter might exist from **Orlando (MCO)** or **Miami (MIA)** that saves **$300+**, but traditional search engines never show it to you.
 
-FlightDeck implements **Reverse Multi-Hub Flight Discovery**:
-1. **Home Base & Radius Discovery:** Given a home airport (e.g., Tampa `TPA` or Orlando `MCO`) and a driving/transit radius (e.g., 300 miles), FlightDeck scans all commercial airports within that radius.
+Venture implements **Reverse Multi-Hub Flight Discovery**:
+1. **Home Base & Radius Discovery:** Given a home airport (e.g., Tampa `TPA` or Orlando `MCO`) and a driving/transit radius (e.g., 300 miles), Venture scans all commercial airports within that radius.
 2. **Ground Transit Costing:** Calculates realistic overland transit time and ground fare (via Brightline, Amtrak, regional rail, express coaches, or self-drive fuel estimates).
 3. **Flight Pricing:** Concurrently fetches flight fares from all candidate departure airports to the destination.
 4. **Total Opportunity Cost Scoring:** Ranks routes by the true economic cost to the traveler:
@@ -22,7 +22,7 @@ $$\text{Net Savings vs Home Base} = \text{Home Base Total Cost} - \text{Alternat
 
 Travelpayouts provides three distinct API suites. Here is how they function and how they fit into production:
 
-### A. Aviasales Data API (Cached Prices) — *Implemented in FlightDeck*
+### A. Aviasales Data API (Cached Prices) — *Implemented in Venture*
 * **Documentation:** [Aviasales Data API Docs](https://support.travelpayouts.com/hc/en-us/articles/203956163-Aviasales-Data-API)
 * **Endpoints:**
   * `GET https://api.travelpayouts.com/aviasales/v3/prices_for_dates` (flexible date searches)
@@ -30,13 +30,13 @@ Travelpayouts provides three distinct API suites. Here is how they function and 
   * `GET https://api.travelpayouts.com/v1/prices/cheap` (cheapest route prices)
 * **Auth:** Header `X-Access-Token: 779f149a19333130c3483d6d1e959e05`
 * **Rate Limit:** 600 requests / minute.
-* **Why it's essential for FlightDeck:**
+* **Why it's essential for Venture:**
   Scanning 10 to 25 airports in real-time requires sub-second responses. Live GDS searches take 20–30 seconds and would time out or get blocked. The Data API queries Aviasales' vast cache of recent user searches, returning cached prices in ~150ms.
 * **Production Logic:**
-  1. FlightDeck queries `v3/prices_for_dates`.
+  1. Venture queries `v3/prices_for_dates`.
   2. If the destination has a metro code (e.g. `NYC` for `JFK/EWR/LGA`, `TYO` for `NRT/HND`, `PAR` for `CDG/ORY`, `MIL` for `MXP/LIN/BGY`), it automatically resolves the metro code to maximize cache hits.
   3. If `v3` has no record for an exact day, it falls back to `v2/prices/latest`.
-  4. If live cache is cold for an obscure regional pair, FlightDeck falls back to realistic route benchmarks so the user never sees a broken interface.
+  4. If live cache is cold for an obscure regional pair, Venture falls back to realistic route benchmarks so the user never sees a broken interface.
 
 ### B. Aviasales Flight Search API (Real-Time Search & Multi-City)
 * **Documentation:** [Aviasales Flight Search API Docs](https://support.travelpayouts.com/hc/en-us/articles/30565016140434-Aviasales-Flight-Search-API-real-time-and-multi-city-search)
@@ -91,7 +91,7 @@ Aviasales' search engine requires strict **`DDMM`** (2-digit day + 2-digit month
 * **One-Way Format:** `https://www.aviasales.com/search/{ORIGIN}{DEPART_DDMM}{DEST}{PASSENGERS}?marker={MARKER}`
   * *Example:* Tampa (`TPA`) to Zurich (`ZRH`) on Jan 19 (`1901`):
     `https://www.aviasales.com/search/TPA1901ZRH1?marker=708226`
-* **Why 8-digit dates break:** Passing 8-digit dates (e.g. `20270119` or `YYYYMMDD`) causes Aviasales to fail with *"Oops, the search failed to launch"* because it attempts to parse day 20 and month 27 (an invalid month). FlightDeck uses a dedicated URL generator ([`aviasales-url.ts`](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/src/lib/aviasales-url.ts)) and a sanitizer in `/api/go` to ensure all links use valid `DDMM` formats.
+* **Why 8-digit dates break:** Passing 8-digit dates (e.g. `20270119` or `YYYYMMDD`) causes Aviasales to fail with *"Oops, the search failed to launch"* because it attempts to parse day 20 and month 27 (an invalid month). Venture uses a dedicated URL generator ([`aviasales-url.ts`](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/src/lib/aviasales-url.ts)) and a sanitizer in `/api/go` to ensure all links use valid `DDMM` formats.
 
 ### Redirect Flow:
 ```
@@ -114,7 +114,7 @@ HTTP 302 Redirect to Aviasales Search Results Page
 
 ## 5. Florida Hubs & International Testing Use Cases
 
-FlightDeck includes built-in presets and ground corridor data for all requested hubs:
+Venture includes built-in presets and ground corridor data for all requested hubs:
 
 | Hub / Origin | City | Nearby Candidate Airports within Radius | Key Overland Corridors |
 | :--- | :--- | :--- | :--- |
@@ -135,14 +135,14 @@ FlightDeck includes built-in presets and ground corridor data for all requested 
 
 ## 6. Production Scaling Best Practices
 
-When deploying FlightDeck to production:
+When deploying Venture to production:
 
 1. **Two-Tier Caching:**
    * **Tier 1 (In-Memory LRU):** Caches live API responses for 15 minutes to prevent redundant calls during active sessions.
    * **Tier 2 (Redis / Upstash KV):** Caches route fare results for 12 hours. Since Aviasales Data API pricing updates periodically, a 12-hour TTL dramatically cuts API usage and guarantees sub-50ms response times.
 2. **Concurrency Limiting:**
    * Never fire 25 simultaneous unthrottled requests to third-party APIs.
-   * FlightDeck uses a concurrent limiter (`createLimiter(5)`), ensuring you stay well below the 600 req/min limit.
+   * Venture uses a concurrent limiter (`createLimiter(5)`), ensuring you stay well below the 600 req/min limit.
 3. **Graceful Degradation:**
    * If third-party APIs experience downtime or network blips, the backend automatically serves verified benchmark fares labeled as `DEMO (Benchmark)` so the user's search session never breaks.
 4. **Environment Security:**

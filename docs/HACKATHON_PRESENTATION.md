@@ -1,6 +1,6 @@
-# 🚀 FlightDeck — Hackathon Presentation & Technical Deep Dive
+# 🚀 Venture — Hackathon Presentation & Technical Deep Dive
 
-> **"Google Flights searches from an airport. FlightDeck searches from *where you are*."**  
+> **"Google Flights searches from an airport. Venture searches from *where you are*."**  
 > *Reverse Multi-Hub Flight Discovery with Intermodal Ground Corridors & Cultural Readiness.*
 
 ---
@@ -14,13 +14,13 @@ Traditional flight search engines (Google Flights, Skyscanner, Expedia) operate 
 - Orlando is just **80 miles away** via the I-4 Express corridor or Brightline rail (\$25 ground transit, 1.3 hours).
 - **Result:** The traveler overpays by **\$445** simply because legacy search engines cannot compute overland-to-air multimodal trade-offs.
 
-### The Solution: FlightDeck
-FlightDeck reverses the traditional flight search paradigm:
-1. **Dynamic Regional Hub Radius:** Given a home base, FlightDeck scans all commercial airports within a customizable driving/rail radius (up to 300+ miles).
+### The Solution: Venture
+Venture reverses the traditional flight search paradigm:
+1. **Dynamic Regional Hub Radius:** Given a home base, Venture scans all commercial airports within a customizable driving/rail radius (up to 300+ miles).
 2. **Ground Corridor Costing:** Accurately factors in realistic overland transit fares and transit durations (high-speed rail like Brightline/Frecciarossa/ICE, coaches, and drive fuel).
 3. **The True Opportunity Cost Equation:** Ranks routes not just by raw airfare, but by **Total Economic Cost**:
    $$\text{Total Cost} = \text{Flight Fare} + \text{Ground Transit Cost} + (\text{Ground Transit Hours} \times \text{User Hourly Value})$$
-4. **Post-Booking Readiness & Cultural Intelligence:** Once a route is selected or saved, FlightDeck equips the traveler with a full country dossier: local etiquette, taboos, phonetic emergency phrases, electrical standards, and a packing checklist.
+4. **Post-Booking Readiness & Cultural Intelligence:** Once a route is selected or saved, Venture equips the traveler with a full country dossier: local etiquette, taboos, phonetic emergency phrases, electrical standards, and a packing checklist.
 5. **Production Affiliate Monetization:** Every booking link routes through an intelligent `/api/go` redirect pipeline injecting Travelpayouts / Aviasales partner attribution (`708226`) with URL sanitization.
 
 ---
@@ -94,13 +94,13 @@ flowchart TD
 
 ## 3. Reverse-Search Query Pipeline & Data Flow
 
-How FlightDeck evaluates dozens of route combinations in under a second:
+How Venture evaluates dozens of route combinations in under a second:
 
 ```mermaid
 sequenceDiagram
     autonumber
     actor User as Traveler
-    participant Client as React Client (FlightDeck)
+    participant Client as React Client (Venture)
     participant API as /api/reverse (Next.js)
     participant Geo as Haversine & Corridors
     participant Provider as Aviasales / Providers
@@ -135,7 +135,7 @@ sequenceDiagram
 
 ## 4. Database Schema & Data Models
 
-FlightDeck uses a dual-engine architecture: built-in `node:sqlite` for high-performance ACID queries with an automated JSON backup layer ensuring zero configuration across cloud or local environments.
+Venture uses a dual-engine architecture: built-in `node:sqlite` for high-performance ACID queries with an automated JSON backup layer ensuring zero configuration across cloud or local environments.
 
 ```mermaid
 erDiagram
@@ -187,7 +187,7 @@ erDiagram
 Legacy flight tools only show airfare:
 $$\text{Legacy Price} = \text{Airfare}$$
 
-FlightDeck computes the **True Multimodal Opportunity Cost**:
+Venture computes the **True Multimodal Opportunity Cost**:
 
 $$\boxed{C_{\text{total}} = F_{\text{flight}} + C_{\text{ground}} + (T_{\text{ground}} \times V_{\text{time}})}$$
 
@@ -213,7 +213,7 @@ To ensure monetization is leak-proof and compliant with Aviasales' strict query 
 sequenceDiagram
     autonumber
     actor Traveler as User
-    participant App as FlightDeck UI
+    participant App as Venture UI
     participant Redirector as /api/go Security Gateway
     participant Sanitizer as DDMM Date Regex Engine
     participant Aviasales as Aviasales Search Engine
@@ -258,20 +258,20 @@ sequenceDiagram
 > **Presenting in 6 minutes?** Use the delivery plan, timing clock, judge Q&A, and day-of checklist in **[HACKATHON_PREP_6MIN.md](./HACKATHON_PREP_6MIN.md)**. Below is the condensed 3-minute core if judges cut time.
 
 ### Slide 1 / Minute 0:00 – The Hook & The Problem
-> *"Raise your hand if you've ever spent 3 hours opening 14 tabs on Google Flights trying to see if flying out of Orlando or Miami is cheaper than flying out of Tampa. Legacy flight search engines treat airports as isolated islands. They assume you have teleportation or don't care about ground transit. We built **FlightDeck** to solve this."*
+> *"Raise your hand if you've ever spent 3 hours opening 14 tabs on Google Flights trying to see if flying out of Orlando or Miami is cheaper than flying out of Tampa. Legacy flight search engines treat airports as isolated islands. They assume you have teleportation or don't care about ground transit. We built **Venture** to solve this."*
 
 ### Minute 1:00 – The Core Live Search
-1. Open FlightDeck at `localhost:3000`.
+1. Open Venture at `localhost:3000`.
 2. Click the preset card: **"Tampa → Zurich"**.
 3. Watch the radar scan 9 Florida airports in real time.
 4. Point out the winning card:
-   > *"Look at this: Departing from Tampa directly costs \$845. But taking Brightline or the I-4 corridor over to Orlando drops the fare to \$380. Even after paying \$25 for the train and valuing our time at \$15/hour, **FlightDeck saves us \$419 in net economic cost**."*
+   > *"Look at this: Departing from Tampa directly costs \$845. But taking Brightline or the I-4 corridor over to Orlando drops the fare to \$380. Even after paying \$25 for the train and valuing our time at \$15/hour, **Venture saves us \$419 in net economic cost**."*
 
 ### Minute 2:00 – Geospatial Map & Intermodal Stopovers
 1. Toggle the **Interactive Map View**.
 2. Show the departure radius circle around Tampa, the overland transit line to Orlando, and the flight arc across the Atlantic to Zurich.
 3. Show the **Scenic Stopovers** card:
-   > *"FlightDeck doesn't just treat ground transit as a chore—it can suggest high-speed scenic rail routes like the EuroCity train through the Swiss Alps or Brightline's premium lounge service."*
+   > *"Venture doesn't just treat ground transit as a chore—it can suggest high-speed scenic rail routes like the EuroCity train through the Swiss Alps or Brightline's premium lounge service."*
 
 ### Minute 2:30 – Travel Readiness & Itinerary Persistence
 1. Click **"Save to My Trips"**.
@@ -282,13 +282,13 @@ sequenceDiagram
    - Highlight the seamless `/api/go` affiliate routing that instantly attributes commission to Partner Marker `708226`.
 
 ### Minute 3:00 – Engineering Rigor & Conclusion
-> *"Behind the scenes, FlightDeck is built on Next.js 14, Tailwind CSS, Leaflet, and a SQLite persistence layer. It features 67 passing automated tests, handles rate-limited concurrent API calls with custom limiters, and guarantees 100% demo uptime through offline benchmark fallbacks. Thank you!"*
+> *"Behind the scenes, Venture is built on Next.js 14, Tailwind CSS, Leaflet, and a SQLite persistence layer. It features 79 passing automated tests, handles rate-limited concurrent API calls with custom limiters, and guarantees 100% demo uptime through offline benchmark fallbacks. Thank you!"*
 
 ---
 
 ## 9. Verification & Test Suite Summary
 
-FlightDeck includes an automated Vitest test suite covering all core business logic:
+Venture includes an automated Vitest test suite covering all core business logic:
 
 ```bash
 npm test

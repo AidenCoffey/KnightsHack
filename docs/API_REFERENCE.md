@@ -1,6 +1,6 @@
-# 🌐 FlightDeck — Complete API Reference
+# 🌐 Venture — Complete API Reference
 
-> Comprehensive specification for all FlightDeck REST and streaming API endpoints, request schemas, response formats, and integration curl commands.
+> Comprehensive specification for all Venture REST and streaming API endpoints, request schemas, response formats, and integration curl commands.
 
 ---
 
@@ -83,7 +83,7 @@ Affiliate redirect gateway that verifies domain security, rewrites date slugs to
 
 #### Response
 - **Status:** `302 Found`
-- **Header:** `Location: https://www.aviasales.com/search/MCO0911ZRH16111?marker=708226&utm_source=flightdeck`
+- **Header:** `Location: https://www.aviasales.com/search/MCO0911ZRH16111?marker=708226&utm_source=venture`
 
 #### Example Request
 ```bash

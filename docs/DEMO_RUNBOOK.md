@@ -1,4 +1,4 @@
-# 🎮 FlightDeck — Live Demo Runbook & Rehearsal Checklist
+# 🎮 Venture — Live Demo Runbook & Rehearsal Checklist
 
 > **Goal:** Flawless 3-minute live product demo execution with zero awkward pauses, zero blank screens, and maximum judge impact.
 
@@ -11,7 +11,7 @@ Before you walk up to present, ensure your laptop is configured exactly as follo
 | Item | Action | Verified? |
 | :--- | :--- | :---: |
 | **Dev Server Running** | Run `npm run dev` in `/Users/travelwolf/.gemini/antigravity/scratch/flightdeck`. Confirm server responds at `http://localhost:3000`. | [ ] |
-| **Browser Tabs Prepared** | Have exactly 2 tabs open in Google Chrome or Safari: <br>• **Tab 1:** `presentation.html` (Full-screen presentation deck). <br>• **Tab 2:** `http://localhost:3000` (FlightDeck live web app). | [ ] |
+| **Browser Tabs Prepared** | Have exactly 2 tabs open in Google Chrome or Safari: <br>• **Tab 1:** `presentation.html`Presentation slide deck. <br>• **Tab 2:** `http://localhost:3000` (Venture live web app). | [ ] |
 | **Display Zoom** | Set browser zoom to **110%** or **125%** so typography and prices are easily readable from 20 feet away. | [ ] |
 | **DevTools Closed** | Close Chrome DevTools / Console to keep the screen uncluttered and clean. | [ ] |
 | **Do Not Disturb** | Turn on macOS **Do Not Disturb / Focus Mode** to block Slack, Discord, or iMessage notifications. | [ ] |
@@ -62,7 +62,7 @@ Before you walk up to present, ensure your laptop is configured exactly as follo
   - Cultural taboos: Sunday noise restrictions, Swiss rail punctuality.
   - Essential phonetic phrases: *"Grüezi mitenand"*.
   - Electrical plug standards: Type C & J.
-- **Narration:** *"Legacy flight engines leave travelers at checkout. FlightDeck equips travelers with everything they need before they set foot on the plane."*
+- **Narration:** *"Legacy flight engines leave travelers at checkout. Venture equips travelers with everything they need before they set foot on the plane."*
 
 ### Step 7: Persistence & Monetization (2:45)
 - **Action 1:** Click **"Save to My Trips"** → Open the My Trips drawer.

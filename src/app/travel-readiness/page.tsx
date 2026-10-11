@@ -334,7 +334,7 @@ function TravelReadinessContent() {
   // Sync origin hub from local storage
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedOrigin = localStorage.getItem("flightdeck_origin") || localStorage.getItem("flightdeck_home_hub");
+      const storedOrigin = localStorage.getItem("venture_origin") || localStorage.getItem("venture_home_hub");
       if (storedOrigin) {
         setOriginIata(storedOrigin);
       }
@@ -376,7 +376,7 @@ function TravelReadinessContent() {
     setIsDropdownOpen(false);
     setSearchQuery("");
     if (typeof window !== "undefined") {
-      localStorage.setItem("flightdeck_destination", iata);
+      localStorage.setItem("venture_destination", iata);
     }
     router.push(`/travel-readiness?dest=${encodeURIComponent(iata)}${type === "country" ? "&type=country" : ""}`, { scroll: false });
   };
@@ -385,7 +385,7 @@ function TravelReadinessContent() {
   const handleSetOrigin = (iata: string) => {
     setOriginIata(iata);
     if (typeof window !== "undefined") {
-      localStorage.setItem("flightdeck_origin", iata);
+      localStorage.setItem("venture_origin", iata);
     }
   };
 
@@ -397,8 +397,8 @@ function TravelReadinessContent() {
     setSelectedIata(prevOrigin);
     setDestinationType("airport");
     if (typeof window !== "undefined") {
-      localStorage.setItem("flightdeck_origin", prevDest);
-      localStorage.setItem("flightdeck_destination", prevOrigin);
+      localStorage.setItem("venture_origin", prevDest);
+      localStorage.setItem("venture_destination", prevOrigin);
     }
     router.push(`/travel-readiness?dest=${encodeURIComponent(prevOrigin)}`, { scroll: false });
   };
@@ -406,7 +406,7 @@ function TravelReadinessContent() {
   // Sync packing checklist from Database and localStorage
   useEffect(() => {
     if (!selectedIata) return;
-    const cacheKey = `flightdeck_packing_${selectedIata.toUpperCase()}`;
+    const cacheKey = `venture_packing_${selectedIata.toUpperCase()}`;
 
     // Instant local cache load
     if (typeof window !== "undefined") {
@@ -708,7 +708,7 @@ function TravelReadinessContent() {
     setCheckedItems(nextState);
     setPackingSyncState("saving");
 
-    const cacheKey = `flightdeck_packing_${selectedIata.toUpperCase()}`;
+    const cacheKey = `venture_packing_${selectedIata.toUpperCase()}`;
     if (typeof window !== "undefined") {
       localStorage.setItem(cacheKey, JSON.stringify(nextState));
     }
@@ -735,9 +735,9 @@ function TravelReadinessContent() {
 
   const handleSearchCorridorsToDest = () => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("flightdeck_destination", selectedIata);
-      localStorage.setItem("flightdeck_home_hub", originIata);
-      localStorage.setItem("flightdeck_origin", originIata);
+      localStorage.setItem("venture_destination", selectedIata);
+      localStorage.setItem("venture_home_hub", originIata);
+      localStorage.setItem("venture_origin", originIata);
     }
     router.push(`/?destination=${encodeURIComponent(selectedIata)}&homeAirport=${encodeURIComponent(originIata)}`);
   };
@@ -848,7 +848,7 @@ function TravelReadinessContent() {
                         setForexBaseCurrency(item.code);
                         setHeaderCurrencyDropdownOpen(false);
                         if (typeof window !== "undefined") {
-                          localStorage.setItem("flightdeck_currency", item.code);
+                          localStorage.setItem("venture_currency", item.code);
                         }
                       }}
                       className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${

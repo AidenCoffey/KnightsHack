@@ -1,4 +1,4 @@
-# ⏱️ FlightDeck — The 6-Minute Pitch Script & Timing Playbook
+# ⏱️ Venture — The 6-Minute Pitch Script & Timing Playbook
 
 > **Target Duration:** Exactly 6 minutes (0:00 – 6:00)  
 > **Core Theme:** Breaking the Single-Airport Silo — Helping Travelers Explore Smarter.  
@@ -38,20 +38,20 @@
 > 
 > **Here is the real-world consequence: If you live in Tampa and want to fly to Zurich, Google Flights tells you the cheapest flight is over $850. Meanwhile, just 80 miles down the I-4 corridor in Orlando, an identical direct flight is selling for $380.**
 > 
-> **Because legacy search tools can't connect overland trains to flights, travelers flush $400 or more down the drain on every international vacation. We built FlightDeck to fix that."**
+> **Because legacy search tools can't connect overland trains to flights, travelers flush $400 or more down the drain on every international vacation. We built Venture to fix that."**
 
 ---
 
 ### 2. The Solution & The Equation (0:45 – 1:30)
 *Slide 3 & Slide 4 | Gesture toward the Opportunity Cost Equation.*
 
-> **"FlightDeck reverses the traditional flight search paradigm. Instead of asking you which airport you want to fly from, you tell FlightDeck where you are and how far you're willing to travel on the ground.**
+> **"Venture reverses the traditional flight search paradigm. Instead of asking you which airport you want to fly from, you tell Venture where you are and how far you're willing to travel on the ground.**
 > 
 > **Our engine scans every commercial hub within your regional catchment radius, pulls real overland fares for high-speed rail like Brightline, Amtrak, and express coaches, and evaluates routes using our True Opportunity Cost Formula:**
 > 
 > $$\text{Total Cost} = \text{Flight Fare} + \text{Ground Ticket} + (\text{Ground Hours} \times \text{Your Hourly Value})$$
 > 
-> **Because saving $400 on a flight is meaningless if you waste 10 hours in a bus. By factoring in your time value, FlightDeck makes multimodal trade-offs mathematically rational."**
+> **Because saving $400 on a flight is meaningless if you waste 10 hours in a bus. By factoring in your time value, Venture makes multimodal trade-offs mathematically rational."**
 
 ---
 
@@ -70,7 +70,7 @@
 > - **Tampa direct baseline was $845.**
 > - **Orlando airfare is $380.**
 > - **We factor in a $25 Brightline rail ticket and 1.3 hours of travel time at $15/hour.**
-> - **FlightDeck still hands the traveler $420.50 in cold, hard economic savings.**
+> - **Venture still hands the traveler $420.50 in cold, hard economic savings.**
 > 
 > *(Action: Open the interactive Leaflet radar map)*
 > 
@@ -81,7 +81,7 @@
 ### 4. Post-Booking Readiness & Monetization (4:00 – 5:00)
 *Still on the live web app | Show depth beyond just search.*
 
-> **"Now, most flight search tools abandon the traveler the second they click book. FlightDeck turns flight discovery into complete travel readiness.**
+> **"Now, most flight search tools abandon the traveler the second they click book. Venture turns flight discovery into complete travel readiness.**
 > 
 > *(Action: Click 'Swiss Cultural Dossier' on the card)*
 > 
@@ -100,13 +100,13 @@
 ### 5. Technical Credibility & Defensibility (5:00 – 5:45)
 *Slide 6 & Slide 8 | Confident technical wrap-up.*
 
-> **"Under the hood, FlightDeck was built for enterprise resilience:**
+> **"Under the hood, Venture was built for enterprise resilience:**
 > 1. **Concurrency Control:** Scanning 15 to 25 regional airports simultaneously would melt external API rate limits. We built an in-flight concurrency limiter (`p-limit: 5`) and a two-tier in-memory cache.
 > 2. **Stage Uptime:** If venue Wi-Fi stutters or third-party APIs fail, our deterministic benchmark fallback guarantees 100% uptime with zero blank screens.
 > 3. **Rock-Solid Quality:** We have **79 automated unit and integration tests passing** covering mathematical scoring, database persistence, and API sanitization.
 > 
 > **Judges often ask: 'Why won’t Google Flights just build this?'**
-> **Because airlines pay Google billions in sponsored placement. Recommending a $25 rail ride to a competing carrier's hub cannibalizes airline feeder flights. Google is aligned with airlines; FlightDeck is 100% aligned with the traveler's wallet."**
+> **Because airlines pay Google billions in sponsored placement. Recommending a $25 rail ride to a competing carrier's hub cannibalizes airline feeder flights. Google is aligned with airlines; Venture is 100% aligned with the traveler's wallet."**
 
 ---
 
@@ -115,7 +115,7 @@
 
 > **"The world’s transportation networks are connected. Flight search should be too.**
 > 
-> **FlightDeck stops searching airports and starts helping travelers explore smarter. We are live, fully tested, and ready to scale.**
+> **Venture stops searching airports and starts helping travelers explore smarter. We are live, fully tested, and ready to scale.**
 > 
 > **Thank you so much—we’d love to answer your questions!"**
 
@@ -123,5 +123,5 @@
 
 ## ⚡ Emergency Stage Protocol (If Anything Stumbles)
 
-- **If Wi-Fi drops completely:** FlightDeck's built-in fallback engine automatically intercepts failed queries and serves cached deterministic benchmarks. You won't even notice.
+- **If Wi-Fi drops completely:** Venture's built-in fallback engine automatically intercepts failed queries and serves cached deterministic benchmarks. You won't even notice.
 - **If you run out of time at minute 4:30:** Skip the slide deck recap! Keep the live app open, point to the $420 savings card, state the 79 passing tests, and say: *"We monetize via Travelpayouts, our tests are 100% green, and we're ready for questions."*

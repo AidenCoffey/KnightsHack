@@ -1,12 +1,12 @@
-# ⚙️ FlightDeck — Backend Architecture & Core Engines
+# ⚙️ Venture — Backend Architecture & Core Engines
 
-> Comprehensive technical breakdown of the FlightDeck backend architecture, streaming reverse-search algorithm, flight provider routing, intermodal ground corridors, economic scoring engine, and affiliate monetization gateway.
+> Comprehensive technical breakdown of the Venture backend architecture, streaming reverse-search algorithm, flight provider routing, intermodal ground corridors, economic scoring engine, and affiliate monetization gateway.
 
 ---
 
 ## 1. Server Architecture & Runtime Environment
 
-FlightDeck runs on **Next.js 14 App Router API Routes** powered by the **Node.js 20+ runtime**. 
+Venture runs on **Next.js 14 App Router API Routes** powered by the **Node.js 20+ runtime**. 
 
 ```
 Next.js App Router (HTTP Server)
@@ -38,7 +38,7 @@ Next.js App Router (HTTP Server)
 
 ## 2. Reverse Multi-Hub Search Algorithm
 
-The central backend innovation of FlightDeck is the reverse search pipeline located in [`src/app/api/reverse/route.ts`](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/src/app/api/reverse/route.ts).
+The central backend innovation of Venture is the reverse search pipeline located in [`src/app/api/reverse/route.ts`](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/src/app/api/reverse/route.ts).
 
 ```mermaid
 flowchart TD
@@ -113,7 +113,7 @@ flowchart LR
 - **Metro-Code Resolution:** Translates individual airport codes to parent metro areas (e.g., `JFK`/`EWR`/`LGA` $\to$ `NYC`, `NRT`/`HND` $\to$ `TYO`) to dramatically increase cache hit rates.
 
 ### 2. Concurrency Throttler (`createLimiter`)
-To prevent network timeouts or IP bans, FlightDeck limits concurrent external HTTP queries using an in-process queue:
+To prevent network timeouts or IP bans, Venture limits concurrent external HTTP queries using an in-process queue:
 ```typescript
 function createLimiter(concurrency: number) {
   let active = 0;
@@ -153,7 +153,7 @@ $$\boxed{C_{\text{total}} = F_{\text{flight}} + C_{\text{ground}} + (T_{\text{gr
 - $V_{\text{time}}$: Traveler's hourly time value (\$/hour).
 
 ### 2. Break-Even Value Formula
-When a traveler asks, *"At what salary is this detour no longer worth it?"*, FlightDeck solves for the break-even hourly wage $V_{\text{break-even}}$:
+When a traveler asks, *"At what salary is this detour no longer worth it?"*, Venture solves for the break-even hourly wage $V_{\text{break-even}}$:
 
 $$V_{\text{break-even}} = \frac{(F_{\text{home}} + C_{\text{ground, home}}) - (F_{\text{candidate}} + C_{\text{ground, candidate}})}{T_{\text{candidate}} - T_{\text{home}}}$$
 
@@ -184,7 +184,7 @@ sequenceDiagram
     alt URL has legacy YYYYMMDD date
         Regex-->>Gateway: Convert 20261109 to strict 0911 (DDMM)
     end
-    Gateway->>Gateway: Inject ?marker=708226&utm_source=flightdeck
+    Gateway->>Gateway: Inject ?marker=708226&utm_source=venture
     Gateway-->>Traveler: HTTP 302 Found (Redirect to sanitized URL)
     Traveler->>Target: Lands on live booking page with 30-day affiliate cookie
 ```

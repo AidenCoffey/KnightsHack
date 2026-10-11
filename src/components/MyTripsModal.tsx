@@ -147,7 +147,7 @@ export function MyTripsModal({
       loaded.forEach((trip) => {
         const destKey = trip.destinationIata.toUpperCase();
         if (typeof window !== "undefined") {
-          const cached = localStorage.getItem(`flightdeck_packing_${destKey}`);
+          const cached = localStorage.getItem(`venture_packing_${destKey}`);
           if (cached) {
             try {
               const parsed = JSON.parse(cached);
@@ -299,7 +299,7 @@ export function MyTripsModal({
     }));
 
     if (typeof window !== "undefined") {
-      localStorage.setItem(`flightdeck_packing_${destKey}`, JSON.stringify(nextChecks));
+      localStorage.setItem(`venture_packing_${destKey}`, JSON.stringify(nextChecks));
     }
 
     fetch("/api/packing-checklist", {

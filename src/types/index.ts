@@ -1,4 +1,4 @@
-// Shared TypeScript types for FlightDeck
+// Shared TypeScript types for Venture
 
 export type DistanceUnit = "miles" | "km";
 

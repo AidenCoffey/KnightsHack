@@ -1,12 +1,12 @@
-# 💾 FlightDeck — Database & Data Models
+# 💾 Venture — Database & Data Models
 
-> Technical reference for FlightDeck's dual-engine persistence layer (SQLite + JSON Backup), static datasets, TypeScript interfaces, and schema definitions.
+> Technical reference for Venture's dual-engine persistence layer (SQLite + JSON Backup), static datasets, TypeScript interfaces, and schema definitions.
 
 ---
 
 ## 1. Dual-Engine Persistence Architecture
 
-To guarantee zero setup friction, high-performance querying, and seamless portability across both local developer machines and containerized cloud servers, FlightDeck employs a **Dual-Engine Persistence Strategy** implemented in [`src/lib/trips-db.ts`](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/src/lib/trips-db.ts):
+To guarantee zero setup friction, high-performance querying, and seamless portability across both local developer machines and containerized cloud servers, Venture employs a **Dual-Engine Persistence Strategy** implemented in [`src/lib/trips-db.ts`](file:///Users/travelwolf/.gemini/antigravity/scratch/flightdeck/src/lib/trips-db.ts):
 
 ```mermaid
 flowchart TD

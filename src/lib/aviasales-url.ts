@@ -61,7 +61,7 @@ export function buildAviasalesSearchUrl(params: AviasalesUrlParams): string {
 
   const url = new URL(`https://www.aviasales.com/search/${pathSlug}`);
   url.searchParams.set("marker", marker);
-  url.searchParams.set("utm_source", "flightdeck");
+  url.searchParams.set("utm_source", "venture");
   url.searchParams.set("utm_medium", "affiliate");
   url.searchParams.set("utm_campaign", "reverse-search");
   url.searchParams.set("utm_content", `${orig}-${dest}`);

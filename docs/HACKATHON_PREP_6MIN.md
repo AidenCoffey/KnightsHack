@@ -1,4 +1,4 @@
-# FlightDeck — 6-Minute Hackathon Prep
+# Venture — 6-Minute Hackathon Prep
 
 > One-page delivery plan: how to present, exact timing, demo script, and judge Q&A.  
 > Technical depth lives in [HACKATHON_PRESENTATION.md](./HACKATHON_PRESENTATION.md) — this file is for **standing up and winning the room**.
@@ -7,7 +7,7 @@
 
 ## 1. The One Sentence You Must Own
 
-**"Google Flights searches from an airport. FlightDeck searches from where you are — and tells you if driving or taking the train to another hub is actually cheaper."**
+**"Google Flights searches from an airport. Venture searches from where you are — and tells you if driving or taking the train to another hub is actually cheaper."**
 
 If you forget everything else, say that, show Tampa → Zurich saving ~$400 via Orlando, then sit down.
 
@@ -56,11 +56,11 @@ Prefer **live product over slides**. One backup screenshot of the winning TPA→
 ### 0:00–0:45 — Hook
 
 > **"Raise your hand if you've ever opened Google Flights for Tampa, then Orlando, then Miami, trying to find the cheap way out."**  
-> Traditional search treats airports like islands. You live in a *region*. In Tampa to Zurich, home base can show **$850+** while Orlando is **~$380** — and Orlando is about **80 miles** away on Brightline or I‑4. Legacy tools never add that trade-off. We built **FlightDeck**.
+> Traditional search treats airports like islands. You live in a *region*. In Tampa to Zurich, home base can show **$850+** while Orlando is **~$380** — and Orlando is about **80 miles** away on Brightline or I‑4. Legacy tools never add that trade-off. We built **Venture**.
 
 ### 0:45–1:30 — Solution (no deep tech yet)
 
-> FlightDeck starts from **where you are**, scans every commercial airport in your driving/rail radius, adds **ground cost + your time**, and ranks by **true total cost**:  
+> Venture starts from **where you are**, scans every commercial airport in your driving/rail radius, adds **ground cost + your time**, and ranks by **true total cost**:  
 > **Total = flight + ground + (hours × your $/hour).**  
 > Then it goes further: cultural readiness, saved trips, and bookable affiliate links. You'll see it live.
 
@@ -74,7 +74,7 @@ Prefer **live product over slides**. One backup screenshot of the winning TPA→
 2. **Narrate the stream:**  
    > "Watch — we're scanning Florida hubs live, not waiting for a spinner."  
 3. **Point at the winning card (MCO / Orlando):**  
-   > "Tampa baseline ~$845. Orlando ~$380. Add ~$25 ground and time at $15/hour — **FlightDeck still nets about $419 in economic savings.** That's the product."  
+   > "Tampa baseline ~$845. Orlando ~$380. Add ~$25 ground and time at $15/hour — **Venture still nets about $419 in economic savings.** That's the product."  
 4. **Open the map:** radius around Tampa → ground line to Orlando → flight arc to Zurich.  
    > "One view: catchment, overland, and the flight."  
 5. *(If time)* briefly mention Scenic Stopovers / rail as "transit as part of the trip, not a penalty."
@@ -100,7 +100,7 @@ Pick **two** of these (not all):
 
 ### 5:45–6:00 — Close
 
-> **"FlightDeck: search from where you are, not from one airport code. Happy to take questions."**
+> **"Venture: search from where you are, not from one airport code. Happy to take questions."**
 
 ---
 
@@ -116,7 +116,7 @@ Pick **two** of these (not all):
 ### 30 minutes before
 - [ ] Laptop charged; power cable; dongle/HDMI tested  
 - [ ] Wi‑Fi known; hotspot ready as backup  
-- [ ] Browser: one tab FlightDeck, bookmarks for `/my-trips` / readiness if needed  
+- [ ] Browser: one tab Venture, bookmarks for `/my-trips` / readiness if needed  
 - [ ] Zoom UI; hide bookmarks bar; Do Not Disturb / Slack muted  
 - [ ] Pre-warm one search so cache is hot (faster on stage)  
 - [ ] Water; notes = 5 bullets max on a sticky, not a script page
@@ -133,7 +133,7 @@ Pick **two** of these (not all):
 
 ## 6. What Judges Are Scoring (Aim Your Minutes)
 
-Typical hackathon rubrics map cleanly to FlightDeck:
+Typical hackathon rubrics map cleanly to Venture:
 
 | Criterion | Your proof in 6 minutes |
 | :--- | :--- |
@@ -235,7 +235,7 @@ Live GDS would be too slow for a multi-hub scan.
 
 ## 8. 60-Second Elevator (If They Cut You Short)
 
-> Google Flights assumes one airport. FlightDeck scans your whole region, adds train or drive cost and your time, and ranks by true total cost. Tampa to Zurich: Orlando can win by roughly **four hundred dollars** after ground. We stream results live, show it on a map, save trips with cultural readiness, and monetize through Aviasales affiliate links — with offline fallback so it always works. That's FlightDeck.
+> Google Flights assumes one airport. Venture scans your whole region, adds train or drive cost and your time, and ranks by true total cost. Tampa to Zurich: Orlando can win by roughly **four hundred dollars** after ground. We stream results live, show it on a map, save trips with cultural readiness, and monetize through Aviasales affiliate links — with offline fallback so it always works. That's Venture.
 
 ---
 

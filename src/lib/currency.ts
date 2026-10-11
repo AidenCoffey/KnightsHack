@@ -1,5 +1,5 @@
 /**
- * currency.ts — Exchange rate utilities for FlightDeck
+ * currency.ts — Exchange rate utilities for Venture
  *
  * Provides clean conversion between EUR, USD, and GBP for fares and ground transport.
  */
@@ -15,6 +15,21 @@ const RATES_TO_EUR: Record<string, number> = {
   USD: 0.925,
   GBP: 1.176,
   CHF: 1.06,
+  CZK: 0.0395,
+  HUF: 0.0025,
+  PLN: 0.2325,
+  SEK: 0.0877,
+  NOK: 0.0855,
+  DKK: 0.134,
+  RON: 0.201,
+  BGN: 0.511,
+  RSD: 0.00855,
+  TRY: 0.027,
+  JPY: 0.00606,
+  CAD: 0.667,
+  AUD: 0.617,
+  THB: 0.0274,
+  MAD: 0.0926,
 };
 
 const RATES_FROM_EUR: Record<string, number> = {
@@ -22,6 +37,21 @@ const RATES_FROM_EUR: Record<string, number> = {
   USD: 1.081,
   GBP: 0.85,
   CHF: 0.943,
+  CZK: 25.3,
+  HUF: 400.0,
+  PLN: 4.30,
+  SEK: 11.4,
+  NOK: 11.7,
+  DKK: 7.46,
+  RON: 4.97,
+  BGN: 1.956,
+  RSD: 117.0,
+  TRY: 37.0,
+  JPY: 165.0,
+  CAD: 1.50,
+  AUD: 1.62,
+  THB: 36.5,
+  MAD: 10.8,
 };
 
 /**

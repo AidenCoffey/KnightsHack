@@ -14,6 +14,7 @@ import { z } from "zod";
 import type { Fare } from "@/types";
 import type { FareProvider, FareParams } from "./types";
 import { readCache, writeCache, formatCacheDate } from "../cache";
+import { convertCurrency } from "../currency";
 
 // Zod schema for Ryanair fare response
 // NOTE: Field names inspected from real responses — may change without notice
@@ -37,10 +38,19 @@ export class RyanairProvider implements FareProvider {
   readonly name = "Ryanair";
 
   async getFares(params: FareParams): Promise<Fare[]> {
-    const { origin, destination, dateFrom, dateTo } = params;
+    const { origin, destination, dateFrom, dateTo, tripType, currency } = params;
+    const reqCurrency = (currency || "EUR").toUpperCase();
+    const reqTripType = tripType || (dateTo ? "round" : "oneway");
 
     // Try cache first
-    const cached = await readCache(`ry-${origin}`, destination, dateFrom);
+    const cached = await readCache(
+      `ry-${origin}`,
+      destination,
+      dateFrom,
+      dateTo,
+      reqTripType,
+      reqCurrency
+    );
     if (cached) {
       return cached.fares.map((f) => ({
         ...f,
@@ -55,6 +65,7 @@ export class RyanairProvider implements FareProvider {
     url.searchParams.set("outboundDepartureDateTo", dateTo || dateFrom);
     url.searchParams.set("language", "en");
     url.searchParams.set("market", "en-gb");
+    url.searchParams.set("currency", reqCurrency);
     url.searchParams.set("offset", "0");
     url.searchParams.set("limit", "5");
 
@@ -64,7 +75,7 @@ export class RyanairProvider implements FareProvider {
     try {
       const res = await fetch(url.toString(), {
         headers: {
-          "User-Agent": "Mozilla/5.0 (compatible; FlightDeck/1.0; hackathon demo)",
+          "User-Agent": "Mozilla/5.0 (compatible; Venture/1.0; hackathon demo)",
           Accept: "application/json",
         },
         signal: controller.signal,
@@ -85,28 +96,52 @@ export class RyanairProvider implements FareProvider {
 
       const fetchedAt = new Date().toISOString();
       const fares: Fare[] = parsed.data.fares
-        .map((f) => ({
-          provider: "Ryanair",
-          origin: f.outbound.departureAirport.iataCode,
-          destination: f.outbound.arrivalAirport.iataCode,
-          departAt: f.outbound.departureDate,
-          price: f.outbound.price.value,
-          currency: f.outbound.price.currencyCode,
-          includesBags: false,
-          fetchedAt,
-          source: "Live" as const,
-        }))
+        .map((f) => {
+          const rawPrice = f.outbound.price.value;
+          const fareCurrency = f.outbound.price.currencyCode.toUpperCase();
+          const convertedPrice =
+            fareCurrency !== reqCurrency
+              ? convertCurrency(rawPrice, fareCurrency, reqCurrency)
+              : rawPrice;
+
+          return {
+            provider: "Ryanair",
+            origin: f.outbound.departureAirport.iataCode,
+            destination: f.outbound.arrivalAirport.iataCode,
+            departAt: f.outbound.departureDate,
+            price: convertedPrice,
+            currency: reqCurrency,
+            includesBags: false,
+            fetchedAt,
+            source: "Live" as const,
+          };
+        })
         .filter((f) => f.price > 0);
 
       if (fares.length > 0) {
-        await writeCache(`ry-${origin}`, destination, dateFrom, fares);
+        await writeCache(
+          `ry-${origin}`,
+          destination,
+          dateFrom,
+          dateTo,
+          reqTripType,
+          reqCurrency,
+          fares
+        );
       }
       return fares;
     } catch (err) {
       clearTimeout(timeout);
       console.error("[Ryanair] Fetch failed:", err);
       // Fall back to stale cache
-      const stale = await readCache(`ry-${origin}`, destination, dateFrom);
+      const stale = await readCache(
+        `ry-${origin}`,
+        destination,
+        dateFrom,
+        dateTo,
+        reqTripType,
+        reqCurrency
+      );
       if (stale) {
         return stale.fares.map((f) => ({
           ...f,

@@ -98,7 +98,7 @@ export async function GET(req: NextRequest) {
   }
 
   // UTM params for analytics
-  parsedUrl.searchParams.set("utm_source", "flightdeck");
+  parsedUrl.searchParams.set("utm_source", "venture");
   parsedUrl.searchParams.set("utm_medium", "affiliate");
   parsedUrl.searchParams.set("utm_campaign", "reverse-search");
   if (origin) parsedUrl.searchParams.set("utm_content", `${origin}-${destination ?? ""}`);

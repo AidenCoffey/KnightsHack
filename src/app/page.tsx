@@ -166,7 +166,7 @@ function HomeContent() {
     }
 
     if (!hasRestoredCurrency.current) {
-      const savedCurrency = localStorage.getItem("flightdeck_currency");
+      const savedCurrency = localStorage.getItem("venture_currency");
       if (savedCurrency && ["USD", "EUR", "GBP"].includes(savedCurrency.toUpperCase())) {
         const next = savedCurrency.toUpperCase();
         // Default timeValue is authored in USD; convert when restoring a non-USD preference
@@ -250,7 +250,7 @@ function HomeContent() {
       setTimeValue((prev) => Math.round(convertCurrency(prev, currency, next)));
       setCurrency(next);
       if (typeof window !== "undefined") {
-        localStorage.setItem("flightdeck_currency", next);
+        localStorage.setItem("venture_currency", next);
       }
     },
     [currency]
