@@ -700,7 +700,7 @@ export function CleanSearchLanding({
             <button
               type="button"
               onClick={() => handleNavigateToReadiness()}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#FFFFFF] hover:bg-[#FAF7F2] text-[#1C1917] border border-[#E8E2D5] hover:border-[#B45309]/50 transition-all shadow-xs cursor-pointer group"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#FFFFFF] hover:bg-[#FAF7F2] text-[#78716C] hover:text-[#1C1917] border border-[#E8E2D5] hover:border-[#B45309]/50 transition-all shadow-xs cursor-pointer group"
               title="Open Destination Travel Readiness Page"
             >
               <Luggage className="h-3.5 w-3.5 text-[#B45309] group-hover:scale-110 transition-transform" />

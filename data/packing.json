@@ -14,5 +14,16 @@
     "Waterproof jacket for winter months": true,
     "Phone with offline maps (Google Maps works well)": true,
     "Camera with extra batteries/memory cards": true
+  },
+  "MAD": {
+    "Lightweight, breathable clothing for hot summers": true,
+    "Layered clothing for spring and fall": true,
+    "Light jacket or sweater for evening temperature drops": true,
+    "Camera for stunning architecture and landscapes": true,
+    "Phone with offline maps downloaded": true,
+    "High SPF sunscreen (Spanish sun is intense)": true,
+    "After-sun lotion or aloe vera gel": true,
+    "Insect repellent (especially for summer evenings)": true,
+    "Daypack for excursions": true
   }
 }

@@ -15,6 +15,7 @@ interface MapViewInnerProps {
   /** When false, frame the search radius with no flight path */
   showRoute?: boolean;
   homeAirport: string;
+  homeAirportData?: Airport | null;
   destination?: string;
   currency?: string;
   isLoading: boolean;
@@ -273,6 +274,7 @@ export default function MapViewInner({
   onSelect,
   showRoute = false,
   homeAirport,
+  homeAirportData: homeAirportProp,
   destination,
   currency = "EUR",
   isLoading,
@@ -346,11 +348,14 @@ export default function MapViewInner({
   const [homeAirportObj, setHomeAirportObj] = useState<Airport | null>(null);
   const [destAirportObj, setDestAirportObj] = useState<Airport | null>(null);
 
-  // Helper to reliably resolve airport coordinates from results, fallback list, or cache
+  // Helper to reliably resolve airport coordinates from results, fallback list, cache, or props
   const resolveAirportData = useCallback(
     (code?: string): Airport | null => {
       if (!code) return null;
       const upper = code.trim().toUpperCase();
+      if (homeAirportProp && homeAirportProp.iata.toUpperCase() === upper) {
+        return homeAirportProp;
+      }
       if (airportCacheRef.current.has(upper)) return airportCacheRef.current.get(upper)!;
       const inRes = results.find((r) => r.airport.iata.toUpperCase() === upper)?.airport;
       if (inRes) {
@@ -364,7 +369,7 @@ export default function MapViewInner({
       }
       return null;
     },
-    [results]
+    [homeAirportProp, results]
   );
 
   const bestDeal = useMemo(() => getBestDeal(results), [results]);
@@ -501,14 +506,22 @@ export default function MapViewInner({
   useEffect(() => {
     if (mapRef.current || !mapContainerRef.current) return;
 
-    const home = FALLBACK_AIRPORTS.find((a) => a.iata === homeAirport) ?? FALLBACK_AIRPORTS[0];
+    const upperHome = (homeAirport || "").trim().toUpperCase();
+    const home =
+      (homeAirportProp && homeAirportProp.iata.toUpperCase() === upperHome ? homeAirportProp : null) ||
+      (upperHome ? results.find((r) => r.airport.iata.toUpperCase() === upperHome)?.airport : null) ||
+      (upperHome ? airportCacheRef.current.get(upperHome) : null) ||
+      (upperHome ? FALLBACK_AIRPORTS.find((a) => a.iata.toUpperCase() === upperHome) : null) ||
+      FALLBACK_AIRPORTS.find((a) => a.iata === "BTS") ||
+      FALLBACK_AIRPORTS[0];
+
     const initialRadiusMeters = (radiusMiles || 300) * 1609.34;
     const initialBounds = latLngBoundsFromRadius(home.lat, home.lon, initialRadiusMeters);
 
     try {
       const map = L.map(mapContainerRef.current, {
         center: [home.lat, home.lon],
-        zoom: 6,
+        zoom: 7,
         minZoom: 2,
         maxBounds: WORLD_MAX_BOUNDS,
         maxBoundsViscosity: 1.0,
@@ -535,12 +548,22 @@ export default function MapViewInner({
       setTimeout(() => {
         if (mapRef.current) {
           mapRef.current.invalidateSize({ animate: false });
-          if (!hasFramedHubClusterRef.current) {
-            mapRef.current.fitBounds(initialBounds, {
-              padding: [36, 36],
-              maxZoom: 8,
-              animate: false,
-            });
+          if (!hasFramedHubClusterRef.current && !showRoute) {
+            const currentHome =
+              (homeAirportProp && homeAirportProp.iata.toUpperCase() === upperHome ? homeAirportProp : null) ||
+              (upperHome ? results.find((r) => r.airport.iata.toUpperCase() === upperHome)?.airport : null) ||
+              (upperHome ? airportCacheRef.current.get(upperHome) : null) ||
+              (upperHome ? FALLBACK_AIRPORTS.find((a) => a.iata.toUpperCase() === upperHome) : null) ||
+              home;
+            const currentRadiusMeters = (radiusMiles || 300) * 1609.34;
+            mapRef.current.fitBounds(
+              latLngBoundsFromRadius(currentHome.lat, currentHome.lon, currentRadiusMeters),
+              {
+                padding: [36, 36],
+                maxZoom: 8,
+                animate: false,
+              }
+            );
           }
         }
       }, 250);
@@ -579,7 +602,12 @@ export default function MapViewInner({
     updateTileLayer(activeProvider);
   }, [activeProvider, updateTileLayer]);
 
-  // Reset camera guards when a new search clears results
+  // Reset camera guards when a new search clears results or home airport / radius changes
+  useEffect(() => {
+    lastCameraKeyRef.current = "";
+    hasFramedHubClusterRef.current = false;
+  }, [homeAirport, radiusMiles]);
+
   useEffect(() => {
     if (results.length === 0) {
       lastCameraKeyRef.current = "";
@@ -587,24 +615,28 @@ export default function MapViewInner({
     }
   }, [results.length]);
 
-  // Center on Home Airport when homeAirport changes; auto-frame if no results
+  // Center on Home Airport when homeAirport changes; auto-frame if no route is being inspected
   useEffect(() => {
     if (!mapRef.current) return;
-    const home = homeAirportObj || resolveAirportData(homeAirport);
-    if (home && (!results || results.length === 0)) {
+    const home = homeAirportProp || homeAirportObj || resolveAirportData(homeAirport);
+    if (home && !showRoute) {
       const radiusMeters = (radiusMiles || 300) * 1609.34;
       const bounds = latLngBoundsFromRadius(home.lat, home.lon, radiusMeters);
-      lastCameraKeyRef.current = `home:${home.iata}:${radiusMiles}`;
-      smoothFlyToBounds(bounds, { padding: [36, 36], maxZoom: 8, duration: 0.9 });
+      const key = `home:${home.iata}:${radiusMiles}`;
+      if (lastCameraKeyRef.current !== key) {
+        lastCameraKeyRef.current = key;
+        hasFramedHubClusterRef.current = true;
+        smoothFlyToBounds(bounds, { padding: [36, 36], maxZoom: 8, duration: 0.9 });
+      }
     }
-  }, [homeAirport, homeAirportObj, radiusMiles, resolveAirportData, results, smoothFlyToBounds]);
+  }, [homeAirport, homeAirportProp, homeAirportObj, radiusMiles, resolveAirportData, showRoute, smoothFlyToBounds]);
 
   // Draw refined, high-end Overland Transit Limit Radius Circle centered wherever the hub is
   useEffect(() => {
     if (!mapRef.current || !radiusLayerRef.current) return;
     radiusLayerRef.current.clearLayers();
 
-    const homeAirportData = homeAirportObj || resolveAirportData(homeAirport);
+    const homeAirportData = homeAirportProp || homeAirportObj || resolveAirportData(homeAirport);
     if (!homeAirportData) return;
 
     const effectiveRadiusMiles = radiusMiles || 300;
@@ -621,7 +653,7 @@ export default function MapViewInner({
       fillOpacity: 0.04,
       interactive: false,
     }).addTo(radiusLayerRef.current);
-  }, [homeAirport, homeAirportObj, radiusMiles, resolveAirportData]);
+  }, [homeAirport, homeAirportProp, homeAirportObj, radiusMiles, resolveAirportData]);
 
   // Update Markers when results change
   useEffect(() => {
@@ -630,7 +662,7 @@ export default function MapViewInner({
     overlayLayerRef.current.clearLayers();
     markersRef.current.clear();
 
-    const homeAirportData = homeAirportObj || resolveAirportData(homeAirport);
+    const homeAirportData = homeAirportProp || homeAirportObj || resolveAirportData(homeAirport);
     const destAirport = destAirportObj || resolveAirportData(destination);
 
     const validAirportCoords: [number, number][] = [];
@@ -807,8 +839,8 @@ export default function MapViewInner({
       lastCameraKeyRef.current = `radius:${homeAirportData.iata}:${radiusMiles}`;
       smoothFlyToBounds(radiusBounds, {
         padding: [36, 36],
-        maxZoom: 9,
-        duration: 1.0,
+        maxZoom: 8,
+        duration: 0.8,
       });
     }
   }, [
@@ -820,6 +852,7 @@ export default function MapViewInner({
     selected,
     showRoute,
     homeAirport,
+    homeAirportProp,
     homeAirportObj,
     currency,
     resolveAirportData,
@@ -852,7 +885,7 @@ export default function MapViewInner({
     }
 
     const destAirport = destAirportObj || resolveAirportData(destination);
-    const homeAirportData = homeAirportObj || resolveAirportData(homeAirport);
+    const homeAirportData = homeAirportProp || homeAirportObj || resolveAirportData(homeAirport);
     const origin: LatLon = [originLat, originLon];
     const needsGround =
       !!homeAirportData && selectedIata.toUpperCase() !== homeAirport.trim().toUpperCase();
@@ -975,6 +1008,7 @@ export default function MapViewInner({
     destination,
     destAirportObj,
     homeAirport,
+    homeAirportProp,
     homeAirportObj,
     radiusMiles,
     resolveAirportData,
@@ -983,12 +1017,12 @@ export default function MapViewInner({
 
   const handleCenterHome = () => {
     if (!mapRef.current) return;
-    const home = homeAirportObj || resolveAirportData(homeAirport);
+    const home = homeAirportProp || homeAirportObj || resolveAirportData(homeAirport);
     if (home) {
       const radiusMeters = (radiusMiles || 300) * 1609.34;
       const bounds = latLngBoundsFromRadius(home.lat, home.lon, radiusMeters);
       lastCameraKeyRef.current = `home:${home.iata}:${radiusMiles}`;
-      smoothFlyToBounds(bounds, { padding: [36, 36], maxZoom: 8, duration: 1.0 });
+      smoothFlyToBounds(bounds, { padding: [36, 36], maxZoom: 8, duration: 0.9 });
     }
   };
 

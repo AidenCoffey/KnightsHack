@@ -1,293 +1,301 @@
 [
   {
-    "id": "trip_1791689355389_j01hh",
-    "createdAt": "2026-10-11T03:29:15.389Z",
-    "originIata": "MCO",
-    "originCity": "Orlando",
-    "destinationIata": "NRT",
-    "destinationCity": "Tokyo",
-    "destinationCountry": "JP",
+    "id": "trip_1791707413955_d6k5n",
+    "createdAt": "2026-10-11T08:30:13.955Z",
+    "originIata": "BUD",
+    "originCity": "Budapest",
+    "destinationIata": "MAD",
+    "destinationCity": "Madrid",
+    "destinationCountry": "ES",
     "departDate": "2026-11-10",
     "returnDate": "2026-11-17",
     "tripType": "round",
     "passengers": 1,
-    "farePrice": 913,
+    "farePrice": 25,
     "currency": "USD",
-    "totalCost": 982.882319269131,
-    "savingsVsHome": 18.26768073086896,
+    "totalCost": 89.65740864025523,
+    "savingsVsHome": 39.74259135974478,
     "transferMode": "bus",
-    "transferPrice": 20.1,
-    "transferDurationHours": 3.318821284608734,
-    "airline": "Aviasales",
-    "bookingUrl": "https://www.aviasales.com/search/ORL1011TYO17111?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=ORL-TYO",
+    "transferPrice": 15,
+    "transferDurationHours": 2.4828704320127613,
+    "airline": "Ryanair",
+    "bookingUrl": null,
     "notes": "",
     "culturalInfo": {
-      "countryId": "JPN",
-      "countryName": "Japan",
-      "alpha2": "JP",
-      "flagUrl": "https://flagcdn.com/w160/jp.png",
-      "weatherInfo": "Japan has four distinct seasons with regional variations:\n\n• Spring (Mar–May): Cherry blossoms, mild 10–20°C (50–68°F)\n\n• Summer (Jun–Aug): Rainy season in June, humid 25–35°C (77–95°F), typhoons in Aug–Sep\n\n• Autumn (Sep–Nov): Comfortable 15–25°C (59–77°F), vibrant foliage\n\n• Winter (Dec–Feb): Snow in north (Hokkaido –10 to 0°C / 14 to 32°F), milder in Tokyo 5–10°C (41–50°F)\n\n• Subtropical Okinawa: year-round warmth 15–30°C (59–86°F)\n\n• Daylight: ~9 h in winter to ~14 h in summer",
+      "countryId": "ESP",
+      "countryName": "Spain",
+      "alpha2": "ES",
+      "flagUrl": "https://flagcdn.com/w160/es.png",
+      "weatherInfo": "Spain has diverse climate zones across different regions:\n\n• Mediterranean Coast (Barcelona, Valencia): Hot, dry summers 25–32°C (77–90°F), mild winters 8–15°C (46–59°F). Peak tourist season June–September, but pleasant year-round\n\n• Central Spain (Madrid, Toledo): Continental climate with hot, dry summers 30–40°C (86–104°F), cold winters 0–10°C (32–50°F). Significant day-night temperature variations. Spring (Apr–Jun) and fall (Sep–Oct) offer most comfortable temperatures\n\n• Northern Spain (Bilbao, Santiago de Compostela): Atlantic climate with moderate temperatures 15–25°C (59–77°F) in summer, 5–15°C (41–59°F) in winter. More rainfall than other regions, especially in fall and winter\n\n• Southern Spain (Seville, Málaga): Very hot, dry summers 35–45°C (95–113°F), mild winters 10–18°C (50–64°F). Best visited in spring or fall to avoid extreme heat\n\n• Balearic Islands (Mallorca, Ibiza): Classic Mediterranean climate, slightly milder than mainland coast. Beach season May–October\n\n• Canary Islands: Subtropical climate with warm temperatures 20–28°C (68–82°F) year-round, making them an excellent winter beach destination\n\n• Most of Spain experiences high UV index—sun protection is essential year-round",
       "currencyInfo": {
-        "name": "Japanese Yen",
-        "code": "JPY",
-        "exchangeRate": "Approximately 110–150 JPY = 1 USD, 130–140 JPY = 1 EUR",
-        "tips": "• Cash remains king—carry sufficient yen\n\n• ATMs at 7‑Eleven, Post Offices & major banks accept international cards\n\n• Use Suica/Pasmo IC cards for transit & small purchases\n\n• No tipping culture—service is included\n\n• Exchange counters at airports and big cities"
+        "name": "Euro",
+        "code": "EUR",
+        "exchangeRate": "Approximately 0.85–0.95 EUR = 1 USD",
+        "tips": "• ATMs widely available in cities and towns\n\n• Credit cards accepted at most establishments (Visa/Mastercard more widely accepted than American Express)\n\n• Inform your bank of travel plans to prevent card blocks\n\n• Tipping is not obligatory but appreciated: 5–10% in restaurants for good service, 1–2€ for hotel porters, round up taxi fares to nearest euro\n\n• Always have some cash for small shops, markets, and cafés in rural areas\n\n• Many smaller establishments don't accept bills larger than 50€\n\n• VAT (IVA) of 21% included in displayed prices\n\n• Non-EU residents can request tax refunds on purchases over 90.16€ at participating stores (look for \"Tax Free\" signs)\n\n• Spain generally has lower prices than northern European countries but higher than eastern Europe"
       },
       "emergencyInfo": {
-        "police": "110",
-        "ambulance": "119",
-        "embassy": "U.S. Embassy in Tokyo: +81 3-3224-5000, https://jp.usembassy.gov/"
+        "police": "112 (General Emergency) / 091 (National Police)",
+        "ambulance": "112",
+        "embassy": "U.S. Embassy in Madrid: +34 91-587-2200, https://es.usembassy.gov/"
       },
       "essentialItems": [
         {
           "title": "Clothing",
           "items": [
-            "Lightweight, breathable clothing for humid summers",
-            "Layered outfits for spring (Mar–May) and autumn (Sep–Nov)",
-            "Warm coat or jacket for winter (Dec–Feb), especially in northern areas",
-            "Rain jacket or compact travel umbrella (June rainy season)",
-            "Comfortable walking shoes for city exploration",
-            "Thermal base layers and sweaters for chilly evenings",
-            "Packable down jacket for sudden cold snaps",
-            "Hat and sunglasses for UV protection",
-            "Quick‑dry activewear for hiking or coastal trips",
-            "Moisture‑wicking socks to prevent blisters"
+            "Lightweight, breathable clothing for hot summers",
+            "Layered clothing for spring and fall",
+            "Light jacket or sweater for evening temperature drops",
+            "Comfortable walking shoes for cobblestone streets",
+            "Modest attire for visiting religious sites",
+            "Swimwear for beaches and hotel pools",
+            "Smart-casual outfit for restaurants and nightlife",
+            "Sun hat with wide brim for sun protection",
+            "Waterproof jacket for northern regions",
+            "Scarf or light shawl for women (useful for churches)"
           ]
         },
         {
           "title": "Electronics",
           "items": [
-            "Type A power adapter (100 V, 50/60 Hz)",
-            "Portable charger / power bank",
-            "Pocket Wi‑Fi device or Japanese SIM card",
-            "Camera for temples, shrines & landscapes",
-            "Rechargeable IC‑card (Suica/Pasmo) reader or charger",
-            "Download offline maps & translator apps",
-            "Headlamp or small flashlight for rural areas"
+            "Type F power adapter (230V, 50Hz)",
+            "Portable charger for day trips",
+            "Camera for stunning architecture and landscapes",
+            "Phone with offline maps downloaded",
+            "E-reader or books for beach days",
+            "Spanish language translation app",
+            "Headphones for long train journeys",
+            "European SIM card for affordable data"
           ]
         },
         {
           "title": "Documents",
           "items": [
-            "Valid passport (recommended ≥ 6 months beyond travel dates)",
-            "Visa or travel permit if required",
-            "Travel insurance policy & contacts",
-            "International Driving Permit (if renting a car)",
-            "Credit/debit cards (notify your bank in advance)",
-            "Digital backups of passports, visas & insurance"
+            "Valid passport (valid for at least three months beyond stay)",
+            "EU/ETIAS authorization if required (for non-EU citizens)",
+            "Travel insurance with medical coverage",
+            "Printed accommodation confirmations",
+            "International driving permit if planning to rent a car",
+            "Student ID for discounts if applicable",
+            "Credit cards and small amount of Euros",
+            "Photocopies of important documents"
           ]
         },
         {
           "title": "Health & Personal Care",
           "items": [
-            "Prescription meds with English labels & doctor's note",
-            "Sunscreen (even on cloudy days)",
+            "High SPF sunscreen (Spanish sun is intense)",
+            "After-sun lotion or aloe vera gel",
+            "Insect repellent (especially for summer evenings)",
+            "Basic first-aid kit with pain relievers",
+            "Prescription medications in original packaging",
             "Hand sanitizer and wet wipes",
-            "Lip balm with SPF",
-            "Insect repellent for summer months",
-            "Small first‑aid kit (bandages, pain relievers)",
-            "Moisturizer for dry indoor heating in winter",
-            "Disposable masks (widely used and expected)"
+            "Motion sickness remedies for winding roads",
+            "Digestive aids (for adjusting to different meal times)",
+            "Travel-sized toiletries",
+            "Lip balm with SPF"
           ]
         },
         {
           "title": "Outdoor Gear",
           "items": [
-            "Reusable water bottle (stay hydrated!)",
-            "Daypack for excursions & temple visits",
-            "Compact umbrella or rain cover",
-            "Foldable shopping bag for groceries & souvenirs",
-            "Portable shoe covers for temples/ryokan",
-            "Hiking poles for mountain trails",
-            "Quick‑dry travel towel for onsen visits"
+            "Daypack for excursions",
+            "Reusable water bottle (tap water is safe in most areas)",
+            "Foldable shopping bag (plastic bags cost extra)",
+            "Quick-dry travel towel for beaches",
+            "Sunglasses with UV protection",
+            "Small umbrella (especially for northern Spain)",
+            "Beach sandals or water shoes",
+            "Compact beach blanket",
+            "Neck wallet or money belt for crowded areas",
+            "Travel pillow for long journeys"
           ]
         }
       ],
       "localCustoms": [
         {
-          "title": "Bowing Etiquette",
-          "description": "Depth and duration of bows vary by context—from a small nod to a deep bow—used for greetings, apologies, and thanks."
+          "title": "Greeting Style",
+          "description": "Spaniards typically greet with two kisses on the cheeks between women or a woman and man. Men usually shake hands. When entering small shops, saying \"Hola\" is polite. First names are used quickly, but professional titles (Doctor, Professor) are important in formal settings."
         },
         {
-          "title": "Shoe Removal",
-          "description": "Always remove shoes indoors (homes, ryokan, some temples). Look for genkan (entryway) as the cue."
+          "title": "Dining Customs",
+          "description": "Spanish mealtimes are later than in America: lunch (la comida) 2-4pm, dinner (la cena) 9-11pm. The midday meal is typically the largest. Tapas culture involves sharing small plates. Leaving a small amount of food shows you're satisfied. Service is included but small tips (5-10%) are appreciated for good service."
         },
         {
-          "title": "Gift Giving",
-          "description": "Present and receive items with both hands. Offer souvenirs (“omiyage”) after trips as a polite gesture."
+          "title": "Siesta Tradition",
+          "description": "Though less common in major cities, smaller towns still observe siesta hours (roughly 2-5pm) when smaller shops close. Plan accordingly. Many businesses have long workdays with a substantial break in the middle. Museums and major attractions usually remain open throughout the day."
         },
         {
-          "title": "Quiet Public Transit",
-          "description": "Keep phone calls off trains/buses. Speak softly and set devices to silent mode."
+          "title": "Public Behavior",
+          "description": "Spaniards are expressive and animated in conversation—interrupting is often a sign of engagement, not rudeness. Public spaces are lively, and quietness can be perceived as unfriendly. Volume levels, especially in restaurants, are higher than Americans might expect."
         },
         {
-          "title": "Orderly Queuing",
-          "description": "Stand in marked lines at stations, bus stops, and ticket machines. Respect personal space."
+          "title": "Regional Identities",
+          "description": "Spain has strong regional cultures and languages. In Catalonia, the Basque Country, and Galicia, locals appreciate visitors recognizing their distinct identity and a few words in their language (Catalan, Euskera, Galician). Avoid referring to everything as \"Spanish\" in these regions."
         },
         {
-          "title": "Business Card Exchange",
-          "description": "Use both hands, read the card before putting it away carefully in a holder (not back pocket)."
+          "title": "Nightlife Timing",
+          "description": "Spanish nightlife starts late—locals rarely go out before 11pm, and clubs don't fill until after 1am, with peak hours between 2-5am. Pacing yourself is essential. Pre-gaming often includes bar-hopping for tapas (tapeo) before clubbing begins."
         },
         {
-          "title": "Punctuality",
-          "description": "Trains and meetings run exactly on time. Arrive 5 minutes early whenever possible."
+          "title": "Personal Space",
+          "description": "Personal space boundaries are closer than in America. Standing close during conversation is normal. Public transportation and elevators will feel more crowded. Queues (lines) may appear disorganized but have their own logic—ask \"¿Quién es el último?\" (Who's last?) to find your place."
         },
         {
-          "title": "No Tipping",
-          "description": "Tipping can cause confusion or offense—excellent service is included in the price."
+          "title": "Religious Observances",
+          "description": "Despite increasing secularism, Catholic traditions remain important. During Holy Week (Semana Santa) and local patron saint festivals, expect processions, modified business hours, and increased accommodation prices. Respect religious ceremonies by dressing modestly and maintaining appropriate behavior."
         }
       ],
       "culturalTaboos": [
         {
-          "title": "Eating or drinking while walking",
+          "title": "Discussing politics, especially regional independence movements, unless invited",
           "description": ""
         },
         {
-          "title": "Talking loudly on public transport",
+          "title": "Being excessively loud in non",
+          "description": "social settings (museums, churches"
+        },
+        {
+          "title": "Expecting quick service in restaurants",
+          "description": "(dining is meant to be leisurely"
+        },
+        {
+          "title": "Bare feet in public places other than beaches",
           "description": ""
         },
         {
-          "title": "Pointing with your finger",
+          "title": "Assuming all of Spain enjoys bullfighting (it's controversial in many regions)",
           "description": ""
         },
         {
-          "title": "Blowing your nose at the table",
+          "title": "Discussing money or asking personal financial questions",
           "description": ""
         },
         {
-          "title": "Wearing shoes indoors",
+          "title": "Failing to greet shop owners upon entering small businesses",
           "description": ""
         },
         {
-          "title": "Ignoring recycling and trash separation rules",
+          "title": "Excessive public drunkenness",
+          "description": "(despite Spain's vibrant nightlife"
+        },
+        {
+          "title": "Rushing or showing impatience with a more relaxed pace of life",
           "description": ""
         },
         {
-          "title": "Public displays of affection",
-          "description": ""
-        },
-        {
-          "title": "Skipping a bow when greeting",
-          "description": ""
-        },
-        {
-          "title": "Leaving chopsticks stuck vertically in rice",
-          "description": ""
-        },
-        {
-          "title": "Tipping service staff",
+          "title": "Comparing Spanish cuisine unfavorably to other Mediterranean cuisines",
           "description": ""
         }
       ],
       "safetyTips": [
         {
-          "title": "General Safety",
-          "description": "One of the world's safest countries with very low violent crime. Standard precautions suffice."
+          "title": "Pickpocket Awareness",
+          "description": "Barcelona, Madrid, and other tourist areas have skilled pickpockets. Use anti-theft bags, keep valuables secured, and be especially vigilant in crowded areas, public transportation, and popular attractions. Beware of distraction techniques like spilling something on you or asking for directions."
         },
         {
-          "title": "Natural Disasters",
-          "description": "Be prepared for earthquakes, tsunamis, and typhoons. Download the J‑Alert app and familiarize yourself with evacuation routes."
+          "title": "Beach Safety",
+          "description": "Pay attention to beach flags: Green (safe), Yellow (caution), and Red (dangerous). The Mediterranean can have sudden drop-offs and occasional strong currents. Leave valuables at your accommodation or use locker services. Apply sunscreen regularly—the Spanish sun is stronger than it feels."
         },
         {
-          "title": "Theft Prevention",
-          "description": "Petty theft is rare but stay aware in crowded stations—keep wallets in front pockets or inside zipped bags."
+          "title": "Road Safety",
+          "description": "Spain has excellent highways (autopistas) but rural roads can be narrow and winding. Mountain driving requires experience. Zero alcohol tolerance for new drivers. Always carry required documents (license, insurance, registration). Speed cameras are common, and fines are substantial."
         },
         {
-          "title": "Winter Caution",
-          "description": "Icy sidewalks in Hokkaido and northern Honshu—use sturdy shoes and walk carefully."
+          "title": "Night Safety",
+          "description": "Most Spanish cities are relatively safe at night, but take normal precautions. Use licensed taxis or ride-sharing apps after midnight. In Madrid and Barcelona, be cautious in areas like Raval or Lavapiés late at night. Women should be aware that solo bar-hopping may invite unwanted attention."
         },
         {
-          "title": "Rush‑Hour Crowds",
-          "description": "Tokyo and Osaka trains are extremely crowded during weekday mornings/evenings—avoid peak hours if possible."
+          "title": "Heat Precautions",
+          "description": "Summer temperatures regularly exceed 38°C (100°F), especially in southern Spain. Heat stroke is a real risk. Stay hydrated, seek shade during peak hours (12-4pm), and consider scheduling indoor activities during the hottest part of the day. Air conditioning is not universal in older buildings."
         },
         {
-          "title": "Mountain Safety",
-          "description": "Weather in the Japanese Alps can change rapidly; pack rain gear and inform someone of your hiking plans."
+          "title": "Emergency Services",
+          "description": "The general emergency number is 112 (equivalent to 911). For police only, call 091. Spain has excellent public healthcare, but travel insurance is recommended. Pharmacies (farmacias) are marked with a green cross and can provide basic medical advice for minor issues."
         }
       ],
       "commonScams": [
         {
-          "title": "ATM Access & Fees",
-          "description": "Not all ATMs accept foreign cards and fees can be high. Look for international-friendly ATMs at 7‑Eleven, Japan Post, or major banks."
+          "title": "Petition Scams",
+          "description": "People (often appearing to be deaf or disabled) approach with clipboards asking you to sign petitions for fake charities, then demand money or pickpocket you while you're distracted. Politely decline to engage and keep walking."
         },
         {
-          "title": "Taxi Extra Charges",
-          "description": "Night surcharge (22:00–05:00) and luggage fees are standard. Confirm approximate fare or use app‑based services where available."
+          "title": "Friendship Bracelet Trick",
+          "description": "Common near tourist sites, someone offers to tie a \"friendship bracelet\" on your wrist, then demands payment. Once tied, it's difficult to remove without paying. Firmly refuse these \"gifts\" and keep your hands close to your body when approached."
         },
         {
-          "title": "Fake Tour Guides",
-          "description": "Unlicensed guides may offer unsolicited city tours. Always use accredited agencies or those recommended by hotels."
+          "title": "Restaurant Tourist Menus",
+          "description": "Some restaurants in highly touristic areas offer overpriced \"tourist menus\" with mediocre food. Restaurants with menu boards only in English or with staff actively recruiting from the sidewalk often fall into this category. Look for places where locals eat, typically a block or two away from main attractions."
         },
         {
-          "title": "Pachinko Over‑Spending",
-          "description": "Pachinko parlors can be addictive and costly. Set strict limits or avoid entirely if you're not comfortable."
+          "title": "Fake Police Officers",
+          "description": "Scammers posing as plainclothes police may ask to check your wallet for counterfeit bills or ID. Real Spanish police rarely ask to see wallets. Request to go to the nearest police station to show documents, or ask for their police ID first (all officers must carry one)."
         },
         {
-          "title": "Charity Solicitation",
-          "description": "Occasional street requests for donation to unfamiliar causes—politely decline or ask for official credentials."
+          "title": "La Flamenquería",
+          "description": "Tourist traps advertising \"authentic flamenco\" often offer poor-quality shows at high prices. Research reputable venues in advance—authentic performances are rarely heavily advertised on the street. In Andalucía, look for \"peñas flamencas\" for more authentic experiences."
         }
       ],
       "usefulPhrases": [
         {
           "phrase": "Hello",
-          "phonetic": "konnichiwa",
-          "translation": "こんにちは"
-        },
-        {
-          "phrase": "Thank you",
-          "phonetic": "arigatō gozaimasu",
-          "translation": "ありがとうございます"
-        },
-        {
-          "phrase": "Yes / No",
-          "phonetic": "hai / iie",
-          "translation": "はい / いいえ"
-        },
-        {
-          "phrase": "Excuse me / I'm sorry",
-          "phonetic": "sumimasen",
-          "translation": "すみません"
-        },
-        {
-          "phrase": "Do you speak English?",
-          "phonetic": "eigo o hanasemasu ka?",
-          "translation": "英語を話せますか？"
-        },
-        {
-          "phrase": "I don't understand",
-          "phonetic": "wakarimasen",
-          "translation": "分かりません"
-        },
-        {
-          "phrase": "Where is the bathroom?",
-          "phonetic": "toire wa doko desu ka?",
-          "translation": "トイレはどこですか？"
-        },
-        {
-          "phrase": "How much is this?",
-          "phonetic": "kore wa ikura desu ka?",
-          "translation": "これはいくらですか？"
+          "phonetic": "OH-lah",
+          "translation": "Hola"
         },
         {
           "phrase": "Please",
-          "phonetic": "onegaishimasu",
-          "translation": "お願いします"
+          "phonetic": "por fah-VOR",
+          "translation": "Por favor"
         },
         {
-          "phrase": "Cheers! (toast)",
-          "phonetic": "kanpai!",
-          "translation": "乾杯！"
+          "phrase": "Thank you",
+          "phonetic": "GRAH-thyahs",
+          "translation": "Gracias"
+        },
+        {
+          "phrase": "You're welcome",
+          "phonetic": "deh NAH-dah",
+          "translation": "De nada"
+        },
+        {
+          "phrase": "Excuse me",
+          "phonetic": "pehr-DON / dees-KOOL-peh",
+          "translation": "Perdón / Disculpe"
+        },
+        {
+          "phrase": "Do you speak English?",
+          "phonetic": "AH-blah een-GLAYS",
+          "translation": "¿Habla inglés?"
+        },
+        {
+          "phrase": "I don't understand",
+          "phonetic": "no ehn-tee-EN-doh",
+          "translation": "No entiendo"
+        },
+        {
+          "phrase": "How much is it?",
+          "phonetic": "KWAHN-toh KWAYS-tah",
+          "translation": "¿Cuánto cuesta?"
+        },
+        {
+          "phrase": "The bill, please",
+          "phonetic": "lah KWEN-tah, por fah-VOR",
+          "translation": "La cuenta, por favor"
+        },
+        {
+          "phrase": "Cheers!",
+          "phonetic": "sah-LOOD",
+          "translation": "¡Salud!"
         }
       ],
       "languages": [
         {
-          "languageName": "Japanese (日本語)",
+          "languageName": "Spanish (Español / Castellano)",
           "interestingFacts": [
-            "Uses three writing scripts: Hiragana, Katakana, and Kanji.",
-            "Politeness and honorifics (keigo) are essential in social interactions."
+            "Second most spoken native language in the world.",
+            "Regional languages like Catalan, Basque, and Galician also hold official status."
           ],
           "speakerInfo": {
-            "languageFamily": "Japonic",
+            "languageFamily": "Romance (Indo-European)",
             "writingDirection": "Left-to-Right"
           }
         }
@@ -295,294 +303,600 @@
     }
   },
   {
-    "id": "trip_1791673386876_umgw7",
-    "createdAt": "2026-10-10T23:03:06.876Z",
-    "originIata": "MIA",
-    "originCity": "Miami",
-    "destinationIata": "NRT",
-    "destinationCity": "Tokyo",
-    "destinationCountry": "JP",
+    "id": "trip_1791706691931_etumn",
+    "createdAt": "2026-10-11T08:18:11.931Z",
+    "originIata": "VIE",
+    "originCity": "Vienna",
+    "destinationIata": "MAD",
+    "destinationCity": "Madrid",
+    "destinationCountry": "ES",
     "departDate": "2026-11-10",
     "returnDate": "2026-11-17",
     "tripType": "round",
     "passengers": 1,
-    "farePrice": 720,
+    "farePrice": 52,
     "currency": "USD",
-    "totalCost": 847,
-    "savingsVsHome": 71.75,
-    "transferMode": "train",
-    "transferPrice": 79,
-    "transferDurationHours": 3.2,
-    "airline": "DEMO",
-    "bookingUrl": "https://www.aviasales.com/search/MIA1011NRT17111?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=MIA-NRT",
+    "totalCost": 67.72310514834695,
+    "savingsVsHome": 60.42689485165306,
+    "transferMode": "bus",
+    "transferPrice": 5.4,
+    "transferDurationHours": 0.6882070098897968,
+    "airline": "Ryanair",
+    "bookingUrl": null,
     "notes": "",
     "culturalInfo": {
-      "countryId": "JPN",
-      "countryName": "Japan",
-      "alpha2": "JP",
-      "flagUrl": "https://flagcdn.com/w160/jp.png",
-      "weatherInfo": "Japan has four distinct seasons with regional variations:\n\n• Spring (Mar–May): Cherry blossoms, mild 10–20°C (50–68°F)\n\n• Summer (Jun–Aug): Rainy season in June, humid 25–35°C (77–95°F), typhoons in Aug–Sep\n\n• Autumn (Sep–Nov): Comfortable 15–25°C (59–77°F), vibrant foliage\n\n• Winter (Dec–Feb): Snow in north (Hokkaido –10 to 0°C / 14 to 32°F), milder in Tokyo 5–10°C (41–50°F)\n\n• Subtropical Okinawa: year-round warmth 15–30°C (59–86°F)\n\n• Daylight: ~9 h in winter to ~14 h in summer",
+      "countryId": "ESP",
+      "countryName": "Spain",
+      "alpha2": "ES",
+      "flagUrl": "https://flagcdn.com/w160/es.png",
+      "weatherInfo": "Spain has diverse climate zones across different regions:\n\n• Mediterranean Coast (Barcelona, Valencia): Hot, dry summers 25–32°C (77–90°F), mild winters 8–15°C (46–59°F). Peak tourist season June–September, but pleasant year-round\n\n• Central Spain (Madrid, Toledo): Continental climate with hot, dry summers 30–40°C (86–104°F), cold winters 0–10°C (32–50°F). Significant day-night temperature variations. Spring (Apr–Jun) and fall (Sep–Oct) offer most comfortable temperatures\n\n• Northern Spain (Bilbao, Santiago de Compostela): Atlantic climate with moderate temperatures 15–25°C (59–77°F) in summer, 5–15°C (41–59°F) in winter. More rainfall than other regions, especially in fall and winter\n\n• Southern Spain (Seville, Málaga): Very hot, dry summers 35–45°C (95–113°F), mild winters 10–18°C (50–64°F). Best visited in spring or fall to avoid extreme heat\n\n• Balearic Islands (Mallorca, Ibiza): Classic Mediterranean climate, slightly milder than mainland coast. Beach season May–October\n\n• Canary Islands: Subtropical climate with warm temperatures 20–28°C (68–82°F) year-round, making them an excellent winter beach destination\n\n• Most of Spain experiences high UV index—sun protection is essential year-round",
       "currencyInfo": {
-        "name": "Japanese Yen",
-        "code": "JPY",
-        "exchangeRate": "Approximately 110–150 JPY = 1 USD, 130–140 JPY = 1 EUR",
-        "tips": "• Cash remains king—carry sufficient yen\n\n• ATMs at 7‑Eleven, Post Offices & major banks accept international cards\n\n• Use Suica/Pasmo IC cards for transit & small purchases\n\n• No tipping culture—service is included\n\n• Exchange counters at airports and big cities"
+        "name": "Euro",
+        "code": "EUR",
+        "exchangeRate": "Approximately 0.85–0.95 EUR = 1 USD",
+        "tips": "• ATMs widely available in cities and towns\n\n• Credit cards accepted at most establishments (Visa/Mastercard more widely accepted than American Express)\n\n• Inform your bank of travel plans to prevent card blocks\n\n• Tipping is not obligatory but appreciated: 5–10% in restaurants for good service, 1–2€ for hotel porters, round up taxi fares to nearest euro\n\n• Always have some cash for small shops, markets, and cafés in rural areas\n\n• Many smaller establishments don't accept bills larger than 50€\n\n• VAT (IVA) of 21% included in displayed prices\n\n• Non-EU residents can request tax refunds on purchases over 90.16€ at participating stores (look for \"Tax Free\" signs)\n\n• Spain generally has lower prices than northern European countries but higher than eastern Europe"
       },
       "emergencyInfo": {
-        "police": "110",
-        "ambulance": "119",
-        "embassy": "U.S. Embassy in Tokyo: +81 3-3224-5000, https://jp.usembassy.gov/"
+        "police": "112 (General Emergency) / 091 (National Police)",
+        "ambulance": "112",
+        "embassy": "U.S. Embassy in Madrid: +34 91-587-2200, https://es.usembassy.gov/"
       },
       "essentialItems": [
         {
           "title": "Clothing",
           "items": [
-            "Lightweight, breathable clothing for humid summers",
-            "Layered outfits for spring (Mar–May) and autumn (Sep–Nov)",
-            "Warm coat or jacket for winter (Dec–Feb), especially in northern areas",
-            "Rain jacket or compact travel umbrella (June rainy season)",
-            "Comfortable walking shoes for city exploration",
-            "Thermal base layers and sweaters for chilly evenings",
-            "Packable down jacket for sudden cold snaps",
-            "Hat and sunglasses for UV protection",
-            "Quick‑dry activewear for hiking or coastal trips",
-            "Moisture‑wicking socks to prevent blisters"
+            "Lightweight, breathable clothing for hot summers",
+            "Layered clothing for spring and fall",
+            "Light jacket or sweater for evening temperature drops",
+            "Comfortable walking shoes for cobblestone streets",
+            "Modest attire for visiting religious sites",
+            "Swimwear for beaches and hotel pools",
+            "Smart-casual outfit for restaurants and nightlife",
+            "Sun hat with wide brim for sun protection",
+            "Waterproof jacket for northern regions",
+            "Scarf or light shawl for women (useful for churches)"
           ]
         },
         {
           "title": "Electronics",
           "items": [
-            "Type A power adapter (100 V, 50/60 Hz)",
-            "Portable charger / power bank",
-            "Pocket Wi‑Fi device or Japanese SIM card",
-            "Camera for temples, shrines & landscapes",
-            "Rechargeable IC‑card (Suica/Pasmo) reader or charger",
-            "Download offline maps & translator apps",
-            "Headlamp or small flashlight for rural areas"
+            "Type F power adapter (230V, 50Hz)",
+            "Portable charger for day trips",
+            "Camera for stunning architecture and landscapes",
+            "Phone with offline maps downloaded",
+            "E-reader or books for beach days",
+            "Spanish language translation app",
+            "Headphones for long train journeys",
+            "European SIM card for affordable data"
           ]
         },
         {
           "title": "Documents",
           "items": [
-            "Valid passport (recommended ≥ 6 months beyond travel dates)",
-            "Visa or travel permit if required",
-            "Travel insurance policy & contacts",
-            "International Driving Permit (if renting a car)",
-            "Credit/debit cards (notify your bank in advance)",
-            "Digital backups of passports, visas & insurance"
+            "Valid passport (valid for at least three months beyond stay)",
+            "EU/ETIAS authorization if required (for non-EU citizens)",
+            "Travel insurance with medical coverage",
+            "Printed accommodation confirmations",
+            "International driving permit if planning to rent a car",
+            "Student ID for discounts if applicable",
+            "Credit cards and small amount of Euros",
+            "Photocopies of important documents"
           ]
         },
         {
           "title": "Health & Personal Care",
           "items": [
-            "Prescription meds with English labels & doctor's note",
-            "Sunscreen (even on cloudy days)",
+            "High SPF sunscreen (Spanish sun is intense)",
+            "After-sun lotion or aloe vera gel",
+            "Insect repellent (especially for summer evenings)",
+            "Basic first-aid kit with pain relievers",
+            "Prescription medications in original packaging",
             "Hand sanitizer and wet wipes",
-            "Lip balm with SPF",
-            "Insect repellent for summer months",
-            "Small first‑aid kit (bandages, pain relievers)",
-            "Moisturizer for dry indoor heating in winter",
-            "Disposable masks (widely used and expected)"
+            "Motion sickness remedies for winding roads",
+            "Digestive aids (for adjusting to different meal times)",
+            "Travel-sized toiletries",
+            "Lip balm with SPF"
           ]
         },
         {
           "title": "Outdoor Gear",
           "items": [
-            "Reusable water bottle (stay hydrated!)",
-            "Daypack for excursions & temple visits",
-            "Compact umbrella or rain cover",
-            "Foldable shopping bag for groceries & souvenirs",
-            "Portable shoe covers for temples/ryokan",
-            "Hiking poles for mountain trails",
-            "Quick‑dry travel towel for onsen visits"
+            "Daypack for excursions",
+            "Reusable water bottle (tap water is safe in most areas)",
+            "Foldable shopping bag (plastic bags cost extra)",
+            "Quick-dry travel towel for beaches",
+            "Sunglasses with UV protection",
+            "Small umbrella (especially for northern Spain)",
+            "Beach sandals or water shoes",
+            "Compact beach blanket",
+            "Neck wallet or money belt for crowded areas",
+            "Travel pillow for long journeys"
           ]
         }
       ],
       "localCustoms": [
         {
-          "title": "Bowing Etiquette",
-          "description": "Depth and duration of bows vary by context—from a small nod to a deep bow—used for greetings, apologies, and thanks."
+          "title": "Greeting Style",
+          "description": "Spaniards typically greet with two kisses on the cheeks between women or a woman and man. Men usually shake hands. When entering small shops, saying \"Hola\" is polite. First names are used quickly, but professional titles (Doctor, Professor) are important in formal settings."
         },
         {
-          "title": "Shoe Removal",
-          "description": "Always remove shoes indoors (homes, ryokan, some temples). Look for genkan (entryway) as the cue."
+          "title": "Dining Customs",
+          "description": "Spanish mealtimes are later than in America: lunch (la comida) 2-4pm, dinner (la cena) 9-11pm. The midday meal is typically the largest. Tapas culture involves sharing small plates. Leaving a small amount of food shows you're satisfied. Service is included but small tips (5-10%) are appreciated for good service."
         },
         {
-          "title": "Gift Giving",
-          "description": "Present and receive items with both hands. Offer souvenirs (“omiyage”) after trips as a polite gesture."
+          "title": "Siesta Tradition",
+          "description": "Though less common in major cities, smaller towns still observe siesta hours (roughly 2-5pm) when smaller shops close. Plan accordingly. Many businesses have long workdays with a substantial break in the middle. Museums and major attractions usually remain open throughout the day."
         },
         {
-          "title": "Quiet Public Transit",
-          "description": "Keep phone calls off trains/buses. Speak softly and set devices to silent mode."
+          "title": "Public Behavior",
+          "description": "Spaniards are expressive and animated in conversation—interrupting is often a sign of engagement, not rudeness. Public spaces are lively, and quietness can be perceived as unfriendly. Volume levels, especially in restaurants, are higher than Americans might expect."
         },
         {
-          "title": "Orderly Queuing",
-          "description": "Stand in marked lines at stations, bus stops, and ticket machines. Respect personal space."
+          "title": "Regional Identities",
+          "description": "Spain has strong regional cultures and languages. In Catalonia, the Basque Country, and Galicia, locals appreciate visitors recognizing their distinct identity and a few words in their language (Catalan, Euskera, Galician). Avoid referring to everything as \"Spanish\" in these regions."
         },
         {
-          "title": "Business Card Exchange",
-          "description": "Use both hands, read the card before putting it away carefully in a holder (not back pocket)."
+          "title": "Nightlife Timing",
+          "description": "Spanish nightlife starts late—locals rarely go out before 11pm, and clubs don't fill until after 1am, with peak hours between 2-5am. Pacing yourself is essential. Pre-gaming often includes bar-hopping for tapas (tapeo) before clubbing begins."
         },
         {
-          "title": "Punctuality",
-          "description": "Trains and meetings run exactly on time. Arrive 5 minutes early whenever possible."
+          "title": "Personal Space",
+          "description": "Personal space boundaries are closer than in America. Standing close during conversation is normal. Public transportation and elevators will feel more crowded. Queues (lines) may appear disorganized but have their own logic—ask \"¿Quién es el último?\" (Who's last?) to find your place."
         },
         {
-          "title": "No Tipping",
-          "description": "Tipping can cause confusion or offense—excellent service is included in the price."
+          "title": "Religious Observances",
+          "description": "Despite increasing secularism, Catholic traditions remain important. During Holy Week (Semana Santa) and local patron saint festivals, expect processions, modified business hours, and increased accommodation prices. Respect religious ceremonies by dressing modestly and maintaining appropriate behavior."
         }
       ],
       "culturalTaboos": [
         {
-          "title": "Eating or drinking while walking",
+          "title": "Discussing politics, especially regional independence movements, unless invited",
           "description": ""
         },
         {
-          "title": "Talking loudly on public transport",
+          "title": "Being excessively loud in non",
+          "description": "social settings (museums, churches"
+        },
+        {
+          "title": "Expecting quick service in restaurants",
+          "description": "(dining is meant to be leisurely"
+        },
+        {
+          "title": "Bare feet in public places other than beaches",
           "description": ""
         },
         {
-          "title": "Pointing with your finger",
+          "title": "Assuming all of Spain enjoys bullfighting (it's controversial in many regions)",
           "description": ""
         },
         {
-          "title": "Blowing your nose at the table",
+          "title": "Discussing money or asking personal financial questions",
           "description": ""
         },
         {
-          "title": "Wearing shoes indoors",
+          "title": "Failing to greet shop owners upon entering small businesses",
           "description": ""
         },
         {
-          "title": "Ignoring recycling and trash separation rules",
+          "title": "Excessive public drunkenness",
+          "description": "(despite Spain's vibrant nightlife"
+        },
+        {
+          "title": "Rushing or showing impatience with a more relaxed pace of life",
           "description": ""
         },
         {
-          "title": "Public displays of affection",
-          "description": ""
-        },
-        {
-          "title": "Skipping a bow when greeting",
-          "description": ""
-        },
-        {
-          "title": "Leaving chopsticks stuck vertically in rice",
-          "description": ""
-        },
-        {
-          "title": "Tipping service staff",
+          "title": "Comparing Spanish cuisine unfavorably to other Mediterranean cuisines",
           "description": ""
         }
       ],
       "safetyTips": [
         {
-          "title": "General Safety",
-          "description": "One of the world's safest countries with very low violent crime. Standard precautions suffice."
+          "title": "Pickpocket Awareness",
+          "description": "Barcelona, Madrid, and other tourist areas have skilled pickpockets. Use anti-theft bags, keep valuables secured, and be especially vigilant in crowded areas, public transportation, and popular attractions. Beware of distraction techniques like spilling something on you or asking for directions."
         },
         {
-          "title": "Natural Disasters",
-          "description": "Be prepared for earthquakes, tsunamis, and typhoons. Download the J‑Alert app and familiarize yourself with evacuation routes."
+          "title": "Beach Safety",
+          "description": "Pay attention to beach flags: Green (safe), Yellow (caution), and Red (dangerous). The Mediterranean can have sudden drop-offs and occasional strong currents. Leave valuables at your accommodation or use locker services. Apply sunscreen regularly—the Spanish sun is stronger than it feels."
         },
         {
-          "title": "Theft Prevention",
-          "description": "Petty theft is rare but stay aware in crowded stations—keep wallets in front pockets or inside zipped bags."
+          "title": "Road Safety",
+          "description": "Spain has excellent highways (autopistas) but rural roads can be narrow and winding. Mountain driving requires experience. Zero alcohol tolerance for new drivers. Always carry required documents (license, insurance, registration). Speed cameras are common, and fines are substantial."
         },
         {
-          "title": "Winter Caution",
-          "description": "Icy sidewalks in Hokkaido and northern Honshu—use sturdy shoes and walk carefully."
+          "title": "Night Safety",
+          "description": "Most Spanish cities are relatively safe at night, but take normal precautions. Use licensed taxis or ride-sharing apps after midnight. In Madrid and Barcelona, be cautious in areas like Raval or Lavapiés late at night. Women should be aware that solo bar-hopping may invite unwanted attention."
         },
         {
-          "title": "Rush‑Hour Crowds",
-          "description": "Tokyo and Osaka trains are extremely crowded during weekday mornings/evenings—avoid peak hours if possible."
+          "title": "Heat Precautions",
+          "description": "Summer temperatures regularly exceed 38°C (100°F), especially in southern Spain. Heat stroke is a real risk. Stay hydrated, seek shade during peak hours (12-4pm), and consider scheduling indoor activities during the hottest part of the day. Air conditioning is not universal in older buildings."
         },
         {
-          "title": "Mountain Safety",
-          "description": "Weather in the Japanese Alps can change rapidly; pack rain gear and inform someone of your hiking plans."
+          "title": "Emergency Services",
+          "description": "The general emergency number is 112 (equivalent to 911). For police only, call 091. Spain has excellent public healthcare, but travel insurance is recommended. Pharmacies (farmacias) are marked with a green cross and can provide basic medical advice for minor issues."
         }
       ],
       "commonScams": [
         {
-          "title": "ATM Access & Fees",
-          "description": "Not all ATMs accept foreign cards and fees can be high. Look for international-friendly ATMs at 7‑Eleven, Japan Post, or major banks."
+          "title": "Petition Scams",
+          "description": "People (often appearing to be deaf or disabled) approach with clipboards asking you to sign petitions for fake charities, then demand money or pickpocket you while you're distracted. Politely decline to engage and keep walking."
         },
         {
-          "title": "Taxi Extra Charges",
-          "description": "Night surcharge (22:00–05:00) and luggage fees are standard. Confirm approximate fare or use app‑based services where available."
+          "title": "Friendship Bracelet Trick",
+          "description": "Common near tourist sites, someone offers to tie a \"friendship bracelet\" on your wrist, then demands payment. Once tied, it's difficult to remove without paying. Firmly refuse these \"gifts\" and keep your hands close to your body when approached."
         },
         {
-          "title": "Fake Tour Guides",
-          "description": "Unlicensed guides may offer unsolicited city tours. Always use accredited agencies or those recommended by hotels."
+          "title": "Restaurant Tourist Menus",
+          "description": "Some restaurants in highly touristic areas offer overpriced \"tourist menus\" with mediocre food. Restaurants with menu boards only in English or with staff actively recruiting from the sidewalk often fall into this category. Look for places where locals eat, typically a block or two away from main attractions."
         },
         {
-          "title": "Pachinko Over‑Spending",
-          "description": "Pachinko parlors can be addictive and costly. Set strict limits or avoid entirely if you're not comfortable."
+          "title": "Fake Police Officers",
+          "description": "Scammers posing as plainclothes police may ask to check your wallet for counterfeit bills or ID. Real Spanish police rarely ask to see wallets. Request to go to the nearest police station to show documents, or ask for their police ID first (all officers must carry one)."
         },
         {
-          "title": "Charity Solicitation",
-          "description": "Occasional street requests for donation to unfamiliar causes—politely decline or ask for official credentials."
+          "title": "La Flamenquería",
+          "description": "Tourist traps advertising \"authentic flamenco\" often offer poor-quality shows at high prices. Research reputable venues in advance—authentic performances are rarely heavily advertised on the street. In Andalucía, look for \"peñas flamencas\" for more authentic experiences."
         }
       ],
       "usefulPhrases": [
         {
           "phrase": "Hello",
-          "phonetic": "konnichiwa",
-          "translation": "こんにちは"
-        },
-        {
-          "phrase": "Thank you",
-          "phonetic": "arigatō gozaimasu",
-          "translation": "ありがとうございます"
-        },
-        {
-          "phrase": "Yes / No",
-          "phonetic": "hai / iie",
-          "translation": "はい / いいえ"
-        },
-        {
-          "phrase": "Excuse me / I'm sorry",
-          "phonetic": "sumimasen",
-          "translation": "すみません"
-        },
-        {
-          "phrase": "Do you speak English?",
-          "phonetic": "eigo o hanasemasu ka?",
-          "translation": "英語を話せますか？"
-        },
-        {
-          "phrase": "I don't understand",
-          "phonetic": "wakarimasen",
-          "translation": "分かりません"
-        },
-        {
-          "phrase": "Where is the bathroom?",
-          "phonetic": "toire wa doko desu ka?",
-          "translation": "トイレはどこですか？"
-        },
-        {
-          "phrase": "How much is this?",
-          "phonetic": "kore wa ikura desu ka?",
-          "translation": "これはいくらですか？"
+          "phonetic": "OH-lah",
+          "translation": "Hola"
         },
         {
           "phrase": "Please",
-          "phonetic": "onegaishimasu",
-          "translation": "お願いします"
+          "phonetic": "por fah-VOR",
+          "translation": "Por favor"
         },
         {
-          "phrase": "Cheers! (toast)",
-          "phonetic": "kanpai!",
-          "translation": "乾杯！"
+          "phrase": "Thank you",
+          "phonetic": "GRAH-thyahs",
+          "translation": "Gracias"
+        },
+        {
+          "phrase": "You're welcome",
+          "phonetic": "deh NAH-dah",
+          "translation": "De nada"
+        },
+        {
+          "phrase": "Excuse me",
+          "phonetic": "pehr-DON / dees-KOOL-peh",
+          "translation": "Perdón / Disculpe"
+        },
+        {
+          "phrase": "Do you speak English?",
+          "phonetic": "AH-blah een-GLAYS",
+          "translation": "¿Habla inglés?"
+        },
+        {
+          "phrase": "I don't understand",
+          "phonetic": "no ehn-tee-EN-doh",
+          "translation": "No entiendo"
+        },
+        {
+          "phrase": "How much is it?",
+          "phonetic": "KWAHN-toh KWAYS-tah",
+          "translation": "¿Cuánto cuesta?"
+        },
+        {
+          "phrase": "The bill, please",
+          "phonetic": "lah KWEN-tah, por fah-VOR",
+          "translation": "La cuenta, por favor"
+        },
+        {
+          "phrase": "Cheers!",
+          "phonetic": "sah-LOOD",
+          "translation": "¡Salud!"
         }
       ],
       "languages": [
         {
-          "languageName": "Japanese (日本語)",
+          "languageName": "Spanish (Español / Castellano)",
           "interestingFacts": [
-            "Uses three writing scripts: Hiragana, Katakana, and Kanji.",
-            "Politeness and honorifics (keigo) are essential in social interactions."
+            "Second most spoken native language in the world.",
+            "Regional languages like Catalan, Basque, and Galician also hold official status."
           ],
           "speakerInfo": {
-            "languageFamily": "Japonic",
+            "languageFamily": "Romance (Indo-European)",
+            "writingDirection": "Left-to-Right"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "trip_1791704564606_oxwh3",
+    "createdAt": "2026-10-11T07:42:44.606Z",
+    "originIata": "MCO",
+    "originCity": "Orlando",
+    "destinationIata": "CDG",
+    "destinationCity": "Paris",
+    "destinationCountry": "FR",
+    "departDate": "2026-11-10",
+    "returnDate": "2026-11-17",
+    "tripType": "round",
+    "passengers": 1,
+    "farePrice": 699,
+    "currency": "USD",
+    "totalCost": 746,
+    "savingsVsHome": 110.75,
+    "transferMode": "bus",
+    "transferPrice": 26,
+    "transferDurationHours": 1.4,
+    "airline": "Aviasales",
+    "bookingUrl": "https://www.aviasales.com/search/MCO1011CDG17111?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=MCO-CDG",
+    "notes": "",
+    "culturalInfo": {
+      "countryId": "FRA",
+      "countryName": "France",
+      "alpha2": "FR",
+      "flagUrl": "https://flagcdn.com/w160/fr.png",
+      "weatherInfo": "France has varied climates across different regions:\n\n• Paris & Northern France: Spring (Mar–May): Cool 10–18°C (50–64°F), frequent showers\n\n• Summer (Jun–Aug): Warm 15–25°C (59–77°F), occasional heat waves 30–35°C (86–95°F)\n\n• Autumn (Sep–Nov): Mild 10–18°C (50–64°F), increasing rain\n\n• Winter (Dec–Feb): Cold 1–7°C (34–45°F), occasional freezing temperatures\n\n• Southern France: Mediterranean climate, 5–10°C (41–50°F) warmer than north year-round\n\n• Alpine regions: Much colder in winter −5 to 0°C (23–32°F), cool summers 10–20°C (50–68°F)",
+      "currencyInfo": {
+        "name": "Euro",
+        "code": "EUR",
+        "exchangeRate": "Approximately 0.85–0.95 EUR = 1 USD",
+        "tips": "• Credit/debit cards widely accepted (Visa/Mastercard preferred)\n\n• Small merchants may require minimum purchase for cards\n\n• ATMs readily available in cities and towns\n\n• Inform your bank of travel plans to avoid card blocks\n\n• Keep some cash for small purchases, markets, and cafés\n\n• Tipping optional (service included by law)\n\n• 5–10% tip for exceptional service is appreciated\n\n• Currency exchange booths often have poor rates—ATMs better"
+      },
+      "emergencyInfo": {
+        "police": "17",
+        "ambulance": "15",
+        "embassy": "U.S. Embassy in Paris: +33 1-4312-2222, https://fr.usembassy.gov/"
+      },
+      "essentialItems": [
+        {
+          "title": "Clothing",
+          "items": [
+            "Lightweight clothing for summer (Jun–Aug)",
+            "Layers for spring (Mar–May) and autumn (Sep–Nov)",
+            "Waterproof jacket or umbrella (rain common year-round)",
+            "Comfortable walking shoes for cobblestone streets",
+            "Smart-casual outfits for restaurants (Parisians dress well)",
+            "Scarf for style and warmth (useful year-round)",
+            "Modest attire for visiting churches and cathedrals",
+            "Swimwear for Mediterranean beaches or hotel pools",
+            "One dressier outfit for upscale dining or events",
+            "Light jacket for cool summer evenings"
+          ]
+        },
+        {
+          "title": "Electronics",
+          "items": [
+            "Type C/E power adapter (230V, 50Hz)",
+            "Portable charger for long sightseeing days",
+            "Camera for capturing architecture and landscapes",
+            "Phone with offline maps downloaded",
+            "EU SIM card or international data plan",
+            "Small flashlight for poorly lit historic sites",
+            "Noise-canceling headphones for trains and flights"
+          ]
+        },
+        {
+          "title": "Documents",
+          "items": [
+            "Passport valid for at least 6 months beyond trip",
+            "Visa if required (not needed for EU citizens or US tourists staying less than 90 days)",
+            "Travel insurance details",
+            "Driver's license and International Driving Permit if renting a car",
+            "Train tickets or flight confirmations",
+            "Hotel reservations printouts",
+            "Credit card with chip and contactless capability",
+            "Copy of prescriptions for medications"
+          ]
+        },
+        {
+          "title": "Health & Personal Care",
+          "items": [
+            "Prescription medications in original packaging",
+            "Basic first-aid supplies",
+            "Sunscreen (especially for southern France)",
+            "Hand sanitizer and wet wipes",
+            "Insect repellent for summer months",
+            "Lip balm with SPF",
+            "Travel-sized toiletries (high-quality available in France if needed)",
+            "Motion sickness remedies for winding roads in countryside or mountains"
+          ]
+        },
+        {
+          "title": "Outdoor Gear",
+          "items": [
+            "Daypack for sightseeing",
+            "Reusable water bottle (tap water is safe)",
+            "Travel umbrella for sudden showers",
+            "Sunglasses year-round",
+            "Picnic blanket for parks and vineyards",
+            "Packable tote bag for markets and shopping",
+            "Wine opener for impromptu picnics (check luggage only)",
+            "Binoculars for scenic viewpoints"
+          ]
+        }
+      ],
+      "localCustoms": [
+        {
+          "title": "Greeting Etiquette",
+          "description": "Shake hands when meeting someone for the first time. \"La bise\" (cheek kisses) is for friends and family. Begin conversations with \"Bonjour\" (or \"Bonsoir\" in evening) before asking questions."
+        },
+        {
+          "title": "Dining Protocol",
+          "description": "Keep hands visible on table, not in lap. Bread placed directly on tablecloth. Wait for \"bon appétit\" before eating. Finish everything on your plate. Tipping optional (5-10% for excellent service)."
+        },
+        {
+          "title": "Shopping Courtesy",
+          "description": "Greet shopkeepers with \"Bonjour\" when entering and \"Au revoir\" when leaving. Ask permission before touching items in small shops. Many stores close on Sundays and for lunch (12-2pm)."
+        },
+        {
+          "title": "Language Respect",
+          "description": "Attempt a few French phrases before switching to English. Begin with \"Parlez-vous anglais?\" (Do you speak English?). Even basic French efforts are appreciated and will improve your experience."
+        },
+        {
+          "title": "Personal Space",
+          "description": "The French value personal privacy. Avoid personal questions about job, income, or marital status with new acquaintances. Keep your voice down in public spaces."
+        },
+        {
+          "title": "Punctuality",
+          "description": "Arrive 5-10 minutes late for dinner invitations at homes, but be on time for restaurants and business meetings. Museum entrance times on tickets are often strictly enforced."
+        },
+        {
+          "title": "Dress Code",
+          "description": "Dress smartly in cities, especially Paris. Avoid athletic wear, shorts, and flip-flops in urban areas unless exercising. Shoulders and knees should be covered when visiting religious sites."
+        },
+        {
+          "title": "Public Behavior",
+          "description": "Public displays of affection are common but keep it tasteful. Public intoxication is frowned upon. Maintain composure and avoid loud conversations in public transportation."
+        }
+      ],
+      "culturalTaboos": [
+        {
+          "title": "Addressing people by first name without invitation",
+          "description": ""
+        },
+        {
+          "title": "Discussing money, salary, or personal questions with new acquaintances",
+          "description": ""
+        },
+        {
+          "title": "Loud talking in restaurants or public transportation",
+          "description": ""
+        },
+        {
+          "title": "Snapping fingers to get service in restaurants or shops",
+          "description": ""
+        },
+        {
+          "title": "Chewing gum in public, especially in formal settings",
+          "description": ""
+        },
+        {
+          "title": "Asking \"What do you do?\" early in conversation",
+          "description": ""
+        },
+        {
+          "title": "Bringing wine to a dinner party without asking (host selects wine carefully)",
+          "description": ""
+        },
+        {
+          "title": "Walking into shops without greeting staff",
+          "description": ""
+        },
+        {
+          "title": "Rushing through meals",
+          "description": "(dining is a social experience"
+        },
+        {
+          "title": "Being overly friendly with strangers",
+          "description": "(can seem insincere"
+        }
+      ],
+      "safetyTips": [
+        {
+          "title": "Pickpocketing",
+          "description": "Common in tourist areas, particularly Paris metro, Eiffel Tower, and Montmartre. Use anti-theft bags, keep valuables in front pockets or hidden pouches. Be extra vigilant in crowded areas."
+        },
+        {
+          "title": "Tourist Scams",
+          "description": "Beware of petition signers, friendship bracelet offers, or gold ring scams. Official ticket sellers never sell on streets. Ignore anyone claiming to have \"found\" jewelry or asking if you \"dropped\" something."
+        },
+        {
+          "title": "Transportation Safety",
+          "description": "Use official taxis or ride-sharing apps. In Paris, metro stations can be unsafe late at night—consider using buses after hours. Driving requires adjustment to local rules and roundabouts."
+        },
+        {
+          "title": "Beach Safety",
+          "description": "Mediterranean beaches may have strong currents. Obey flag warnings. Red flag means no swimming allowed, yellow means caution, green means safe conditions. Topless sunbathing is acceptable on many beaches."
+        },
+        {
+          "title": "Emergency Preparedness",
+          "description": "France has experienced terrorist incidents. Stay alert in public spaces. Follow authorities' instructions during any incident. Register with your embassy for emergency alerts."
+        },
+        {
+          "title": "Protests",
+          "description": "Demonstrations are common, particularly in Paris. These can turn disruptive with little warning. Avoid areas where protests are occurring, even if they appear peaceful initially."
+        }
+      ],
+      "commonScams": [
+        {
+          "title": "Petition Scams",
+          "description": "People with clipboards ask you to sign petitions, then demand money or pickpocket you while distracted. Firmly say \"Non, merci\" and walk away."
+        },
+        {
+          "title": "Friendship Bracelet",
+          "description": "Common at Sacré-Cœur in Paris—someone ties string around your finger/wrist, creates a \"bracelet,\" then demands payment. Refuse firmly and keep walking."
+        },
+        {
+          "title": "Restaurant Overcharging",
+          "description": "Always check if service (15%) is included. Review bill for items you didn't order. Tourist restaurants near attractions may have inflated prices—check menu before sitting."
+        },
+        {
+          "title": "Taxi Scams",
+          "description": "Unofficial taxis may take longer routes or charge excessive rates. Use official taxis (with illuminated signs) or ride-sharing apps. Airport to Paris has fixed rates—know them in advance."
+        },
+        {
+          "title": "Gold Ring Trick",
+          "description": "Someone \"finds\" a gold ring near you, asks if it's yours, then offers to sell it cheaply. The ring is worthless brass. Say \"Non\" and continue walking."
+        }
+      ],
+      "usefulPhrases": [
+        {
+          "phrase": "Hello",
+          "phonetic": "bon-zhoor",
+          "translation": "Bonjour"
+        },
+        {
+          "phrase": "Good evening",
+          "phonetic": "bon-swahr",
+          "translation": "Bonsoir"
+        },
+        {
+          "phrase": "Please",
+          "phonetic": "seel voo pleh",
+          "translation": "S'il vous plaît"
+        },
+        {
+          "phrase": "Thank you",
+          "phonetic": "mehr-see",
+          "translation": "Merci"
+        },
+        {
+          "phrase": "Excuse me",
+          "phonetic": "ex-kew-zay mwah",
+          "translation": "Excusez-moi"
+        },
+        {
+          "phrase": "Do you speak English?",
+          "phonetic": "par-lay voo ahn-glay",
+          "translation": "Parlez-vous anglais?"
+        },
+        {
+          "phrase": "I don't understand",
+          "phonetic": "zhuh nuh kom-prahn pah",
+          "translation": "Je ne comprends pas"
+        },
+        {
+          "phrase": "How much is it?",
+          "phonetic": "say kom-bee-an",
+          "translation": "C'est combien?"
+        },
+        {
+          "phrase": "The bill, please",
+          "phonetic": "lah-dee-see-ohn seel voo pleh",
+          "translation": "L'addition, s'il vous plaît"
+        },
+        {
+          "phrase": "Where is...?",
+          "phonetic": "oo eh",
+          "translation": "Où est...?"
+        }
+      ],
+      "languages": [
+        {
+          "languageName": "French (Français)",
+          "interestingFacts": [
+            "The official language of 29 nations.",
+            "Known as the language of diplomacy and culinary arts."
+          ],
+          "speakerInfo": {
+            "languageFamily": "Romance (Indo-European)",
             "writingDirection": "Left-to-Right"
           }
         }

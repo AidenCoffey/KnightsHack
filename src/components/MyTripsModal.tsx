@@ -477,10 +477,20 @@ export function MyTripsModal({
                         : "border-[#E8E2D5] hover:border-[#D6CEBF] shadow-2xs"
                     }`}
                   >
-                    {/* Simplified Header: No Search Route, No Readiness, No Delete in top */}
+                    {/* Simplified Header: Clickable Top Bar */}
                     <div
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={isExpanded}
+                      aria-label={`${isExpanded ? "Collapse" : "Expand"} ${trip.originCity} to ${trip.destinationCity} trip details`}
                       onClick={() => setExpandedTripId(isExpanded ? null : trip.id)}
-                      className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-[#FAF7F2]/60 transition-colors"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setExpandedTripId(isExpanded ? null : trip.id);
+                        }
+                      }}
+                      className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer hover:bg-[#FAF7F2]/70 active:bg-[#F3EFE6]/70 transition-colors select-none"
                     >
                       <div className="flex items-start gap-3.5">
                         <span className="text-3xl shrink-0 select-none leading-none pt-0.5">
@@ -541,28 +551,24 @@ export function MyTripsModal({
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="p-1.5 rounded-xl bg-[#FAF7F2] hover:bg-[#F3EFE6] border border-[#E8E2D5] text-[#1C1917] transition-colors"
+                              className="p-1.5 rounded-xl bg-[#FAF7F2] hover:bg-[#F3EFE6] border border-[#E8E2D5] text-[#1C1917] transition-colors shrink-0"
                               title="Booking link"
                             >
                               <ExternalLink className="h-4 w-4" />
                             </a>
                           )}
 
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setExpandedTripId(isExpanded ? null : trip.id);
-                            }}
-                            className={`p-1.5 rounded-xl border transition-all cursor-pointer ${
+                          <div
+                            className={`p-1.5 rounded-xl border transition-all shrink-0 ${
                               isExpanded
                                 ? "bg-[#1C1917] text-[#FAF7F2] border-[#1C1917]"
                                 : "bg-[#FAF7F2] hover:bg-[#F3EFE6] text-[#78716C] border-[#E8E2D5]"
                             }`}
                             title={isExpanded ? "Collapse" : "Expand"}
+                            aria-hidden="true"
                           >
                             {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                          </button>
+                          </div>
                         </div>
                       </div>
                     </div>

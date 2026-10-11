@@ -244,10 +244,10 @@ export function DestinationCulturalModal({
                   onClick={() => onSaveTrip(currentIata, currentCity, data || undefined)}
                   className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all border ${
                     isSaved
-                      ? "bg-[#E8F0EC] text-[#2D5A46] border-[#D1E4D8] font-bold"
+                      ? "bg-[#E8F0EC] text-[#2D5A46] border-[#D1E4D8] font-bold hover:bg-[#FEE2E2] hover:text-[#DC2626] hover:border-[#FECACA]"
                       : "bg-white/10 hover:bg-white/20 text-[#FAF7F2] border-white/20"
                   }`}
-                  title={isSaved ? "Trip saved in My Trips" : "Save this destination to My Trips"}
+                  title={isSaved ? "Remove from My Trips" : "Save this destination to My Trips"}
                 >
                   {isSaved ? <Check className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5 text-[#D97706]" />}
                   <span>{isSaved ? "Saved to Trips" : "Save to My Trips"}</span>

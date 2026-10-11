@@ -367,9 +367,10 @@ export function TripDetailModal({
                   onClick={() => onSaveTrip(result)}
                   className={`text-xs font-semibold px-3 py-2 rounded-xl transition-colors flex items-center gap-1.5 border ${
                     isSaved
-                      ? "bg-[#E8F0EC] text-[#2D5A46] border-[#D1E4D8] font-bold"
+                      ? "bg-[#E8F0EC] text-[#2D5A46] border-[#D1E4D8] font-bold hover:bg-[#FEE2E2] hover:text-[#DC2626] hover:border-[#FECACA]"
                       : "text-[#78716C] hover:text-[#1C1917] hover:bg-[#F3EFE6] border-[#E8E2D5]"
                   }`}
+                  title={isSaved ? "Remove from My Trips" : "Add to My Trips"}
                 >
                   {isSaved ? (
                     <>

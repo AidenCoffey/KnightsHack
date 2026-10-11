@@ -19,6 +19,12 @@ describe("Airport data & search helpers", () => {
     const mco = getAirportByIata("MCO");
     expect(mco).toBeDefined();
     expect(mco?.city).toBe("Orlando");
+
+    const bts = getAirportByIata("BTS");
+    expect(bts).toBeDefined();
+    expect(bts?.city).toBe("Bratislava");
+    expect(bts?.lat).toBeCloseTo(48.17, 1);
+    expect(bts?.lon).toBeCloseTo(17.21, 1);
   });
 
   it("searches airports by city name", () => {

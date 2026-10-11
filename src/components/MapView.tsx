@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import type { ScoredOrigin } from "@/types";
+import type { ScoredOrigin, Airport } from "@/types";
 
 const MapViewInner = dynamic(() => import("./MapViewInner"), {
   ssr: false,
@@ -23,6 +23,7 @@ interface MapViewProps {
   /** When false, show hub radius only — no flight path yet */
   showRoute?: boolean;
   homeAirport: string;
+  homeAirportData?: Airport | null;
   destination?: string;
   currency?: string;
   isLoading: boolean;

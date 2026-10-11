@@ -311,12 +311,12 @@ function ResultCard({
                 }}
                 className={`p-1.5 rounded-lg border transition-colors ${
                   isSaved
-                    ? "bg-[#E8F0EC] text-[#2D5A46] border-[#D1E4D8]"
+                    ? "bg-[#E8F0EC] text-[#2D5A46] border-[#D1E4D8] hover:bg-[#FEE2E2] hover:text-[#DC2626] hover:border-[#FECACA]"
                     : "text-[#78716C] hover:text-[#1C1917] hover:bg-[#F3EFE6] border-[#E8E2D5]"
                 }`}
-                title={isSaved ? "Saved to My Trips" : "Save trip"}
+                title={isSaved ? "Remove from My Trips" : "Save to My Trips"}
               >
-                {isSaved ? <Check className="h-3.5 w-3.5 text-[#2D5A46]" /> : <Bookmark className="h-3.5 w-3.5" />}
+                {isSaved ? <Check className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5" />}
               </button>
             )}
 

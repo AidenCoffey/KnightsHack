@@ -11,7 +11,6 @@ import { ResultsList } from "@/components/ResultsList";
 import { CleanSearchLanding } from "@/components/CleanSearchLanding";
 import { DestinationCulturalModal } from "@/components/DestinationCulturalModal";
 import { FlightSearchSkyAnimation } from "@/components/FlightSearchSkyAnimation";
-import { MyTripsModal } from "@/components/MyTripsModal";
 import { useSuitcaseTransition } from "@/components/SuitcaseTransitionProvider";
 import type { SavedTrip, CreateTripInput } from "@/types";
 import {
@@ -25,6 +24,9 @@ import {
   Luggage,
   Check,
   Bookmark,
+  ArrowRight,
+  X,
+  AlertCircle,
 } from "lucide-react";
 import { FALLBACK_AIRPORTS } from "@/lib/airport-data";
 import { convertCurrency, getCurrencySymbol } from "@/lib/currency";
@@ -117,15 +119,80 @@ function HomeContent() {
   }, []);
 
   // My Trips database state
-  const [myTripsOpen, setMyTripsOpen] = useState(false);
   const [savedTrips, setSavedTrips] = useState<SavedTrip[]>([]);
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toast, setToast] = useState<{
+    type: "success" | "error";
+    title: string;
+    description?: string;
+    actionText?: string;
+    actionHref?: string;
+  } | null>(null);
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const showToast = useCallback((msg: string) => {
-    setToastMessage(msg);
-    setTimeout(() => {
-      setToastMessage((prev) => (prev === msg ? null : prev));
-    }, 3200);
+  const showToast = useCallback(
+    (
+      payload:
+        | string
+        | {
+            type?: "success" | "error";
+            title?: string;
+            description?: string;
+            actionText?: string;
+            actionHref?: string;
+          }
+    ) => {
+      if (toastTimeoutRef.current) {
+        clearTimeout(toastTimeoutRef.current);
+      }
+
+      let toastObj: {
+        type: "success" | "error";
+        title: string;
+        description?: string;
+        actionText?: string;
+        actionHref?: string;
+      };
+
+      if (typeof payload === "string") {
+        const isError =
+          payload.toLowerCase().includes("failed") ||
+          payload.toLowerCase().includes("error");
+        const isRemoved = payload.toLowerCase().includes("remove");
+        toastObj = {
+          type: isError ? "error" : "success",
+          title: isError
+            ? "Unable to save trip"
+            : isRemoved
+            ? "Removed from My Trips"
+            : "Added to My Trips",
+          description: payload,
+          actionText: isError || isRemoved ? undefined : "View in My Trips",
+          actionHref: isError || isRemoved ? undefined : "/trips",
+        };
+      } else {
+        toastObj = {
+          type: payload.type || "success",
+          title: payload.title || "Added to My Trips",
+          description: payload.description,
+          actionText: payload.actionText,
+          actionHref: payload.actionHref,
+        };
+      }
+
+      setToast(toastObj);
+      toastTimeoutRef.current = setTimeout(() => {
+        setToast(null);
+      }, 4200);
+    },
+    []
+  );
+
+  useEffect(() => {
+    return () => {
+      if (toastTimeoutRef.current) {
+        clearTimeout(toastTimeoutRef.current);
+      }
+    };
   }, []);
 
   const fetchSavedTrips = useCallback(async () => {
@@ -493,6 +560,55 @@ function HomeContent() {
 
   const handleSaveTrip = useCallback(
     async (result: ScoredOrigin) => {
+      const destCode = searchParams?.destination || destinationAirport;
+      const destCity = currentDestInfo?.city || destCode;
+      const originCode = result.airport.iata.toUpperCase();
+      const normDest = (destCode || "").toUpperCase();
+
+      // Check if this origin is already saved
+      const matchingTrips = savedTrips.filter(
+        (t) =>
+          t.originIata.toUpperCase() === originCode &&
+          (!normDest || t.destinationIata.toUpperCase() === normDest)
+      );
+      const isAlreadySaved =
+        matchingTrips.length > 0 ||
+        savedTrips.some((t) => t.originIata.toUpperCase() === originCode);
+
+      if (isAlreadySaved) {
+        const toDelete =
+          matchingTrips.length > 0
+            ? matchingTrips
+            : savedTrips.filter((t) => t.originIata.toUpperCase() === originCode);
+
+        // Optimistically remove from state so UI updates immediately
+        const deleteIds = new Set(toDelete.map((t) => t.id));
+        setSavedTrips((prev) => prev.filter((t) => !deleteIds.has(t.id)));
+
+        try {
+          await Promise.all(
+            toDelete.map((t) =>
+              fetch(`/api/trips/${t.id}`, { method: "DELETE" })
+            )
+          );
+          await fetchSavedTrips();
+          showToast({
+            type: "success",
+            title: "Removed from My Trips",
+            description: `${result.airport.city} ➔ ${destCity} has been removed.`,
+          });
+        } catch (err) {
+          console.error("Failed to delete trip:", err);
+          await fetchSavedTrips();
+          showToast({
+            type: "error",
+            title: "Unable to remove trip",
+            description: "Failed to remove trip from database.",
+          });
+        }
+        return;
+      }
+
       const departureDate =
         searchParams?.dateFrom ||
         result.fare?.departAt ||
@@ -501,9 +617,6 @@ function HomeContent() {
         searchParams?.tripType === "round"
           ? searchParams?.dateTo || result.fare?.returnAt
           : undefined;
-
-      const destCode = searchParams?.destination || destinationAirport;
-      const destCity = currentDestInfo?.city || destCode;
 
       const payload: CreateTripInput = {
         originIata: result.airport.iata,
@@ -533,20 +646,67 @@ function HomeContent() {
         });
         if (res.ok) {
           await fetchSavedTrips();
-          showToast(`Trip ${result.airport.city} ➔ ${destCity} saved to My Trips!`);
+          showToast({
+            type: "success",
+            title: "Added to My Trips",
+            description: `${result.airport.city} ➔ ${destCity}`,
+            actionText: "View My Trips",
+            actionHref: "/trips",
+          });
         } else {
-          showToast("Failed to save trip to database.");
+          showToast({
+            type: "error",
+            title: "Unable to save trip",
+            description: "Failed to save trip to database.",
+          });
         }
       } catch (err) {
         console.error("Failed to save trip:", err);
-        showToast("Error saving trip to database.");
+        showToast({
+          type: "error",
+          title: "Unable to save trip",
+          description: "An unexpected error occurred.",
+        });
       }
     },
-    [searchParams, destinationAirport, currentDestInfo, currency, fetchSavedTrips, showToast]
+    [searchParams, destinationAirport, currentDestInfo, currency, savedTrips, fetchSavedTrips, showToast]
   );
 
   const handleSaveDestinationTrip = useCallback(
     async (destIata: string, destCity?: string, culturalInfo?: any) => {
+      const normDest = (destIata || "").toUpperCase();
+      const existingTrips = savedTrips.filter(
+        (t) => t.destinationIata.toUpperCase() === normDest
+      );
+
+      if (existingTrips.length > 0) {
+        const deleteIds = new Set(existingTrips.map((t) => t.id));
+        setSavedTrips((prev) => prev.filter((t) => !deleteIds.has(t.id)));
+
+        try {
+          await Promise.all(
+            existingTrips.map((t) =>
+              fetch(`/api/trips/${t.id}`, { method: "DELETE" })
+            )
+          );
+          await fetchSavedTrips();
+          showToast({
+            type: "success",
+            title: "Removed from My Trips",
+            description: `${destCity || destIata} has been removed.`,
+          });
+        } catch (err) {
+          console.error("Failed to delete destination trip:", err);
+          await fetchSavedTrips();
+          showToast({
+            type: "error",
+            title: "Unable to remove destination",
+            description: "Failed to remove destination from database.",
+          });
+        }
+        return;
+      }
+
       const departureDate =
         searchParams?.dateFrom || new Date().toISOString().split("T")[0];
       const returnDateVal =
@@ -573,16 +733,30 @@ function HomeContent() {
         });
         if (res.ok) {
           await fetchSavedTrips();
-          showToast(`Destination ${destCity || destIata} saved to My Trips!`);
+          showToast({
+            type: "success",
+            title: "Added to My Trips",
+            description: `${destCity || destIata} saved to your trips`,
+            actionText: "View My Trips",
+            actionHref: "/trips",
+          });
         } else {
-          showToast("Failed to save trip to database.");
+          showToast({
+            type: "error",
+            title: "Unable to save destination",
+            description: "Failed to save to database.",
+          });
         }
       } catch (err) {
         console.error("Failed to save destination trip:", err);
-        showToast("Error saving trip to database.");
+        showToast({
+          type: "error",
+          title: "Unable to save destination",
+          description: "An unexpected error occurred.",
+        });
       }
     },
-    [searchParams, homeAirportIata, currentBaseInfo, culturalModalResult, currency, fetchSavedTrips, showToast]
+    [searchParams, homeAirportIata, currentBaseInfo, culturalModalResult, currency, savedTrips, fetchSavedTrips, showToast]
   );
 
   const homeResult = reRankedResults.find((r) => r.airport.iata === homeAirportIata) ?? null;
@@ -644,7 +818,7 @@ function HomeContent() {
               isDemo={isDemo}
               onOpenCulturalGuide={(iata, city) => handleOpenCulturalGuide(iata, city)}
               savedTripsCount={savedTrips.length}
-              onOpenMyTrips={() => setMyTripsOpen(true)}
+              onOpenMyTrips={() => router.push("/trips")}
             />
 
             {/* Destination Cultural Briefing Modal */}
@@ -740,7 +914,6 @@ function HomeContent() {
                       <span>Scanning hubs ({progress.checked}/{progress.total || 25})</span>
                     </div>
                   )}
-
                   {/* Travel Readiness Top Bar Link with Cute Suitcase Animation */}
                   <button
                     type="button"
@@ -904,6 +1077,7 @@ function HomeContent() {
                   onSelect={handleSelectResult}
                   showRoute={showRouteOnMap}
                   homeAirport={homeAirportIata}
+                  homeAirportData={homeResult?.airport || currentBaseInfo}
                   destination={searchParams?.destination ?? destinationAirport}
                   currency={currency}
                   isLoading={isLoading}
@@ -968,34 +1142,65 @@ function HomeContent() {
         )}
       </AnimatePresence>
 
-      {/* Global My Saved Trips Database Modal (Accessible from both Landing & Results) */}
-      <MyTripsModal
-        isOpen={myTripsOpen}
-        onClose={() => setMyTripsOpen(false)}
-        onTripsUpdated={fetchSavedTrips}
-      />
-
-      {/* Global Toast Notification */}
+      {/* Clean Redesigned Toast Notification with Redirection */}
       <AnimatePresence>
-        {toastMessage && (
+        {toast && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4.5 py-3 rounded-2xl bg-[#1C1917] text-[#FAF7F2] border border-[#292524] shadow-2xl text-xs font-semibold"
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 420, damping: 28 }}
+            className="fixed bottom-6 right-6 z-50 max-w-sm"
           >
-            <Check className="h-4 w-4 text-[#2D5A46]" />
-            <span>{toastMessage}</span>
-            <button
-              type="button"
-              onClick={() => {
-                setToastMessage(null);
-                setMyTripsOpen(true);
-              }}
-              className="ml-2 px-2.5 py-1 rounded-md bg-[#B45309] hover:bg-[#D97706] text-white text-[11px] font-bold transition-colors"
-            >
-              View Trips
-            </button>
+            <div className="flex items-center gap-3 px-3.5 py-3 rounded-2xl bg-[#FFFFFF] text-[#1C1917] border border-[#E8E2D5] shadow-xl shadow-stone-900/10 backdrop-blur-md">
+              <div
+                className={`h-8 w-8 rounded-xl flex items-center justify-center shrink-0 ${
+                  toast.type === "error"
+                    ? "bg-rose-50 text-rose-600 border border-rose-200"
+                    : "bg-[#E8F0EC] text-[#2D5A46] border border-[#D1E4D8]"
+                }`}
+              >
+                {toast.type === "error" ? (
+                  <AlertCircle className="h-4 w-4" />
+                ) : (
+                  <Check className="h-4 w-4 stroke-[2.5]" />
+                )}
+              </div>
+
+              <div className="flex flex-col min-w-0 pr-1">
+                <span className="text-xs font-bold text-[#1C1917] tracking-tight">
+                  {toast.title}
+                </span>
+                {toast.description && (
+                  <span className="text-[11px] text-[#78716C] font-medium truncate max-w-[170px] sm:max-w-[200px]">
+                    {toast.description}
+                  </span>
+                )}
+              </div>
+
+              {toast.actionHref && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToast(null);
+                    router.push(toast.actionHref!);
+                  }}
+                  className="ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#B45309] hover:bg-[#92400E] text-white text-xs font-semibold shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98] shrink-0 cursor-pointer"
+                >
+                  <span>{toast.actionText || "View in My Trips"}</span>
+                  <ArrowRight className="h-3 w-3" />
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={() => setToast(null)}
+                className="text-[#A8A29E] hover:text-[#57534E] p-1 rounded-lg hover:bg-[#F3EFE6] transition-colors shrink-0 -mr-0.5 cursor-pointer"
+                aria-label="Dismiss notification"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
