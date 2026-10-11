@@ -3,12 +3,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Database, Clock, Zap, Calculator } from "lucide-react";
 import type { ScoredOrigin } from "@/types";
+import { getCurrencySymbol } from "@/lib/currency";
 
 interface DebugDrawerProps {
   open: boolean;
   onClose: () => void;
   selected: ScoredOrigin | null;
   timeValue: number;
+  currency?: string;
 }
 
 function Row({ label, value, mono = false }: { label: string; value: string | number | boolean; mono?: boolean }) {
@@ -22,8 +24,9 @@ function Row({ label, value, mono = false }: { label: string; value: string | nu
   );
 }
 
-export function DebugDrawer({ open, onClose, selected, timeValue }: DebugDrawerProps) {
+export function DebugDrawer({ open, onClose, selected, timeValue, currency = "EUR" }: DebugDrawerProps) {
   const debug = selected?.providerDebug;
+  const sym = getCurrencySymbol(currency);
 
   return (
     <AnimatePresence>
@@ -86,12 +89,12 @@ export function DebugDrawer({ open, onClose, selected, timeValue }: DebugDrawerP
                   </div>
                   {debug && (
                     <>
-                      <Row label="Fare (f)" value={`€${debug.formulaInputs.fare.toFixed(2)}`} />
-                      <Row label="Ground cost (g)" value={`€${debug.formulaInputs.groundCost.toFixed(2)}`} />
+                      <Row label="Fare (f)" value={`${sym}${debug.formulaInputs.fare.toFixed(2)}`} />
+                      <Row label="Ground cost (g)" value={`${sym}${debug.formulaInputs.groundCost.toFixed(2)}`} />
                       <Row label="Ground hours (h)" value={`${debug.formulaInputs.groundHours.toFixed(2)}h`} />
-                      <Row label="Time value (v)" value={`$${timeValue}/hr`} />
-                      <Row label="Time cost (h × v)" value={`€${(debug.formulaInputs.groundHours * timeValue).toFixed(2)}`} />
-                      <Row label="Total = f + g + (h×v)" value={`€${(debug.formulaInputs.fare + debug.formulaInputs.groundCost + debug.formulaInputs.groundHours * timeValue).toFixed(2)}`} mono />
+                      <Row label="Time value (v)" value={`${sym}${timeValue}/hr`} />
+                      <Row label="Time cost (h × v)" value={`${sym}${(debug.formulaInputs.groundHours * timeValue).toFixed(2)}`} />
+                      <Row label="Total = f + g + (h×v)" value={`${sym}${(debug.formulaInputs.fare + debug.formulaInputs.groundCost + debug.formulaInputs.groundHours * timeValue).toFixed(2)}`} mono />
                     </>
                   )}
                 </div>

@@ -129,14 +129,14 @@ export default function DestinationGuidePage() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => router.push("/")}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#78716C] hover:text-[#1C1917] px-3 py-1.5 rounded-full border border-[#E8E2D5] bg-[#FFFFFF] hover:bg-[#F3EFE6] transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#78716C] hover:text-[#1C1917] px-3 py-1.5 rounded-lg border border-[#E8E2D5] bg-[#FFFFFF] hover:bg-[#F3EFE6] transition-colors"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               <span>Back to Venture</span>
             </button>
             <div className="hidden sm:block h-4 w-px bg-[#E8E2D5]" />
             <span className="hidden sm:inline font-serif font-semibold tracking-tight text-sm text-[#1C1917]">
-              TravelWolf Destination Dossier
+              TravelWolf Destination Guide
             </span>
           </div>
 
@@ -145,14 +145,14 @@ export default function DestinationGuidePage() {
               onClick={() => {
                 if (navigator.share) {
                   navigator.share({
-                    title: `${destinationCity} Travel Dossier`,
+                    title: `${destinationCity} Travel Guide`,
                     url: window.location.href,
                   });
                 } else {
                   handleCopy(window.location.href, "share-link");
                 }
               }}
-              className="text-xs px-3 py-1.5 rounded-full border border-[#E8E2D5] bg-[#FFFFFF] hover:bg-[#F3EFE6] font-medium transition-colors text-[#78716C] hover:text-[#1C1917] flex items-center gap-1.5"
+              className="text-xs px-3 py-1.5 rounded-lg border border-[#E8E2D5] bg-[#FFFFFF] hover:bg-[#F3EFE6] font-medium transition-colors text-[#78716C] hover:text-[#1C1917] flex items-center gap-1.5"
             >
               {copiedText === "share-link" ? (
                 <>
@@ -162,14 +162,14 @@ export default function DestinationGuidePage() {
               ) : (
                 <>
                   <Share2 className="h-3.5 w-3.5" />
-                  <span>Share Dossier</span>
+                  <span>Share Guide</span>
                 </>
               )}
             </button>
 
             <button
               onClick={() => router.push(`/?destination=${encodeURIComponent(code)}`)}
-              className="text-xs px-4 py-1.5 rounded-full bg-[#1C1917] hover:bg-[#292524] text-[#FAF7F2] font-semibold flex items-center gap-1.5 shadow-xs transition-colors"
+              className="text-xs px-4 py-1.5 rounded-lg bg-[#1C1917] hover:bg-[#292524] text-[#FAF7F2] font-semibold flex items-center gap-1.5 shadow-xs transition-colors"
             >
               <Compass className="h-3.5 w-3.5 text-[#D97706]" />
               <span>Search Flights & Rail</span>
@@ -196,7 +196,7 @@ export default function DestinationGuidePage() {
             </div>
 
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#FAF7F2] leading-tight">
-              {destinationCity} Travel Dossier & Cultural Intelligence
+              {destinationCity} Travel Guide & Cultural Intelligence
             </h1>
 
             <p className="text-sm sm:text-base text-[#A8A29E] leading-relaxed">
@@ -269,7 +269,7 @@ export default function DestinationGuidePage() {
           <div className="py-20 flex flex-col items-center justify-center text-center gap-3">
             <span className="h-8 w-8 border-3 border-[#B45309]/30 border-t-[#B45309] rounded-full animate-spin" />
             <p className="text-sm font-semibold text-[#1C1917]">
-              Loading verified travel dossier for {destinationCity}…
+              Loading travel guide for {destinationCity}…
             </p>
           </div>
         )}
@@ -405,13 +405,13 @@ export default function DestinationGuidePage() {
                           );
                           setCheckedItems(all);
                         }}
-                        className="text-xs px-3.5 py-1.5 rounded-full border border-[#E8E2D5] bg-[#FAF7F2] hover:bg-[#F3EFE6] font-medium transition-colors text-[#1C1917]"
+                        className="text-xs px-3.5 py-1.5 rounded-lg border border-[#E8E2D5] bg-[#FAF7F2] hover:bg-[#F3EFE6] font-medium transition-colors text-[#1C1917]"
                       >
                         Check all
                       </button>
                       <button
                         onClick={() => setCheckedItems({})}
-                        className="text-xs px-3.5 py-1.5 rounded-full border border-[#E8E2D5] bg-[#FAF7F2] hover:bg-[#F3EFE6] font-medium transition-colors text-[#78716C]"
+                        className="text-xs px-3.5 py-1.5 rounded-lg border border-[#E8E2D5] bg-[#FAF7F2] hover:bg-[#F3EFE6] font-medium transition-colors text-[#78716C]"
                       >
                         Reset
                       </button>
@@ -515,7 +515,7 @@ export default function DestinationGuidePage() {
                     Safety Protocol & Common Tourist Scams
                   </h3>
                   <p className="text-xs sm:text-sm text-[#78716C] mt-1">
-                    Stay vigilant with verified alerts on frequent travel traps and general security best practices.
+                    Stay vigilant with alerts on frequent travel traps and general security best practices.
                   </p>
                 </div>
 

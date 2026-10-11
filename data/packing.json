@@ -1,0 +1,18 @@
+{
+  "NRT": {
+    "Slip-on shoes": true,
+    "Type A power adapter": true,
+    "Passport": false
+  },
+  "BKK": {
+    "Type A/B/C power adapter (220V, 50Hz)": false,
+    "Portable charger for day trips": false
+  },
+  "IST": {
+    "Modest clothing for visiting mosques (cover shoulders and knees)": true,
+    "Comfortable walking shoes for cobblestone streets and ruins": true,
+    "Waterproof jacket for winter months": true,
+    "Phone with offline maps (Google Maps works well)": true,
+    "Camera with extra batteries/memory cards": true
+  }
+}

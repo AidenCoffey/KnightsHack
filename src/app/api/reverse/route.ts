@@ -16,13 +16,14 @@
 
 import { NextRequest } from "next/server";
 import { z } from "zod";
-import { loadAirports, findAirport, getAirportsInRadius } from "@/lib/airports";
+import { loadAirports, findAirport, getAirportsInRadius, haversinemiles } from "@/lib/airports";
 import { getFaresForRoute } from "@/lib/providers/router";
 import { getMockFares } from "@/lib/providers/mock";
 import { CorridorProvider } from "@/lib/ground/corridor";
 import { EstimateProvider } from "@/lib/ground/estimate";
 import { scoreOrigin } from "@/lib/scoring";
-import type { ScoredOrigin, StreamEvent, Fare } from "@/types";
+import { convertCurrency } from "@/lib/currency";
+import type { ScoredOrigin, StreamEvent, Fare, GroundLeg } from "@/types";
 
 /** Simple concurrency limiter (avoids p-limit ESM/CJS issues in Next.js) */
 function createLimiter(concurrency: number) {
@@ -55,7 +56,9 @@ const QuerySchema = z.object({
   destination: z.string().length(3).toUpperCase(),
   homeAirport: z.string().length(3).toUpperCase().default("FCO"),
   dateFrom: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  dateTo: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  dateTo: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().or(z.literal("")),
+  tripType: z.enum(["round", "oneway"]).optional(),
+  passengers: z.coerce.number().min(1).max(9).default(1),
   radiusMiles: z.coerce.number().min(50).max(500).default(300),
   timeValuePerHour: z.coerce.number().min(0).max(200).default(15),
   currency: z.string().length(3).toUpperCase().default("EUR"),
@@ -97,9 +100,24 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  const routeDistance = haversinemiles(home.lat, home.lon, dest.lat, dest.lon);
+  const isIntercontinental = routeDistance > 1500 || home.country !== dest.country;
+
+  // Non-commercial or domestic-only airstrips that should not be candidate gateways for long-haul flights
+  const NON_COMMERCIAL_FOR_INTERNATIONAL = new Set([
+    "UST", "PGD", "LAL", "VRB", "OPF", "DSI", "VLD", "BQK", "ABY", "GNV",
+  ]);
+
   const rawCandidates = getAirportsInRadius(home, airports, params.radiusMiles);
-  // Prioritize commercial airports (large first, then medium) within radius, max 25 candidates
-  const candidateList = rawCandidates
+
+  // For intercontinental flights, only evaluate genuine commercial passenger airports
+  const viableCandidates = isIntercontinental
+    ? rawCandidates.filter(
+        (a) => a.type === "large_airport" && !NON_COMMERCIAL_FOR_INTERNATIONAL.has(a.iata)
+      )
+    : rawCandidates.filter((a) => !NON_COMMERCIAL_FOR_INTERNATIONAL.has(a.iata));
+
+  const candidateList = viableCandidates
     .sort((a, b) => {
       if (a.type !== b.type) {
         if (a.type === "large_airport") return -1;
@@ -107,7 +125,7 @@ export async function GET(req: NextRequest) {
       }
       return a.distanceMiles - b.distanceMiles;
     })
-    .slice(0, 25)
+    .slice(0, 20)
     .sort((a, b) => a.distanceMiles - b.distanceMiles);
 
   const homeOrigin = { ...home, distanceMiles: 0 };
@@ -132,52 +150,49 @@ export async function GET(req: NextRequest) {
         let cacheHit = false;
 
         try {
+          const fareParams = {
+            origin: origin.iata,
+            destination: params.destination,
+            dateFrom: params.dateFrom,
+            dateTo: params.tripType === "oneway" ? undefined : (params.dateTo || undefined),
+            tripType: params.tripType ?? (params.dateTo ? "round" : "oneway"),
+            passengers: params.passengers,
+            currency: params.currency,
+          };
+
           if (DEMO_MOCK) {
-            fares = getMockFares({
-              origin: origin.iata,
-              destination: params.destination,
-              dateFrom: params.dateFrom,
-              dateTo: params.dateTo,
-              currency: params.currency,
-            });
+            fares = getMockFares(fareParams);
             providerUsed = "DEMO";
             cacheHit = true;
           } else {
             const result = await getFaresForRoute(
-              {
-                origin: origin.iata,
-                destination: params.destination,
-                dateFrom: params.dateFrom,
-                dateTo: params.dateTo,
-                currency: params.currency,
-              },
+              fareParams,
               origin.country,
               dest.country
             );
             fares = result.fares;
             providerUsed = result.providerUsed;
-
-            if (fares.length === 0 && (DEMO_MOCK || !process.env.TRAVELPAYOUTS_TOKEN)) {
-              fares = getMockFares({
-                origin: origin.iata,
-                destination: params.destination,
-                dateFrom: params.dateFrom,
-                dateTo: params.dateTo,
-                currency: params.currency,
-              });
-              providerUsed = "DEMO";
-              cacheHit = true;
-            }
           }
 
-          const bestFare =
+          const rawBestFare =
             fares.length > 0
               ? fares.reduce((a, b) => (a.price < b.price ? a : b))
               : null;
 
-          // Ground leg
+          // Normalize fare currency to requested currency if needed
+          const bestFare: Fare | null = rawBestFare
+            ? {
+                ...rawBestFare,
+                price: rawBestFare.currency.toUpperCase() !== params.currency.toUpperCase()
+                  ? Math.round(convertCurrency(rawBestFare.price, rawBestFare.currency, params.currency))
+                  : rawBestFare.price,
+                currency: params.currency,
+              }
+            : null;
+
+          // Ground leg from user home city to candidate departure airport
           const corridorProvider = new CorridorProvider();
-          const corridorLeg = await corridorProvider.getLeg(origin.city, origin.iata);
+          const corridorLeg = await corridorProvider.getLeg(home.city, origin.iata);
 
           const estimateProvider = new EstimateProvider(
             home.lat,
@@ -185,8 +200,20 @@ export async function GET(req: NextRequest) {
             origin.lat,
             origin.lon
           );
-          const groundLeg =
-            corridorLeg ?? (await estimateProvider.getLeg(origin.city, origin.iata));
+          const rawGroundLeg =
+            corridorLeg ?? (await estimateProvider.getLeg(home.city, origin.iata));
+
+          // Normalize ground leg currency to requested currency so all totals match
+          const convertedGroundPrice =
+            rawGroundLeg.currency.toUpperCase() !== params.currency.toUpperCase()
+              ? Math.round(convertCurrency(rawGroundLeg.price, rawGroundLeg.currency, params.currency) * 10) / 10
+              : rawGroundLeg.price;
+
+          const groundLeg: GroundLeg = {
+            ...rawGroundLeg,
+            price: convertedGroundPrice,
+            currency: params.currency,
+          };
 
           const responseTimeMs = Date.now() - start;
           const scored = scoreOrigin(

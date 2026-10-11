@@ -23,6 +23,8 @@ const COUNTRY_FLAGS: Record<string, string> = {
   AU: "🇦🇺",
   IE: "🇮🇪",
   CA: "🇨🇦",
+  HU: "🇭🇺",
+  BE: "🇧🇪",
   MX: "🇲🇽",
 };
 
@@ -60,6 +62,8 @@ export function getCountryNameFromCode(identifier?: string): string {
     AU: "Australia",
     IE: "Ireland",
     CA: "Canada",
+    HU: "Hungary",
+    BE: "Belgium",
     MX: "Mexico",
   };
   return map[resolved] || map[identifier.toUpperCase()] || identifier;

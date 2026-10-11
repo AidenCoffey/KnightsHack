@@ -24,7 +24,7 @@
     --border: 37 20% 87%;           /* #E8E2D5 warm stone border */
     --input: 37 20% 87%;
     --ring: 32 90% 40%;
-    --radius: 0.875rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -64,6 +64,7 @@
   margin: 12px 14px;
 }
 
+
 /* Venture Field Explorer price bubble marker */
 .price-bubble {
   display: inline-flex;
@@ -90,11 +91,44 @@
   z-index: 999;
 }
 
+/* Prevent browser blue focus box outline on Leaflet vectors / circles */
+.leaflet-container svg,
+.leaflet-container svg path,
+.leaflet-interactive,
+.leaflet-interactive:focus,
+path:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
 .price-bubble.savings {
   background-color: #FEF3C7;
   color: #92400E;
   border: 1px solid #D97706;
   font-weight: 700;
+}
+
+.price-bubble.best-deal {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border: 2px solid #D97706;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.35);
+  z-index: 900;
+}
+
+.price-bubble.home-hub {
+  background-color: #1E3A8A !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid #3B82F6 !important;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(30, 58, 138, 0.25);
+}
+
+.price-bubble.home-hub:hover {
+  background-color: #1D4ED8 !important;
+  border-color: #60A5FA !important;
 }
 
 .price-bubble.selected {
@@ -104,6 +138,12 @@
   box-shadow: 0 8px 24px rgba(28, 25, 23, 0.35);
   border: 2px solid #D97706 !important;
   z-index: 1000;
+}
+
+.price-bubble.home-hub.selected {
+  background-color: #0F172A !important;
+  color: #FFFFFF !important;
+  border: 2px solid #60A5FA !important;
 }
 
 /* Animated gradient for loading state */
@@ -140,4 +180,15 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground));
+}
+
+/* Hide scrollbar utility for clean carousels and pill lists */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

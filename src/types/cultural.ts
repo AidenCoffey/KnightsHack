@@ -3,12 +3,15 @@ export interface CurrencyInfo {
   code: string;
   exchangeRate?: string;
   tips?: string;
+  cards?: string;
 }
 
 export interface EmergencyInfo {
   police: string;
   ambulance: string;
   embassy?: string;
+  healthNotes?: string;
+  general?: string;
 }
 
 export interface EssentialItemGroup {

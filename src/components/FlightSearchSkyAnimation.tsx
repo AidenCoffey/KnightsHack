@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Compass, Sparkles, CheckCircle2 } from "lucide-react";
+import { Sparkles, CheckCircle2 } from "lucide-react";
 
 interface FlightSearchSkyAnimationProps {
   isActive: boolean;
@@ -501,7 +501,7 @@ export function FlightSearchSkyAnimation({
       : 30;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col justify-between overflow-hidden select-none h-screen max-h-screen w-screen max-w-full">
+    <div className="fixed inset-0 z-[9999] flex flex-col justify-end overflow-hidden select-none h-screen max-h-screen w-screen max-w-full">
       {/* GPU Keyframe definitions for continuous, stutter-free cloud & bird drifts */}
       <style>{`
         @keyframes skyCloudDrift {
@@ -551,47 +551,6 @@ export function FlightSearchSkyAnimation({
           <FlappingBird top="76%" scale={0.9} duration={12} negativeDelay={8} />
         </div>
       </motion.div>
-
-      {/* Top Header: Fades out and slides up on exit */}
-      <motion.header
-        animate={{
-          opacity: isExiting ? 0 : 1,
-          y: isExiting ? -40 : 0,
-        }}
-        transition={{ duration: 0.22, ease: "easeOut" }}
-        className="relative z-30 w-full max-w-4xl mx-auto px-6 pt-6 sm:pt-8 flex items-center justify-between gap-4 shrink-0 pointer-events-auto"
-      >
-        {/* Brand Pill */}
-        <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-lg border border-white/80">
-          <div className="h-8 w-8 rounded-xl bg-[#F59E0B] flex items-center justify-center text-[#0F172A] font-bold shadow-xs">
-            <Compass className="h-4 w-4 stroke-[2.5]" />
-          </div>
-          <div>
-            <div className="text-sm font-bold text-[#0F172A] tracking-tight flex items-center gap-2">
-              <span>Venture</span>
-              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-[#FEF3C7] text-[#92400E]">
-                Flight Radar
-              </span>
-            </div>
-            <p className="text-[11px] text-[#64748B]">Curiosity-Driven Flight Discovery</p>
-          </div>
-        </div>
-
-        {/* Origin ➔ Destination Pill */}
-        <div className="flex items-center gap-3 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/80 shadow-lg">
-          <span className="text-xs font-bold text-[#0F172A] flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-[#F59E0B] animate-ping" />
-            <span>{originCity}</span>
-            <span className="font-mono text-[#0D9488]">({originIata})</span>
-          </span>
-          <span className="text-xs text-[#94A3B8] font-bold">➔</span>
-          <span className="text-xs font-bold text-[#0F172A] flex items-center gap-1.5">
-            <span className="h-2 w-2 rounded-full bg-[#0D9488]" />
-            <span>{destinationCity}</span>
-            <span className="font-mono text-[#0D9488]">({destinationIata})</span>
-          </span>
-        </div>
-      </motion.header>
 
       {/* Center Flight Stage: Overhead Rounded Plane (Full Viewport Width, Zero Side Clipping!) */}
       <div className="absolute inset-0 flex items-center justify-center w-full h-full overflow-hidden z-40 pointer-events-none">

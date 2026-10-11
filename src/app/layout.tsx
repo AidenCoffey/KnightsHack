@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { QueryProvider } from "@/components/QueryProvider";
+import { SuitcaseTransitionProvider } from "@/components/SuitcaseTransitionProvider";
 
 export const metadata: Metadata = {
   title: "Venture — Curated Flight & Overland Travel Atlas",
@@ -30,7 +31,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased bg-[#FAF7F2] text-[#1C1917] selection:bg-[#B45309]/15 selection:text-[#1C1917]">
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <SuitcaseTransitionProvider>
+            {children}
+          </SuitcaseTransitionProvider>
+        </QueryProvider>
       </body>
     </html>
   );

@@ -20,9 +20,13 @@ interface MapViewProps {
   results: ScoredOrigin[];
   selected: ScoredOrigin | null;
   onSelect: (r: ScoredOrigin) => void;
+  /** When false, show hub radius only — no flight path yet */
+  showRoute?: boolean;
   homeAirport: string;
   destination?: string;
+  currency?: string;
   isLoading: boolean;
+  radiusMiles?: number;
 }
 
 export function MapView(props: MapViewProps) {

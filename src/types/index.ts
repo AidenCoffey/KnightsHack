@@ -76,7 +76,9 @@ export interface SearchParams {
   destination: string; // IATA
   homeAirport: string; // IATA
   dateFrom: string; // YYYY-MM-DD
-  dateTo: string; // YYYY-MM-DD
+  dateTo?: string; // YYYY-MM-DD (optional for one-way)
+  tripType?: "round" | "oneway";
+  passengers?: number;
   radiusMiles: number;
   timeValuePerHour: number;
   currency: string;
@@ -90,4 +92,4 @@ export type StreamEvent =
   | { type: "done"; total: number };
 
 export * from "./cultural";
-
+export * from "./trips";

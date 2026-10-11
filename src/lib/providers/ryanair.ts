@@ -52,7 +52,7 @@ export class RyanairProvider implements FareProvider {
     url.searchParams.set("departureAirportIataCode", origin);
     url.searchParams.set("arrivalAirportIataCode", destination);
     url.searchParams.set("outboundDepartureDateFrom", dateFrom);
-    url.searchParams.set("outboundDepartureDateTo", dateTo);
+    url.searchParams.set("outboundDepartureDateTo", dateTo || dateFrom);
     url.searchParams.set("language", "en");
     url.searchParams.set("market", "en-gb");
     url.searchParams.set("offset", "0");

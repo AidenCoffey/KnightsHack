@@ -29194,5 +29194,14 @@
     "lat": 40.542524,
     "lon": 122.3586,
     "type": "medium_airport"
+  },
+  {
+    "iata": "PBI",
+    "name": "Palm Beach International Airport",
+    "city": "West Palm Beach",
+    "country": "US",
+    "lat": 26.6832,
+    "lon": -80.0956,
+    "type": "large_airport"
   }
 ]

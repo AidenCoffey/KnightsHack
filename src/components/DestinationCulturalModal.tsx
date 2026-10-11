@@ -19,9 +19,11 @@ import {
   Luggage,
   BookOpen,
   Compass,
+  Bookmark,
 } from "lucide-react";
 import type { CountryCulturalInfo } from "@/types/cultural";
 import { getCountryFlag, getCountryNameFromCode } from "@/lib/cultural-utils";
+import { CULTURAL_FALLBACK_DATA, resolveCountryKey } from "@/lib/cultural-fallback";
 
 interface DestinationCulturalModalProps {
   isOpen: boolean;
@@ -32,9 +34,23 @@ interface DestinationCulturalModalProps {
   farePrice?: number;
   fareCurrency?: string;
   originIata?: string;
+  isSaved?: boolean;
+  onSaveTrip?: (destinationIata: string, destinationCity?: string, culturalInfo?: CountryCulturalInfo) => void;
 }
 
 type TabType = "packing" | "culture" | "safety" | "phrases" | "currency" | "emergency";
+
+const QUICK_DESTINATIONS = [
+  { iata: "ZRH", city: "Zurich", country: "Switzerland", flag: "🇨🇭" },
+  { iata: "NRT", city: "Tokyo", country: "Japan", flag: "🇯🇵" },
+  { iata: "PRG", city: "Prague", country: "Czechia", flag: "🇨🇿" },
+  { iata: "FCO", city: "Rome", country: "Italy", flag: "🇮🇹" },
+  { iata: "CDG", city: "Paris", country: "France", flag: "🇫🇷" },
+  { iata: "BUD", city: "Budapest", country: "Hungary", flag: "🇭🇺" },
+  { iata: "BKK", city: "Bangkok", country: "Thailand", flag: "🇹🇭" },
+  { iata: "JFK", city: "New York", country: "USA", flag: "🇺🇸" },
+  { iata: "FRA", city: "Frankfurt", country: "Germany", flag: "🇩🇪" },
+];
 
 export function DestinationCulturalModal({
   isOpen,
@@ -45,7 +61,11 @@ export function DestinationCulturalModal({
   farePrice,
   fareCurrency = "EUR",
   originIata,
+  isSaved = false,
+  onSaveTrip,
 }: DestinationCulturalModalProps) {
+  const [currentIata, setCurrentIata] = useState(destinationIata || "ZRH");
+  const [currentCity, setCurrentCity] = useState(destinationCity);
   const [data, setData] = useState<CountryCulturalInfo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -53,6 +73,14 @@ export function DestinationCulturalModal({
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
   const [copiedText, setCopiedText] = useState<string | null>(null);
   const [phraseSearch, setPhraseSearch] = useState("");
+
+  // Sync with prop updates
+  useEffect(() => {
+    if (destinationIata) {
+      setCurrentIata(destinationIata);
+      setCurrentCity(destinationCity);
+    }
+  }, [destinationIata, destinationCity]);
 
   // Lock background body scroll whenever the modal is open, and restore on close
   useEffect(() => {
@@ -81,15 +109,21 @@ export function DestinationCulturalModal({
     };
   }, [isOpen, onClose]);
 
-  // Fetch cultural data whenever destinationIata changes and modal is open
+  // Fetch cultural data whenever currentIata changes and modal is open
   useEffect(() => {
-    if (!isOpen || !destinationIata) return;
+    if (!isOpen || !currentIata) return;
 
     let isMounted = true;
     setIsLoading(true);
     setError(null);
 
-    fetch(`/api/cultural-info/${encodeURIComponent(destinationIata)}`)
+    // Instant local fallback for 0ms latency
+    const countryKey = resolveCountryKey(currentIata);
+    if (CULTURAL_FALLBACK_DATA[countryKey]) {
+      setData(CULTURAL_FALLBACK_DATA[countryKey]);
+    }
+
+    fetch(`/api/cultural-info/${encodeURIComponent(currentIata)}`)
       .then(async (res) => {
         if (!res.ok) {
           throw new Error(`Failed to load guide (${res.status})`);
@@ -104,7 +138,9 @@ export function DestinationCulturalModal({
       })
       .catch((err) => {
         if (isMounted) {
-          setError(err.message || "Failed to load cultural info");
+          if (!data && CULTURAL_FALLBACK_DATA[countryKey]) {
+            setData(CULTURAL_FALLBACK_DATA[countryKey]);
+          }
           setIsLoading(false);
         }
       });
@@ -112,7 +148,7 @@ export function DestinationCulturalModal({
     return () => {
       isMounted = false;
     };
-  }, [isOpen, destinationIata]);
+  }, [isOpen, currentIata]);
 
   // Toggle packing checklist item
   const toggleItem = (itemKey: string) => {
@@ -159,8 +195,8 @@ export function DestinationCulturalModal({
 
   if (!isOpen) return null;
 
-  const flag = getCountryFlag(data?.alpha2 || destinationIata);
-  const countryName = data?.countryName || getCountryNameFromCode(data?.alpha2 || destinationIata);
+  const flag = getCountryFlag(data?.alpha2 || currentIata);
+  const countryName = data?.countryName || getCountryNameFromCode(data?.alpha2 || currentIata);
 
   return (
     <div
@@ -179,8 +215,8 @@ export function DestinationCulturalModal({
         <div className="relative bg-[#1C1917] text-[#FAF7F2] p-5 sm:p-7 flex-shrink-0 border-b border-[#292524]">
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 text-[#FAF7F2] flex items-center justify-center transition-colors"
-            title="Close dossier (Esc)"
+            className="absolute top-5 right-5 h-9 w-9 rounded-lg bg-white/10 hover:bg-white/20 text-[#FAF7F2] flex items-center justify-center transition-colors cursor-pointer"
+            title="Close (Esc)"
           >
             <X className="h-5 w-5" />
           </button>
@@ -189,42 +225,89 @@ export function DestinationCulturalModal({
             <div>
               <div className="flex items-center gap-2.5 mb-1.5">
                 <span className="text-2xl sm:text-3xl">{flag}</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-[#F3EFE6] text-[#B45309] px-2.5 py-0.5 rounded-full border border-[#E8E2D5]">
-                  TravelWolf Cultural Intelligence
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-[#F3EFE6] text-[#B45309] px-2.5 py-0.5 rounded-md border border-[#E8E2D5]">
+                  Travel Readiness
                 </span>
               </div>
               <h2 className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#FAF7F2]">
-                {countryName} Cultural Briefing & Travel Dossier
+                {countryName} Travel Readiness Guide
               </h2>
               <p className="text-xs sm:text-sm text-[#A8A29E] mt-0.5">
-                {destinationCity ? `${destinationCity} (${destinationIata})` : destinationIata} · Everything you need to know before you fly
+                {currentCity ? `${currentCity} (${currentIata})` : currentIata} · Pre-departure essentials, etiquette & phrasebook
               </p>
             </div>
 
-            {farePrice ? (
-              <div className="sm:text-right bg-white/10 px-4 py-2.5 rounded-2xl backdrop-blur-sm border border-white/15">
-                <div className="text-[10px] text-[#D97706] uppercase tracking-wider font-semibold">
-                  Selected Route Fare
-                </div>
-                <div className="text-lg sm:text-xl font-black text-[#FAF7F2]">
-                  {fareCurrency === "EUR" ? "€" : fareCurrency === "GBP" ? "£" : "$"}
-                  {Math.round(farePrice)}
-                </div>
-                {originIata && (
-                  <div className="text-[10px] text-[#A8A29E]">
-                    From {originIata} ➔ {destinationIata}
+            <div className="flex items-center gap-2">
+              {onSaveTrip && (
+                <button
+                  type="button"
+                  onClick={() => onSaveTrip(currentIata, currentCity, data || undefined)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all border ${
+                    isSaved
+                      ? "bg-[#E8F0EC] text-[#2D5A46] border-[#D1E4D8] font-bold"
+                      : "bg-white/10 hover:bg-white/20 text-[#FAF7F2] border-white/20"
+                  }`}
+                  title={isSaved ? "Trip saved in My Trips" : "Save this destination to My Trips"}
+                >
+                  {isSaved ? <Check className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5 text-[#D97706]" />}
+                  <span>{isSaved ? "Saved to Trips" : "Save to My Trips"}</span>
+                </button>
+              )}
+
+              {farePrice ? (
+                <div className="sm:text-right bg-white/10 px-4 py-2.5 rounded-2xl backdrop-blur-sm border border-white/15">
+                  <div className="text-[10px] text-[#D97706] uppercase tracking-wider font-semibold">
+                    Selected Route Fare
                   </div>
-                )}
-              </div>
-            ) : (
-              <a
-                href={`/guide/${encodeURIComponent(destinationIata || "NRT")}`}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-[#FAF7F2] text-xs font-semibold border border-white/15 transition-colors"
+                  <div className="text-lg sm:text-xl font-black text-[#FAF7F2]">
+                    {fareCurrency === "EUR" ? "€" : fareCurrency === "GBP" ? "£" : "$"}
+                    {Math.round(farePrice)}
+                  </div>
+                  {originIata && (
+                    <div className="text-[10px] text-[#A8A29E]">
+                      From {originIata} ➔ {currentIata}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <a
+                  href={`/guide/${encodeURIComponent(currentIata || "NRT")}`}
+                  className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-[#FAF7F2] text-xs font-semibold border border-white/15 transition-colors"
+                >
+                  <span>Open Dedicated Page</span>
+                  <ExternalLink className="h-3.5 w-3.5 text-[#D97706]" />
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Quick Destination Switcher Strip */}
+          <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 overflow-x-auto custom-scrollbar pb-1">
+            <span className="text-[10px] uppercase font-bold text-[#A8A29E] shrink-0 mr-1 flex items-center gap-1">
+              <Compass className="h-3 w-3 text-[#D97706]" />
+              <span>Explore Destination:</span>
+            </span>
+            {QUICK_DESTINATIONS.map((d) => (
+              <button
+                key={d.iata}
+                type="button"
+                onClick={() => {
+                  setCurrentIata(d.iata);
+                  setCurrentCity(d.city);
+                }}
+                className={`shrink-0 px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                  currentIata === d.iata
+                    ? "bg-[#FAF7F2] text-[#1C1917] shadow-sm font-bold"
+                    : "bg-white/10 hover:bg-white/20 text-[#FAF7F2] border border-white/10"
+                }`}
               >
-                <span>Open Dedicated Page</span>
-                <ExternalLink className="h-3.5 w-3.5 text-[#D97706]" />
-              </a>
-            )}
+                <span>{d.flag}</span>
+                <span>{d.city}</span>
+                <span className={`text-[10px] font-mono ${currentIata === d.iata ? "text-[#B45309]" : "text-[#A8A29E]"}`}>
+                  {d.iata}
+                </span>
+              </button>
+            ))}
           </div>
 
           {/* Quick Metrics Chips */}
@@ -249,7 +332,7 @@ export function DestinationCulturalModal({
               )}
               <div className="flex items-center gap-1.5 bg-white/10 px-3 py-1 rounded-lg">
                 <Globe className="h-3.5 w-3.5 text-[#93C5FD]" />
-                <span>Verified Travel Dossier</span>
+                <span>Travel Guide</span>
               </div>
             </div>
           )}
@@ -341,10 +424,10 @@ export function DestinationCulturalModal({
             <div className="py-16 flex flex-col items-center justify-center text-center gap-3">
               <div className="h-8 w-8 border-3 border-[#B45309]/20 border-t-[#B45309] rounded-full animate-spin" />
               <div className="text-sm font-semibold text-[#1C1917]">
-                Retrieving TravelWolf cultural dossier…
+                Retrieving travel guide…
               </div>
               <div className="text-xs text-[#78716C]">
-                Loading verified cultural norms, emergency numbers, and travel checklists for {countryName}…
+                Loading cultural norms, emergency numbers, and travel checklists for {countryName}…
               </div>
             </div>
           )}
@@ -354,7 +437,7 @@ export function DestinationCulturalModal({
               <div className="p-3 bg-[#FEE2E2] text-[#991B1B] rounded-full w-fit mx-auto">
                 <AlertTriangle className="h-6 w-6" />
               </div>
-              <div className="text-base font-bold text-[#1C1917]">Unable to load dossier</div>
+              <div className="text-base font-bold text-[#1C1917]">Unable to load guide</div>
               <div className="text-xs text-[#78716C]">{error}</div>
             </div>
           )}
@@ -724,7 +807,7 @@ export function DestinationCulturalModal({
         <div className="flex-shrink-0 bg-[#F3EFE6] border-t border-[#E8E2D5] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <span className="text-xs text-[#78716C]">
-              Verified travel dossier curated by{" "}
+              Travel guide curated by{" "}
               <strong className="font-bold text-[#1C1917]">
                 TravelWolf & Venture
               </strong>
@@ -737,7 +820,7 @@ export function DestinationCulturalModal({
               className="text-xs font-semibold px-4 py-2 rounded-xl border border-[#E8E2D5] bg-[#FFFFFF] hover:bg-[#FAF7F2] text-[#1C1917] transition-colors flex items-center gap-1.5"
             >
               <BookOpen className="h-3.5 w-3.5 text-[#B45309]" />
-              <span>Full Page Dossier</span>
+              <span>Full Page Guide</span>
             </a>
 
             <button

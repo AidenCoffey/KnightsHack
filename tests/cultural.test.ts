@@ -49,5 +49,34 @@ describe("Cultural Intelligence & Resolver", () => {
     expect(getCountryNameFromCode("GB")).toBe("United Kingdom");
     expect(getCountryNameFromCode("JFK")).toBe("United States");
     expect(getCountryNameFromCode("NRT")).toBe("Japan");
+    expect(getCountryNameFromCode("PRG")).toBe("Czech Republic");
+    expect(getCountryNameFromCode("BUD")).toBe("Hungary");
+    expect(getCountryFlag("PRG")).toBe("🇨🇿");
+    expect(getCountryFlag("HU")).toBe("🇭🇺");
+  });
+
+  it("contains rich, comprehensive packing checklists (all 5 categories, 35+ items) for Czech Republic, Thailand, and all countries", () => {
+    const czechData = CULTURAL_FALLBACK_DATA["CZ"];
+    expect(czechData).toBeDefined();
+    expect(czechData.countryName).toBe("Czech Republic");
+    expect(czechData.essentialItems).toBeDefined();
+    expect(czechData.essentialItems!.length).toBe(5);
+    const czTotalItems = czechData.essentialItems!.reduce((acc, g) => acc + g.items.length, 0);
+    expect(czTotalItems).toBe(45);
+
+    const thaiData = CULTURAL_FALLBACK_DATA["TH"];
+    expect(thaiData).toBeDefined();
+    expect(thaiData.countryName).toBe("Thailand");
+    expect(thaiData.essentialItems!.length).toBe(5);
+    const thTotalItems = thaiData.essentialItems!.reduce((acc, g) => acc + g.items.length, 0);
+    expect(thTotalItems).toBe(43);
+
+    // Verify all countries in CULTURAL_FALLBACK_DATA have comprehensive categories and items
+    for (const [code, dossier] of Object.entries(CULTURAL_FALLBACK_DATA)) {
+      expect(dossier.essentialItems, `${code} missing essentialItems`).toBeDefined();
+      expect(dossier.essentialItems!.length, `${code} should have 5 categories`).toBeGreaterThanOrEqual(5);
+      const total = dossier.essentialItems!.reduce((acc, g) => acc + g.items.length, 0);
+      expect(total, `${code} should have at least 35 items`).toBeGreaterThanOrEqual(35);
+    }
   });
 });

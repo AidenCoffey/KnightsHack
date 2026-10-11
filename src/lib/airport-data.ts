@@ -47,6 +47,15 @@ export const FALLBACK_AIRPORTS: Airport[] = [
   { iata: "BER", name: "Berlin Brandenburg Airport", city: "Berlin", country: "DE", lat: 52.3667, lon: 13.5033, type: "large_airport" },
   { iata: "HAM", name: "Hamburg Airport", city: "Hamburg", country: "DE", lat: 53.6304, lon: 9.9882, type: "large_airport" },
   { iata: "DUS", name: "Düsseldorf Airport", city: "Dusseldorf", country: "DE", lat: 51.2895, lon: 6.7668, type: "large_airport" },
+  { iata: "STR", name: "Stuttgart Airport", city: "Stuttgart", country: "DE", lat: 48.689899, lon: 9.22196, type: "large_airport" },
+  { iata: "CGN", name: "Cologne Bonn Airport", city: "Köln (Cologne)", country: "DE", lat: 50.865898, lon: 7.14274, type: "large_airport" },
+  { iata: "NUE", name: "Nuremberg Airport", city: "Nuremberg", country: "DE", lat: 49.498699, lon: 11.078056, type: "large_airport" },
+  { iata: "FKB", name: "Karlsruhe Baden-Baden Airport", city: "Karlsruhe / Baden-Baden", country: "DE", lat: 48.7794, lon: 8.0805, type: "large_airport" },
+  { iata: "BSL", name: "EuroAirport Basel–Mulhouse–Freiburg", city: "Bâle / Mulhouse", country: "FR", lat: 47.60068, lon: 7.521117, type: "large_airport" },
+  { iata: "SXB", name: "Strasbourg Airport", city: "Strasbourg", country: "FR", lat: 48.5383, lon: 7.62823, type: "large_airport" },
+  { iata: "LUX", name: "Luxembourg-Findel International Airport", city: "Luxembourg", country: "LU", lat: 49.626845, lon: 6.212134, type: "large_airport" },
+  { iata: "EIN", name: "Eindhoven Airport", city: "Eindhoven", country: "NL", lat: 51.4501, lon: 5.3745, type: "large_airport" },
+  { iata: "CRL", name: "Brussels South Charleroi Airport", city: "Charleroi", country: "BE", lat: 50.462, lon: 4.4596, type: "large_airport" },
   { iata: "ZRH", name: "Zurich Airport", city: "Zurich", country: "CH", lat: 47.4647, lon: 8.5492, type: "large_airport" },
   { iata: "GVA", name: "Geneva Airport", city: "Geneva", country: "CH", lat: 46.2381, lon: 6.1089, type: "large_airport" },
   { iata: "VIE", name: "Vienna International Airport", city: "Vienna", country: "AT", lat: 48.1103, lon: 16.5697, type: "large_airport" },
@@ -70,16 +79,35 @@ export const FALLBACK_AIRPORTS: Airport[] = [
   // Asia / Pacific
   { iata: "SIN", name: "Singapore Changi Airport", city: "Singapore", country: "SG", lat: 1.3644, lon: 103.9915, type: "large_airport" },
   { iata: "BKK", name: "Suvarnabhumi Airport", city: "Bangkok", country: "TH", lat: 13.6811, lon: 100.7473, type: "large_airport" },
+  { iata: "DMK", name: "Don Mueang International Airport", city: "Bangkok", country: "TH", lat: 13.9126, lon: 100.6067, type: "large_airport" },
+  { iata: "HKT", name: "Phuket International Airport", city: "Phuket", country: "TH", lat: 8.1132, lon: 98.3169, type: "large_airport" },
+  { iata: "CNX", name: "Chiang Mai International Airport", city: "Chiang Mai", country: "TH", lat: 18.7668, lon: 98.9626, type: "large_airport" },
   { iata: "HKG", name: "Hong Kong International Airport", city: "Hong Kong", country: "HK", lat: 22.308, lon: 113.9185, type: "large_airport" },
   { iata: "NRT", name: "Narita International Airport", city: "Tokyo", country: "JP", lat: 35.7647, lon: 140.3864, type: "large_airport" },
   { iata: "HND", name: "Tokyo Haneda Airport", city: "Tokyo", country: "JP", lat: 35.5494, lon: 139.7798, type: "large_airport" },
   { iata: "KIX", name: "Kansai International Airport", city: "Osaka", country: "JP", lat: 34.4347, lon: 135.2442, type: "large_airport" },
+  { iata: "FUK", name: "Fukuoka Airport", city: "Fukuoka", country: "JP", lat: 33.5859, lon: 130.4507, type: "large_airport" },
+  { iata: "CTS", name: "New Chitose Airport", city: "Sapporo", country: "JP", lat: 42.7752, lon: 141.6923, type: "large_airport" },
+  { iata: "NGO", name: "Chubu Centrair International Airport", city: "Nagoya", country: "JP", lat: 34.8584, lon: 136.8053, type: "large_airport" },
+  { iata: "ITM", name: "Osaka International (Itami) Airport", city: "Osaka", country: "JP", lat: 34.7855, lon: 135.4382, type: "large_airport" },
+  { iata: "OKA", name: "Naha Airport", city: "Okinawa", country: "JP", lat: 26.1958, lon: 127.6458, type: "large_airport" },
   { iata: "ICN", name: "Incheon International Airport", city: "Seoul", country: "KR", lat: 37.4691, lon: 126.4505, type: "large_airport" },
   { iata: "SYD", name: "Sydney Airport", city: "Sydney", country: "AU", lat: -33.9461, lon: 151.1772, type: "large_airport" },
   { iata: "MEL", name: "Melbourne Airport", city: "Melbourne", country: "AU", lat: -37.6690, lon: 144.8410, type: "large_airport" },
   { iata: "DEL", name: "Indira Gandhi International Airport", city: "New Delhi", country: "IN", lat: 28.5562, lon: 77.1000, type: "large_airport" },
 
   // North America
+  { iata: "TPA", name: "Tampa International Airport", city: "Tampa", country: "US", lat: 27.9755, lon: -82.5332, type: "large_airport" },
+  { iata: "PIE", name: "St. Pete-Clearwater International Airport", city: "St. Petersburg", country: "US", lat: 27.9102, lon: -82.6874, type: "medium_airport" },
+  { iata: "SRQ", name: "Sarasota Bradenton International Airport", city: "Sarasota", country: "US", lat: 27.3954, lon: -82.5544, type: "medium_airport" },
+  { iata: "MCO", name: "Orlando International Airport", city: "Orlando", country: "US", lat: 28.4294, lon: -81.3090, type: "large_airport" },
+  { iata: "SFB", name: "Orlando Sanford International Airport", city: "Sanford", country: "US", lat: 28.7776, lon: -81.2375, type: "medium_airport" },
+  { iata: "DAB", name: "Daytona Beach International Airport", city: "Daytona Beach", country: "US", lat: 29.1799, lon: -81.0580, type: "medium_airport" },
+  { iata: "MIA", name: "Miami International Airport", city: "Miami", country: "US", lat: 25.7959, lon: -80.2870, type: "large_airport" },
+  { iata: "FLL", name: "Fort Lauderdale-Hollywood International Airport", city: "Fort Lauderdale", country: "US", lat: 26.0726, lon: -80.1527, type: "large_airport" },
+  { iata: "PBI", name: "Palm Beach International Airport", city: "West Palm Beach", country: "US", lat: 26.6832, lon: -80.0956, type: "large_airport" },
+  { iata: "RSW", name: "Southwest Florida International Airport", city: "Fort Myers", country: "US", lat: 26.5362, lon: -81.7552, type: "large_airport" },
+  { iata: "JAX", name: "Jacksonville International Airport", city: "Jacksonville", country: "US", lat: 30.4941, lon: -81.6879, type: "large_airport" },
   { iata: "JFK", name: "John F. Kennedy International Airport", city: "New York", country: "US", lat: 40.6413, lon: -73.7781, type: "large_airport" },
   { iata: "EWR", name: "Newark Liberty International Airport", city: "New York / Newark", country: "US", lat: 40.6895, lon: -74.1745, type: "large_airport" },
   { iata: "LGA", name: "LaGuardia Airport", city: "New York", country: "US", lat: 40.7769, lon: -73.8740, type: "large_airport" },
@@ -87,7 +115,6 @@ export const FALLBACK_AIRPORTS: Airport[] = [
   { iata: "LAX", name: "Los Angeles International Airport", city: "Los Angeles", country: "US", lat: 33.9425, lon: -118.4081, type: "large_airport" },
   { iata: "SFO", name: "San Francisco International Airport", city: "San Francisco", country: "US", lat: 37.6213, lon: -122.3790, type: "large_airport" },
   { iata: "ORD", name: "O'Hare International Airport", city: "Chicago", country: "US", lat: 41.9742, lon: -87.9073, type: "large_airport" },
-  { iata: "MIA", name: "Miami International Airport", city: "Miami", country: "US", lat: 25.7959, lon: -80.2870, type: "large_airport" },
   { iata: "DFW", name: "Dallas/Fort Worth International Airport", city: "Dallas", country: "US", lat: 32.8998, lon: -97.0403, type: "large_airport" },
   { iata: "ATL", name: "Hartsfield-Jackson Atlanta Airport", city: "Atlanta", country: "US", lat: 33.6407, lon: -84.4277, type: "large_airport" },
   { iata: "SEA", name: "Seattle-Tacoma International Airport", city: "Seattle", country: "US", lat: 47.4502, lon: -122.3088, type: "large_airport" },
@@ -95,13 +122,35 @@ export const FALLBACK_AIRPORTS: Airport[] = [
   { iata: "YVR", name: "Vancouver International Airport", city: "Vancouver", country: "CA", lat: 49.1967, lon: -123.1815, type: "large_airport" },
 ];
 
+/** Matches the Popular Destinations carousel — shown until the user starts typing. */
+export const POPULAR_DESTINATION_IATAS = [
+  "CDG",
+  "FRA",
+  "FCO",
+  "MXP",
+  "ZRH",
+  "PRG",
+  "BUD",
+  "JFK",
+  "MCO",
+  "TPA",
+  "NRT",
+  "BKK",
+] as const;
+
 export function getAirportByIata(iata: string): Airport | undefined {
   return FALLBACK_AIRPORTS.find((a) => a.iata.toUpperCase() === iata.toUpperCase());
 }
 
+export function getPopularDestinations(maxResults = 12): Airport[] {
+  return POPULAR_DESTINATION_IATAS.map((code) => getAirportByIata(code))
+    .filter((a): a is Airport => Boolean(a))
+    .slice(0, maxResults);
+}
+
 export function searchAirportsClient(query: string, maxResults = 10): Airport[] {
   const q = query.trim().toLowerCase();
-  if (!q) return FALLBACK_AIRPORTS.slice(0, maxResults);
+  if (!q) return getPopularDestinations(maxResults);
 
   const matched = FALLBACK_AIRPORTS.filter((a) => {
     return (

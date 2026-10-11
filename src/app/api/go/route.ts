@@ -72,6 +72,26 @@ export async function GET(req: NextRequest) {
     return new Response(`Domain not allowed: ${hostname}`, { status: 403 });
   }
 
+  // Sanitize Aviasales search URLs if they contain invalid 8-digit dates (YYYYMMDD)
+  if (hostname.includes("aviasales.com") && parsedUrl.pathname.startsWith("/search/")) {
+    let slug = parsedUrl.pathname.replace("/search/", "");
+    // Round-trip 8-digit dates: TPA20261109ZRH202611161 -> TPA0911ZRH16111
+    const matchRound8 = slug.match(/^([A-Za-z]{3})(\d{4})(\d{2})(\d{2})([A-Za-z]{3})(\d{4})(\d{2})(\d{2})(.*)$/);
+    if (matchRound8) {
+      const [, orig, , m1, d1, dst, , m2, d2, rest] = matchRound8;
+      slug = `${orig.toUpperCase()}${d1}${m1}${dst.toUpperCase()}${d2}${m2}${rest || "1"}`;
+    } else {
+      // One-way 8-digit date: TPA20270119ZRH1 -> TPA1901ZRH1
+      const matchOne8 = slug.match(/^([A-Za-z]{3})(\d{4})(\d{2})(\d{2})([A-Za-z]{3})(.*)$/);
+      if (matchOne8) {
+        const [, orig, , mm, dd, dst, rest] = matchOne8;
+        slug = `${orig.toUpperCase()}${dd}${mm}${dst.toUpperCase()}${rest || "1"}`;
+      }
+    }
+    parsedUrl.pathname = `/search/${slug}`;
+    parsedUrl.searchParams.delete("destination_airports");
+  }
+
   // Append affiliate marker if we have one
   if (MARKER) {
     parsedUrl.searchParams.set("marker", MARKER);

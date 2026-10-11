@@ -1,34 +1,27 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ScoredOrigin } from "@/types";
-import { formatSavings, savingsColor, computeBreakEven } from "@/lib/scoring";
 import {
-  ExternalLink,
   TrendingDown,
   TrendingUp,
-  Minus,
-  Info,
   Clock,
-  Compass,
-  ListFilter,
-  Calendar,
-  Search,
-  X,
   Train,
-  Plane,
+  Bus,
+  Car,
   Sparkles,
   ArrowUpDown,
-  CheckCircle2,
+  ChevronDown,
   MapPin,
-  Tag,
-  BookOpen,
+  Eye,
+  Bookmark,
+  Check,
+  type LucideIcon,
 } from "lucide-react";
-import { CompleteTripRow } from "./CompleteTripRow";
-import { ScenicStopovers } from "./ScenicStopovers";
+import { formatCurrencyPrice } from "@/lib/currency";
 import { PriceCalendarHeatmap } from "./PriceCalendarHeatmap";
-import { getCountryFlag, getCountryNameFromCode } from "@/lib/cultural-utils";
+import { TripDetailModal } from "./TripDetailModal";
 
 interface ResultsListProps {
   results: ScoredOrigin[];
@@ -39,48 +32,86 @@ interface ResultsListProps {
   currency: string;
   destination?: string;
   departDate?: string;
+  returnDate?: string;
+  tripType?: "round" | "oneway";
+  passengers?: number;
   isLoading: boolean;
   errors: string[];
   onSetBaseAirport?: (iata: string) => void;
   onOpenCulturalGuide?: (result?: ScoredOrigin) => void;
+  savedOriginIatas?: string[];
+  onSaveTrip?: (result: ScoredOrigin) => void;
+  onSelectDate?: (date: string) => void;
+  datePrices?: Record<string, number>;
 }
 
-type HeadlineFilterType = "all" | "savings" | "fast" | "train" | "budget" | "live";
-type SortOption = "best" | "savings" | "fare" | "time" | "distance";
+type HeadlineFilterType = "all" | "savings" | "fast" | "train" | "bus" | "drive";
+type SortOption = "best" | "savings" | "fare" | "time" | "time-long" | "distance" | "distance-far";
 
-function SourceBadge({ source }: { source: string }) {
-  const isLive = source === "Live";
-  const isRecent = source === "Recent (cached)";
+const SORT_OPTIONS: Array<{ value: SortOption; label: string }> = [
+  { value: "best", label: "Best Overall Value" },
+  { value: "savings", label: "Highest Savings" },
+  { value: "fare", label: "Cheapest Flight Only" },
+  { value: "time", label: "Shortest Travel Time" },
+  { value: "time-long", label: "Longest Travel Time" },
+  { value: "distance", label: "Closest to Base" },
+  { value: "distance-far", label: "Farthest from Base" },
+];
 
-  return (
-    <span
-      className={`text-[10px] px-2 py-0.5 rounded-full font-medium inline-flex items-center gap-1 ${
-        isLive
-          ? "bg-[#CCFBF1] text-[#0F766E] font-semibold"
-          : isRecent
-          ? "bg-[#FEF3C7] text-[#92400E] font-semibold"
-          : "bg-[#F1F5F9] text-[#64748B]"
-      }`}
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-current" />
-      {isLive ? "Live Fare" : isRecent ? "Recent" : source}
-    </span>
-  );
+function formatDuration(hours: number): string {
+  const totalMinutes = Math.round(hours * 60);
+  if (totalMinutes < 60) {
+    return `${totalMinutes} min`;
+  }
+  const h = Math.floor(totalMinutes / 60);
+  const m = totalMinutes % 60;
+  return m > 0 ? `${h}h ${m}m` : `${h}h`;
 }
 
-function GroundBadge({ source, mode }: { source: string; mode?: string }) {
-  const isTrain = mode?.toLowerCase().includes("train") || mode?.toLowerCase().includes("rail");
-  return (
-    <span className="text-[10px] px-2 py-0.5 rounded-full font-semibold bg-[#F1F5F9] text-[#0F172A] inline-flex items-center gap-1">
-      {isTrain ? <Train className="h-2.5 w-2.5 text-[#0D9488]" /> : null}
-      {source === "Real fare" ? "Verified" : "Est."}
-    </span>
-  );
+function getGroundModeInfo(mode: string = "train") {
+  const m = mode.toLowerCase();
+  if (m.includes("train") || m.includes("rail")) {
+    return {
+      label: "Train",
+      fullLabel: "Train / Rail",
+      icon: Train,
+      textColor: "text-[#0F766E]",
+      bgColor: "bg-[#CCFBF1]",
+      borderColor: "border-[#0F766E]/20",
+    };
+  }
+  if (m.includes("bus") || m.includes("coach")) {
+    return {
+      label: "Coach / Bus",
+      fullLabel: "Express Coach / Bus",
+      icon: Bus,
+      textColor: "text-[#B45309]",
+      bgColor: "bg-[#FEF3C7]",
+      borderColor: "border-[#B45309]/20",
+    };
+  }
+  if (m.includes("taxi") || m.includes("shuttle")) {
+    return {
+      label: "Taxi / Shuttle",
+      fullLabel: "Airport Shuttle",
+      icon: Car,
+      textColor: "text-[#2563EB]",
+      bgColor: "bg-[#DBEAFE]",
+      borderColor: "border-[#2563EB]/20",
+    };
+  }
+  return {
+    label: "Self Drive",
+    fullLabel: "Highway Drive",
+    icon: Car,
+    textColor: "text-[#475569]",
+    bgColor: "bg-[#F1F5F9]",
+    borderColor: "border-[#CBD5E1]",
+  };
 }
 
 function formatPrice(price: number, currency: string): string {
-  const symbol = currency === "EUR" ? "€" : currency === "GBP" ? "£" : "$";
-  return `${symbol}${Math.round(price)}`;
+  return formatCurrencyPrice(price, currency);
 }
 
 function ResultCard({
@@ -88,92 +119,84 @@ function ResultCard({
   rank,
   isSelected,
   onClick,
+  onOpenModal,
   homeResult,
   currency,
   destination,
-  onSetBaseAirport,
-  onOpenCulturalGuide,
+  isSaved = false,
+  onSaveTrip,
 }: {
   result: ScoredOrigin;
   rank: number;
   isSelected: boolean;
   onClick: () => void;
+  onOpenModal: () => void;
   homeResult: ScoredOrigin | null;
   currency: string;
   destination?: string;
-  onSetBaseAirport?: (iata: string) => void;
-  onOpenCulturalGuide?: (result: ScoredOrigin) => void;
+  isSaved?: boolean;
+  onSaveTrip?: (result: ScoredOrigin) => void;
 }) {
   const savings = result.savingsVsHome;
   const isHome = homeResult?.airport.iata === result.airport.iata;
-
-  const breakEven =
-    !isHome && homeResult?.fare && result.fare
-      ? computeBreakEven(
-          {
-            fare: homeResult.fare.price,
-            groundCost: homeResult.groundLeg.price,
-            groundHours: homeResult.groundLeg.duration,
-          },
-          {
-            fare: result.fare.price,
-            groundCost: result.groundLeg.price,
-            groundHours: result.groundLeg.duration,
-          },
-          currency
-        )
-      : null;
-
-  const bookUrl = result.fare?.bookingUrl
-    ? `/api/go?url=${encodeURIComponent(result.fare.bookingUrl)}&origin=${result.airport.iata}&destination=${destination ?? ""}`
-    : destination
-    ? `/api/go?url=${encodeURIComponent(
-        `https://www.aviasales.com/search/${result.airport.iata}1${destination}`
-      )}&origin=${result.airport.iata}&destination=${destination}`
-    : null;
-
+  const modeInfo = getGroundModeInfo(result.groundLeg.mode);
+  const GroundIcon = modeInfo.icon;
   const isBestRank = rank === 1;
+
+  const handleCardClick = () => {
+    if (isSelected) {
+      onOpenModal();
+    } else {
+      onClick();
+    }
+  };
+
+  const openDetails = () => {
+    if (!isSelected) onClick();
+    onOpenModal();
+  };
 
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 8 }}
+      id={`result-card-${result.airport.iata}`}
+      initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96 }}
-      onClick={onClick}
-      className={`relative cursor-pointer rounded-2xl border transition-all duration-150 overflow-hidden ${
+      onClick={handleCardClick}
+      className={`group relative cursor-pointer rounded-2xl border transition-all duration-150 overflow-hidden ${
         isSelected
-          ? "border-[#B45309] ring-2 ring-[#B45309]/20 bg-[#FFFFFF] shadow-md"
-          : "border-[#E8E2D5] bg-[#FFFFFF] hover:border-[#D6CEBF] hover:shadow-sm"
+          ? "border-[#B45309] ring-2 ring-[#B45309]/30 bg-[#FFFDF9] shadow-md"
+          : "border-[#E8E2D5] bg-[#FFFFFF] hover:border-[#B45309]/70 hover:shadow-md"
       }`}
     >
-      {/* Top Banner for Best Deal or Home in Field Explorer styling */}
+      {/* Top Banner for Best Deal or Home */}
       {isBestRank && result.fare && savings > 0 && (
-        <div className="bg-[#FEF3C7] border-b border-[#FDE68A] text-[#92400E] text-xs font-semibold px-3.5 py-1.5 flex items-center justify-between">
+        <div className="bg-[#FEF3C7] border-b border-[#FDE68A] text-[#92400E] text-[11px] font-bold px-3 py-1 flex items-center justify-between">
           <span className="flex items-center gap-1.5">
-            <Sparkles className="h-3.5 w-3.5 text-[#D97706]" />
-            #1 Best Value Departure Option
+            <Sparkles className="h-3 w-3 text-[#D97706]" />
+            Best Value Option
           </span>
-          <span className="font-bold text-[#92400E]">Save {formatPrice(savings, result.fare.currency)}</span>
+          <span className="text-[#92400E]">Save {formatPrice(savings, currency)} net</span>
         </div>
       )}
 
       {isHome && (
-        <div className="bg-[#E8F0EC] border-b border-[#2D5A46]/20 text-[#2D5A46] text-xs font-semibold px-3.5 py-1.5 flex items-center justify-between">
+        <div className="bg-[#E8F0EC] border-b border-[#2D5A46]/20 text-[#2D5A46] text-[11px] font-bold px-3 py-1 flex items-center justify-between">
           <span className="flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5 text-[#2D5A46]" />
-            Current Base Departure Hub
+            <MapPin className="h-3 w-3 text-[#2D5A46]" />
+            Current Base Hub
           </span>
           <span>Benchmark Origin</span>
         </div>
       )}
 
-      <div className="p-4 space-y-3">
-        {/* Main Header: Rank, Route, Total Price */}
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex items-center gap-2.5">
+      <div className="p-3.5 space-y-2.5">
+        {/* Row 1: Rank, Route, and All-in Cost */}
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <span
-              className={`text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full flex-shrink-0 ${
+              className={`text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full flex-shrink-0 ${
                 isBestRank
                   ? "bg-[#1C1917] text-[#FAF7F2]"
                   : isHome
@@ -181,53 +204,72 @@ function ResultCard({
                   : "bg-[#F3EFE6] text-[#78716C] border border-[#E8E2D5]"
               }`}
             >
-              #{rank}
+              {rank}
             </span>
-            <div>
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="font-bold text-base text-[#1C1917] tracking-tight">
-                  {result.airport.city}
+
+            <div className="flex items-center gap-1.5 truncate">
+              <span className="font-bold text-sm sm:text-base text-[#1C1917] tracking-tight truncate">
+                {result.airport.city}
+              </span>
+              <span className="text-[11px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#FAF7F2] border border-[#E8E2D5] text-[#2D5A46] shrink-0">
+                {result.airport.iata}
+              </span>
+              {destination && (
+                <span className="text-xs text-[#78716C] font-normal flex items-center gap-1 shrink-0">
+                  ➔ <span className="font-mono text-[#1C1917] font-semibold">{destination}</span>
                 </span>
-                <span className="text-xs font-mono font-semibold px-1.5 py-0.5 rounded bg-[#FAF7F2] border border-[#E8E2D5] text-[#2D5A46]">
-                  {result.airport.iata}
-                </span>
-                {destination && (
-                  <span className="text-xs text-[#78716C] font-normal flex items-center gap-1">
-                    ➔ <span className="font-mono text-[#1C1917] font-semibold">{destination}</span>
-                  </span>
-                )}
-              </div>
-              <div className="text-[11px] text-[#78716C] truncate max-w-[210px]">
-                {result.airport.name}
-              </div>
+              )}
             </div>
           </div>
 
-          {/* Total Cost Display */}
+          {/* Large prominent all-in cost */}
           <div className="text-right flex-shrink-0">
             {result.fare ? (
-              <>
-                <div className="text-xl font-bold tracking-tight text-[#1C1917]">
-                  {formatPrice(result.totalCost, result.fare.currency)}
-                </div>
-                <div className="text-[10px] text-[#78716C] font-medium">
-                  all-in cost
-                </div>
-              </>
-            ) : (
-              <div className="text-xs text-[#78716C] italic bg-[#F3EFE6] px-2 py-1 rounded">
-                No fare found
+              <div className="flex items-baseline gap-1 justify-end">
+                <span className="text-lg sm:text-xl font-bold tracking-tight text-[#1C1917]">
+                  {formatPrice(result.totalCost, currency)}
+                </span>
+                <span className="text-[10px] text-[#78716C] font-medium">all-in</span>
               </div>
+            ) : (
+              <span className="text-xs text-[#78716C] italic bg-[#F3EFE6] px-2 py-0.5 rounded">
+                No fare found
+              </span>
             )}
           </div>
         </div>
 
-        {/* Savings / Cost comparison banner */}
-        {result.fare && (
-          <div className="pt-0.5">
-            {!isHome && homeResult?.fare ? (
-              <div
-                className={`text-xs px-3 py-1.5 rounded-xl font-semibold flex items-center justify-between gap-1.5 ${
+        {/* Row 2: Route breakdown preview & Net savings/comparison chip */}
+        <div className="flex items-center justify-between gap-2 text-xs">
+          {/* Left: Overland & Fare chips */}
+          <div className="flex items-center gap-1.5 flex-wrap min-w-0">
+            {isHome ? (
+              <span className="text-[11px] font-medium text-[#2D5A46] bg-[#E8F0EC] px-2 py-0.5 rounded-md inline-flex items-center gap-1">
+                <MapPin className="h-3 w-3" />
+                Direct Departure Hub
+              </span>
+            ) : (
+              <span className="text-[11px] font-medium text-[#475569] bg-[#F1F5F9] px-2 py-0.5 rounded-md inline-flex items-center gap-1">
+                <GroundIcon className="h-3 w-3 text-[#0F766E]" />
+                <span>{modeInfo.label} ~{formatDuration(result.groundLeg.duration)}</span>
+                {result.distanceMiles > 0 && (
+                  <span className="text-[10px] text-[#94A3B8]">({Math.round(result.distanceMiles)} mi)</span>
+                )}
+              </span>
+            )}
+
+            {result.fare && (
+              <span className="text-[11px] text-[#64748B] hidden sm:inline">
+                {formatPrice(result.fare.price, currency)} flight + {formatPrice(result.groundLeg.price, currency)} ground
+              </span>
+            )}
+          </div>
+
+          {/* Right: Net comparison tag */}
+          <div className="flex-shrink-0">
+            {!isHome && homeResult?.fare && result.fare ? (
+              <span
+                className={`text-[11px] px-2 py-0.5 rounded-md font-bold inline-flex items-center gap-1 ${
                   savings > 0
                     ? "bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]"
                     : savings < -5
@@ -235,145 +277,60 @@ function ResultCard({
                     : "bg-[#FAF7F2] text-[#78716C] border border-[#E8E2D5]"
                 }`}
               >
-                <div className="flex items-center gap-1.5">
-                  {savings > 0 ? (
-                    <TrendingDown className="h-3.5 w-3.5 text-[#D97706] flex-shrink-0" />
-                  ) : savings < -5 ? (
-                    <TrendingUp className="h-3.5 w-3.5 text-[#DC2626] flex-shrink-0" />
-                  ) : (
-                    <Minus className="h-3.5 w-3.5 flex-shrink-0 text-[#78716C]" />
-                  )}
-                  <span>
-                    {savings > 0
-                      ? `Save ${formatPrice(savings, result.fare.currency)} net`
-                      : savings < -5
-                      ? `${formatPrice(Math.abs(savings), result.fare.currency)} more than home`
-                      : "Similar cost to home airport"}
-                  </span>
-                </div>
-                <span className="text-[10px] opacity-75 font-normal">
-                  vs {homeResult.airport.iata}
-                </span>
-              </div>
-            ) : isHome ? (
-              <div className="text-[11px] text-[#78716C] bg-[#FAF7F2] px-3 py-1.5 rounded-xl flex items-center justify-between border border-[#E8E2D5]">
-                <span>Baseline origin price</span>
-                <span className="font-semibold text-[#1C1917]">
-                  {formatPrice(result.fare.price, result.fare.currency)} flight
-                </span>
-              </div>
+                {savings > 0 ? (
+                  <>
+                    <TrendingDown className="h-3 w-3 text-[#D97706]" />
+                    <span>Save {formatPrice(savings, currency)} net</span>
+                  </>
+                ) : savings < -5 ? (
+                  <>
+                    <TrendingUp className="h-3 w-3 text-[#DC2626]" />
+                    <span>+{formatPrice(Math.abs(savings), currency)} vs home</span>
+                  </>
+                ) : (
+                  <span>Similar cost</span>
+                )}
+              </span>
+            ) : isHome && result.fare ? (
+              <span className="text-[11px] text-[#78716C]">
+                {formatPrice(result.fare.price, currency)} baseline flight
+              </span>
             ) : null}
           </div>
-        )}
+        </div>
 
-        {/* Journey Breakdown: Ground Leg + Flight Leg + Time Cost */}
-        {result.fare && (
-          <div className="grid grid-cols-3 gap-1.5 text-center bg-[#FAF7F2] p-2 rounded-xl border border-[#E8E2D5]">
-            {/* Leg 1: Flight */}
-            <div className="flex flex-col items-center justify-center p-1.5 rounded-lg bg-[#FFFFFF] border border-[#E8E2D5]">
-              <div className="text-[10px] text-[#78716C] flex items-center gap-1 font-semibold mb-0.5">
-                <Plane className="h-3 w-3 text-[#2D5A46]" />
-                Flight
-              </div>
-              <div className="text-xs font-bold text-[#1C1917]">
-                {formatPrice(result.fare.price, result.fare.currency)}
-              </div>
-              <SourceBadge source={result.fare.source} />
-            </div>
-
-            {/* Leg 2: Ground */}
-            <div className="flex flex-col items-center justify-center p-1.5 rounded-lg bg-[#FFFFFF] border border-[#E8E2D5]">
-              <div className="text-[10px] text-[#78716C] flex items-center gap-1 font-semibold mb-0.5">
-                <Train className="h-3 w-3 text-[#2D5A46]" />
-                Transfer
-              </div>
-              <div className="text-xs font-bold text-[#1C1917]">
-                {formatPrice(result.groundLeg.price, result.groundLeg.currency)}
-              </div>
-              <GroundBadge source={result.groundLeg.source} mode={result.groundLeg.mode} />
-            </div>
-
-            {/* Leg 3: Time value */}
-            <div className="flex flex-col items-center justify-center p-1.5 rounded-lg bg-[#FFFFFF] border border-[#E8E2D5]">
-              <div className="text-[10px] text-[#78716C] flex items-center gap-1 font-semibold mb-0.5">
-                <Clock className="h-3 w-3 text-[#B45309]" />
-                Time cost
-              </div>
-              <div className="text-xs font-bold text-[#1C1917]">
-                {formatPrice(result.breakdown.timeCost, result.fare.currency)}
-              </div>
-              <span className="text-[10px] text-[#78716C] font-normal">
-                {(result.groundLeg.duration * 60).toFixed(0)}m ride
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* Break-even explanation */}
-        {breakEven && (
-          <div className="text-[11px] text-[#78716C] bg-[#FAF7F2] border border-[#E8E2D5] rounded-xl px-3 py-1.5 flex items-center gap-2">
-            <Clock className="h-3.5 w-3.5 text-[#2D5A46] flex-shrink-0" />
-            <span className="leading-tight">{breakEven.message}</span>
-          </div>
-        )}
-
-        {/* Card Actions: Book Flight & Set as Base Origin */}
-        <div className="flex items-center justify-between pt-1 gap-2 border-t border-[#E8E2D5]">
-          <div className="text-[11px] text-[#78716C] flex items-center gap-1 truncate">
-            {result.distanceMiles === 0 ? (
-              <span className="font-semibold text-[#2D5A46]">Home departure hub</span>
-            ) : (
-              <span>
-                {Math.round(result.distanceMiles)} mi away · {result.groundLeg.mode}
-              </span>
-            )}
-          </div>
-
+        {/* Row 3: Action bar */}
+        <div className="flex items-center justify-end pt-2 border-t border-[#F3EFE6] text-xs">
           <div className="flex items-center gap-1.5 flex-shrink-0">
-            {/* Quick Set as Base Button */}
-            {!isHome && onSetBaseAirport && (
+            {onSaveTrip && (
               <button
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  onSetBaseAirport(result.airport.iata);
+                  onSaveTrip(result);
                 }}
-                className="text-[11px] font-semibold text-[#78716C] hover:text-[#1C1917] hover:bg-[#F3EFE6] border border-[#E8E2D5] px-2.5 py-1 rounded-lg transition-colors"
-                title={`Set ${result.airport.city} (${result.airport.iata}) as your new base location`}
+                className={`p-1.5 rounded-lg border transition-colors ${
+                  isSaved
+                    ? "bg-[#E8F0EC] text-[#2D5A46] border-[#D1E4D8]"
+                    : "text-[#78716C] hover:text-[#1C1917] hover:bg-[#F3EFE6] border-[#E8E2D5]"
+                }`}
+                title={isSaved ? "Saved to My Trips" : "Save trip"}
               >
-                Set as base
+                {isSaved ? <Check className="h-3.5 w-3.5 text-[#2D5A46]" /> : <Bookmark className="h-3.5 w-3.5" />}
               </button>
             )}
 
-            {/* Learn More: Destination Travel Guide */}
-            {destination && onOpenCulturalGuide && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onOpenCulturalGuide(result);
-                }}
-                className="text-[11px] font-semibold text-[#64748B] hover:text-[#0F172A] hover:bg-[#F1F5F9] px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 border border-[#E2E8F0]"
-                title="Learn about destination"
-              >
-                <BookOpen className="h-3 w-3 text-[#0D9488]" />
-                <span className="hidden sm:inline">Guide</span>
-              </button>
-            )}
-
-            {/* Book CTA (10% High-Energy Accent: Warm Amber with Deep Navy Text for WCAG Contrast) */}
-            {bookUrl && (
-              <a
-                href={bookUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="text-xs font-bold text-[#0F172A] bg-[#F59E0B] hover:bg-[#D97706] px-3.5 py-1 rounded-full transition-colors flex items-center gap-1 shadow-xs hover:shadow-sm"
-              >
-                <span>Book</span>
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            )}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                openDetails();
+              }}
+              className="text-xs font-bold text-[#1C1917] bg-[#F59E0B] hover:bg-[#D97706] px-3 py-1 rounded-md transition-colors flex items-center gap-1 shadow-2xs hover:shadow-xs"
+            >
+              <Eye className="h-3 w-3" />
+              <span>View</span>
+            </button>
           </div>
         </div>
       </div>
@@ -390,21 +347,80 @@ export function ResultsList({
   currency,
   destination,
   departDate,
+  returnDate,
+  tripType = "round",
+  passengers = 1,
   isLoading,
   errors,
   onSetBaseAirport,
   onOpenCulturalGuide,
+  savedOriginIatas = [],
+  onSaveTrip,
+  onSelectDate,
+  datePrices,
 }: ResultsListProps) {
-  const [viewTab, setViewTab] = useState<"ranking" | "scenic">("ranking");
-  const [searchQuery, setSearchQuery] = useState("");
   const [headlineFilter, setHeadlineFilter] = useState<HeadlineFilterType>("all");
   const [sortBy, setSortBy] = useState<SortOption>("best");
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+  const sortDropdownRef = useRef<HTMLDivElement>(null);
+  const [modalTarget, setModalTarget] = useState<{ result: ScoredOrigin; rank: number } | null>(null);
+
+  // Close sort dropdown on click outside or Escape
+  useEffect(() => {
+    if (!sortDropdownOpen) return;
+    function handleClickOutside(event: MouseEvent) {
+      if (sortDropdownRef.current && !sortDropdownRef.current.contains(event.target as Node)) {
+        setSortDropdownOpen(false);
+      }
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setSortDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [sortDropdownOpen]);
 
   const withFares = useMemo(() => results.filter((r) => r.fare !== null), [results]);
-  const noFares = useMemo(() => results.filter((r) => r.fare === null), [results]);
-  const bestFarePrice = withFares[0]?.totalCost;
+  const isSoloFlight = tripType === "oneway" || (!returnDate && tripType !== "round");
 
-  // Filter & Search results
+  // Snap/scroll right side list to the selected card when clicked on the map
+  useEffect(() => {
+    if (!selected) return;
+
+    const timer = setTimeout(() => {
+      const cardEl = document.getElementById(`result-card-${selected.airport.iata}`);
+      if (cardEl) {
+        cardEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 70);
+
+    return () => clearTimeout(timer);
+  }, [selected]);
+
+  // Support opening enlarged route popup directly if event is triggered
+  useEffect(() => {
+    const handleOpenTripModal = (e: Event) => {
+      const customEvt = e as CustomEvent<string>;
+      const iata = customEvt.detail;
+      const targetResult = withFares.find((r) => r.airport.iata === iata);
+      if (targetResult) {
+        const idx = withFares.findIndex((r) => r.airport.iata === iata);
+        setModalTarget({ result: targetResult, rank: idx >= 0 ? idx + 1 : 1 });
+      }
+    };
+    window.addEventListener("open-trip-modal", handleOpenTripModal);
+    return () => window.removeEventListener("open-trip-modal", handleOpenTripModal);
+  }, [withFares]);
+
+  const modeOf = (r: ScoredOrigin) => r.groundLeg.mode.toLowerCase();
+
+  // Filter & sort results
   const filteredResults = useMemo(() => {
     let list = [...withFares];
 
@@ -413,29 +429,17 @@ export function ResultsList({
     } else if (headlineFilter === "fast") {
       list = list.filter((r) => r.groundLeg.duration <= 2);
     } else if (headlineFilter === "train") {
-      list = list.filter((r) => r.groundLeg.mode.toLowerCase().includes("train"));
-    } else if (headlineFilter === "budget") {
-      list = list.filter((r) => r.fare && r.fare.price <= 180);
-    } else if (headlineFilter === "live") {
-      list = list.filter((r) => r.fare?.source === "Live");
-    }
-
-    if (searchQuery.trim()) {
-      const q = searchQuery.toLowerCase().trim();
-      list = list.filter((r) => {
-        const cityMatch = r.airport.city.toLowerCase().includes(q);
-        const iataMatch = r.airport.iata.toLowerCase().includes(q);
-        const nameMatch = r.airport.name.toLowerCase().includes(q);
-        const modeMatch = r.groundLeg.mode.toLowerCase().includes(q);
-        const sourceMatch = r.fare?.source.toLowerCase().includes(q);
-        const savingsMatch =
-          q.includes("save") || q.includes("deal")
-            ? r.savingsVsHome > 0
-            : false;
-        const trainMatch = q.includes("train") && r.groundLeg.mode.toLowerCase().includes("train");
-
-        return cityMatch || iataMatch || nameMatch || modeMatch || sourceMatch || savingsMatch || trainMatch;
-      });
+      list = list.filter((r) => modeOf(r).includes("train") || modeOf(r).includes("rail"));
+    } else if (headlineFilter === "bus") {
+      list = list.filter((r) => modeOf(r).includes("bus") || modeOf(r).includes("coach"));
+    } else if (headlineFilter === "drive") {
+      list = list.filter(
+        (r) =>
+          modeOf(r).includes("drive") ||
+          modeOf(r).includes("car") ||
+          modeOf(r).includes("taxi") ||
+          modeOf(r).includes("shuttle")
+      );
     }
 
     list.sort((a, b) => {
@@ -449,18 +453,40 @@ export function ResultsList({
         return pA - pB;
       } else if (sortBy === "time") {
         return a.groundLeg.duration - b.groundLeg.duration;
+      } else if (sortBy === "time-long") {
+        return b.groundLeg.duration - a.groundLeg.duration;
       } else if (sortBy === "distance") {
         return a.distanceMiles - b.distanceMiles;
+      } else if (sortBy === "distance-far") {
+        return b.distanceMiles - a.distanceMiles;
       }
       return 0;
     });
 
     return list;
-  }, [withFares, headlineFilter, searchQuery, sortBy]);
+  }, [withFares, headlineFilter, sortBy]);
 
   const savingsCount = useMemo(() => withFares.filter((r) => r.savingsVsHome > 15).length, [withFares]);
   const fastGroundCount = useMemo(() => withFares.filter((r) => r.groundLeg.duration <= 2).length, [withFares]);
-  const trainCount = useMemo(() => withFares.filter((r) => r.groundLeg.mode.toLowerCase().includes("train")).length, [withFares]);
+  const trainCount = useMemo(
+    () => withFares.filter((r) => modeOf(r).includes("train") || modeOf(r).includes("rail")).length,
+    [withFares]
+  );
+  const busCount = useMemo(
+    () => withFares.filter((r) => modeOf(r).includes("bus") || modeOf(r).includes("coach")).length,
+    [withFares]
+  );
+  const driveCount = useMemo(
+    () =>
+      withFares.filter(
+        (r) =>
+          modeOf(r).includes("drive") ||
+          modeOf(r).includes("car") ||
+          modeOf(r).includes("taxi") ||
+          modeOf(r).includes("shuttle")
+      ).length,
+    [withFares]
+  );
 
   if (!isLoading && results.length === 0) {
     return (
@@ -482,257 +508,187 @@ export function ResultsList({
 
   return (
     <div className="p-4 space-y-4 bg-[#FAF7F2]">
-      {/* Top Header Switcher: Ranking vs Scenic */}
-      <div className="flex items-center justify-between gap-2 border-b border-[#E8E2D5] pb-3">
-        <div className="flex items-center gap-1 bg-[#F3EFE6] p-1 rounded-full border border-[#E8E2D5]">
-          <button
-            onClick={() => setViewTab("ranking")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
-              viewTab === "ranking"
-                ? "bg-[#FFFFFF] text-[#1C1917] shadow-xs"
-                : "text-[#78716C] hover:text-[#1C1917]"
-            }`}
-          >
-            <ListFilter className="h-3.5 w-3.5" />
-            <span>Options ({withFares.length})</span>
-          </button>
-          <button
-            onClick={() => setViewTab("scenic")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-colors ${
-              viewTab === "scenic"
-                ? "bg-[#FFFFFF] text-[#1C1917] shadow-xs"
-                : "text-[#78716C] hover:text-[#1C1917]"
-            }`}
-          >
-            <Compass className="h-3.5 w-3.5 text-[#B45309]" />
-            <span>Scenic Route</span>
-          </button>
-        </div>
+      {/* Price Calendar Preview — strictly for solo / one-way flights (hidden on round trip) */}
+      {withFares.length > 0 && isSoloFlight && (
+        <PriceCalendarHeatmap
+          baseDate={departDate}
+          basePrice={withFares[0]?.fare?.price ?? 110}
+          currency={currency}
+          onSelectDate={onSelectDate}
+          priceMap={datePrices}
+          isLoading={isLoading}
+        />
+      )}
 
-        <div className="text-right">
-          <span className="text-[11px] font-bold text-[#2D5A46] bg-[#E8F0EC] border border-[#2D5A46]/25 px-2.5 py-1 rounded-full">
-            ${timeValue}/hr valuation
-          </span>
-        </div>
-      </div>
+      {/* Built-in Filters & Sort */}
+      {withFares.length > 0 && (
+        <div className="space-y-2.5 bg-[#FFFFFF] border border-[#E2E8F0] p-3 rounded-2xl shadow-xs">
+          <div className="flex items-center justify-between text-[11px] px-0.5">
+            <span className="font-semibold text-[#1C1917]">Filter by transfer</span>
+            <span className="text-[#64748B]">
+              {filteredResults.length} of {withFares.length}
+            </span>
+          </div>
 
-      {viewTab === "scenic" ? (
-        <div className="space-y-3">
-          <ScenicStopovers
-            cheapestCost={bestFarePrice}
-            homeAirport={homeResult?.airport.iata ?? "FCO"}
-            destination={destination ?? "NRT"}
-          />
-          <CompleteTripRow
-            origin={homeResult?.airport.iata ?? "FCO"}
-            destination={destination}
-            onOpenCulturalGuide={() => onOpenCulturalGuide?.(homeResult ?? undefined)}
-          />
-        </div>
-      ) : (
-        <>
-          {/* Price Calendar Preview */}
-          {withFares.length > 0 && (
-            <PriceCalendarHeatmap
-              baseDate={departDate}
-              basePrice={withFares[0]?.fare?.price ?? 110}
-              currency={currency}
-            />
-          )}
-
-          {/* Search & Headline Filters Toolbar */}
-          {withFares.length > 0 && (
-            <div className="space-y-3 bg-[#FFFFFF] border border-[#E2E8F0] p-3.5 rounded-2xl shadow-xs">
-              {/* Text Search Bar */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748B]" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Filter by city, code, train, deal headline..."
-                  className="w-full pl-9 pr-8 py-2 rounded-xl text-xs sm:text-sm bg-[#F8FAFC] focus:bg-[#FFFFFF] outline-none border border-[#CBD5E1] focus:border-[#F59E0B] text-[#0F172A] placeholder:text-[#64748B] transition-all"
-                />
-                {searchQuery && (
+          <div className="flex flex-wrap gap-1.5">
+            {(
+              [
+                { id: "all" as HeadlineFilterType, label: `All (${withFares.length})`, count: withFares.length, icon: null },
+                { id: "train" as HeadlineFilterType, label: `Train (${trainCount})`, count: trainCount, icon: Train },
+                { id: "bus" as HeadlineFilterType, label: `Bus (${busCount})`, count: busCount, icon: Bus },
+                { id: "drive" as HeadlineFilterType, label: `Drive (${driveCount})`, count: driveCount, icon: Car },
+                { id: "fast" as HeadlineFilterType, label: `Fast <2h (${fastGroundCount})`, count: fastGroundCount, icon: Clock },
+                { id: "savings" as HeadlineFilterType, label: `Top Savings (${savingsCount})`, count: savingsCount, icon: Sparkles },
+              ] satisfies Array<{ id: HeadlineFilterType; label: string; count: number; icon: LucideIcon | null }>
+            )
+              .filter((f) => f.id === "all" || f.count > 0)
+              .map((f) => {
+                const Icon = f.icon;
+                const active = headlineFilter === f.id;
+                return (
                   <button
+                    key={f.id}
                     type="button"
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#64748B] hover:text-[#0F172A]"
-                  >
-                    <X className="h-3.5 w-3.5" />
-                  </button>
-                )}
-              </div>
-
-              {/* Clickable Headline Badges & Filters */}
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-[11px] text-[#64748B] px-0.5">
-                  <span className="font-semibold flex items-center gap-1 text-[#0F172A]">
-                    <Tag className="h-3 w-3 text-[#0D9488]" />
-                    Filter Categories:
-                  </span>
-                  <span>
-                    {filteredResults.length} of {withFares.length}
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap gap-1.5">
-                  <button
-                    type="button"
-                    onClick={() => setHeadlineFilter("all")}
-                    className={`text-[11px] px-3 py-1 rounded-full border font-semibold transition-colors ${
-                      headlineFilter === "all"
-                        ? "bg-[#0F172A] text-white border-[#0F172A]"
+                    onClick={() => setHeadlineFilter(active && f.id !== "all" ? "all" : f.id)}
+                    className={`text-[11px] px-2.5 py-1 rounded-lg border font-semibold transition-colors inline-flex items-center gap-1 ${
+                      active
+                        ? f.id === "savings"
+                          ? "bg-[#FEF3C7] text-[#92400E] border-[#F59E0B]"
+                          : "bg-[#1C1917] text-[#FAF7F2] border-[#1C1917]"
                         : "bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#64748B] border-[#E2E8F0]"
                     }`}
                   >
-                    All ({withFares.length})
+                    {Icon ? <Icon className="h-3 w-3" /> : null}
+                    {f.label}
                   </button>
-
-                  {savingsCount > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => setHeadlineFilter(headlineFilter === "savings" ? "all" : "savings")}
-                      className={`text-[11px] px-3 py-1 rounded-full border font-semibold transition-colors flex items-center gap-1 ${
-                        headlineFilter === "savings"
-                          ? "bg-[#FEF3C7] text-[#92400E] border-[#F59E0B]"
-                          : "bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#92400E] border-[#FDE68A]"
-                      }`}
-                    >
-                      <Sparkles className="h-3 w-3 text-[#F59E0B]" />
-                      Top Savings ({savingsCount})
-                    </button>
-                  )}
-
-                  {fastGroundCount > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => setHeadlineFilter(headlineFilter === "fast" ? "all" : "fast")}
-                      className={`text-[11px] px-3 py-1 rounded-full border font-semibold transition-colors flex items-center gap-1 ${
-                        headlineFilter === "fast"
-                          ? "bg-[#0D9488] text-white border-[#0D9488]"
-                          : "bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#64748B] border-[#E2E8F0]"
-                      }`}
-                    >
-                      <Clock className="h-3 w-3" />
-                      Fast Transfer &lt;2h ({fastGroundCount})
-                    </button>
-                  )}
-
-                  {trainCount > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => setHeadlineFilter(headlineFilter === "train" ? "all" : "train")}
-                      className={`text-[11px] px-3 py-1 rounded-full border font-semibold transition-colors flex items-center gap-1 ${
-                        headlineFilter === "train"
-                          ? "bg-[#0D9488] text-white border-[#0D9488]"
-                          : "bg-[#F8FAFC] hover:bg-[#F1F5F9] text-[#64748B] border-[#E2E8F0]"
-                      }`}
-                    >
-                      <Train className="h-3 w-3" />
-                      Train Routes ({trainCount})
-                    </button>
-                  )}
-                </div>
-              </div>
-
-              {/* Sorting Bar */}
-              <div className="flex items-center justify-between pt-2 border-t border-[#E2E8F0] text-xs">
-                <span className="text-[11px] text-[#64748B] flex items-center gap-1 font-semibold">
-                  <ArrowUpDown className="h-3 w-3 text-[#0D9488]" />
-                  Sort by:
-                </span>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  className="bg-[#F8FAFC] text-[#0F172A] text-xs font-semibold rounded-lg px-2.5 py-1 outline-none border border-[#CBD5E1] cursor-pointer hover:border-[#0D9488]"
-                >
-                  <option value="best">Best Overall Value</option>
-                  <option value="savings">Highest Savings</option>
-                  <option value="fare">Cheapest Flight Only</option>
-                  <option value="time">Shortest Ground Trip</option>
-                  <option value="distance">Closest to Base</option>
-                </select>
-              </div>
-            </div>
-          )}
-
-          {/* Results Cards List */}
-          <div className="space-y-3">
-            {filteredResults.length === 0 && withFares.length > 0 && (
-              <div className="py-8 text-center bg-[#FFFFFF] rounded-2xl border border-dashed border-[#CBD5E1] p-6 space-y-2">
-                <div className="text-2xl">🔍</div>
-                <div className="text-sm font-bold text-[#0F172A]">
-                  No routes match &ldquo;{searchQuery || headlineFilter}&rdquo;
-                </div>
-                <div className="text-xs text-[#64748B]">
-                  Try clearing your search query or headline filter to see all options.
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setSearchQuery("");
-                    setHeadlineFilter("all");
-                  }}
-                  className="text-xs bg-[#F59E0B] text-[#0F172A] font-bold px-3 py-1.5 rounded-lg mt-2"
-                >
-                  Reset filters
-                </button>
-              </div>
-            )}
-
-            <AnimatePresence mode="popLayout">
-              {filteredResults.map((result, idx) => (
-                <ResultCard
-                  key={result.airport.iata}
-                  result={result}
-                  rank={idx + 1}
-                  isSelected={selected?.airport.iata === result.airport.iata}
-                  onClick={() => onSelect(result)}
-                  homeResult={homeResult}
-                  currency={currency}
-                  destination={destination}
-                  onSetBaseAirport={onSetBaseAirport}
-                  onOpenCulturalGuide={onOpenCulturalGuide}
-                />
-              ))}
-            </AnimatePresence>
+                );
+              })}
           </div>
 
-          {/* Partner Complete Trip Row */}
-          {withFares.length > 0 && (
-            <div className="pt-2">
-              <CompleteTripRow
-                origin={selected?.airport.iata ?? homeResult?.airport.iata ?? "FCO"}
-                destination={destination}
-                onOpenCulturalGuide={() => onOpenCulturalGuide?.(selected ?? undefined)}
-              />
-            </div>
-          )}
+          <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#E2E8F0]">
+            <span className="text-[11px] text-[#64748B] flex items-center gap-1 font-semibold shrink-0">
+              <ArrowUpDown className="h-3 w-3 text-[#0D9488]" />
+              Sort by
+            </span>
+            <div ref={sortDropdownRef} className="relative min-w-0 flex-1 max-w-[220px]">
+              <button
+                type="button"
+                onClick={() => setSortDropdownOpen((open) => !open)}
+                className="w-full flex items-center justify-between gap-1.5 bg-[#F8FAFC] text-[#1C1917] text-xs font-semibold rounded-lg px-2.5 py-1.5 border border-[#CBD5E1] cursor-pointer hover:border-[#0D9488] transition-colors"
+                aria-haspopup="listbox"
+                aria-expanded={sortDropdownOpen}
+              >
+                <span className="truncate">
+                  {SORT_OPTIONS.find((o) => o.value === sortBy)?.label ?? "Best Overall Value"}
+                </span>
+                <ChevronDown
+                  className={`h-3.5 w-3.5 shrink-0 text-[#64748B] transition-transform ${
+                    sortDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
 
-          {/* Airports with no fares found */}
-          {noFares.length > 0 && !isLoading && (
-            <div className="text-[11px] text-[#64748B] pt-2 border-t border-[#E2E8F0]">
-              {noFares.length} candidate airport{noFares.length !== 1 ? "s" : ""} had no route fares:{" "}
-              {noFares.map((r) => r.airport.iata).join(", ")}
+              {sortDropdownOpen && (
+                <div
+                  role="listbox"
+                  className="absolute top-full right-0 mt-1.5 w-full min-w-[200px] bg-[#FFFFFF] border border-[#E8E2D5] rounded-xl shadow-lg py-1 z-50"
+                >
+                    {SORT_OPTIONS.map((option) => {
+                      const active = sortBy === option.value;
+                      return (
+                        <button
+                          key={option.value}
+                          type="button"
+                          role="option"
+                          aria-selected={active}
+                          onClick={() => {
+                            setSortBy(option.value);
+                            setSortDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-xs flex items-center justify-between hover:bg-[#FAF7F2] transition-colors cursor-pointer ${
+                            active ? "text-[#1C1917] font-bold bg-[#FAF7F2]" : "text-[#78716C]"
+                          }`}
+                        >
+                          <span>{option.label}</span>
+                          {active && <Check className="h-3.5 w-3.5 text-[#B45309] shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+              )}
             </div>
-          )}
-
-          {/* Errors */}
-          {errors.length > 0 && (
-            <div className="text-xs text-red-600 bg-red-50 rounded-xl p-3 border border-red-200">
-              {errors.length} query error{errors.length !== 1 ? "s" : ""} occurred during scan
-            </div>
-          )}
-
-          {/* Honest Disclaimer */}
-          {withFares.length > 0 && (
-            <p className="text-[10px] text-[#64748B] text-center pt-2 border-t border-[#E2E8F0]">
-              Prices reflect live partner and corridor queries. Always verify final totals directly on carrier websites.
-            </p>
-          )}
-        </>
+          </div>
+        </div>
       )}
+
+      {/* Results Cards List */}
+      <div className="space-y-3">
+        {filteredResults.length === 0 && withFares.length > 0 && (
+          <div className="py-8 text-center bg-[#FFFFFF] rounded-2xl border border-dashed border-[#CBD5E1] p-6 space-y-2">
+            <div className="text-sm font-bold text-[#1C1917]">No routes match this filter</div>
+            <div className="text-xs text-[#64748B]">Clear the filter to see all options.</div>
+            <button
+              type="button"
+              onClick={() => setHeadlineFilter("all")}
+              className="text-xs bg-[#F59E0B] text-[#1C1917] font-bold px-3 py-1.5 rounded-lg mt-2"
+            >
+              Reset filters
+            </button>
+          </div>
+        )}
+
+        <AnimatePresence mode="popLayout">
+          {filteredResults.map((result, idx) => (
+            <ResultCard
+              key={result.airport.iata}
+              result={result}
+              rank={idx + 1}
+              isSelected={selected?.airport.iata === result.airport.iata}
+              onClick={() => onSelect(result)}
+              onOpenModal={() => setModalTarget({ result, rank: idx + 1 })}
+              homeResult={homeResult}
+              currency={currency}
+              destination={destination}
+              isSaved={savedOriginIatas.includes(result.airport.iata)}
+              onSaveTrip={onSaveTrip}
+            />
+          ))}
+        </AnimatePresence>
+      </div>
+
+      {/* Errors */}
+      {errors.length > 0 && (
+        <div className="text-xs text-red-600 bg-red-50 rounded-xl p-3 border border-red-200">
+          {errors.length} query error{errors.length !== 1 ? "s" : ""} occurred during scan
+        </div>
+      )}
+
+      {/* Honest Disclaimer */}
+      {withFares.length > 0 && (
+        <p className="text-[10px] text-[#64748B] text-center pt-2 border-t border-[#E2E8F0]">
+          Prices reflect live partner and corridor queries. Always verify final totals directly on carrier websites.
+        </p>
+      )}
+
+      {/* Enlarged Route Intelligence Popup Modal */}
+      <TripDetailModal
+        isOpen={Boolean(modalTarget)}
+        onClose={() => setModalTarget(null)}
+        result={modalTarget?.result ?? null}
+        homeResult={homeResult}
+        rank={modalTarget?.rank ?? 1}
+        currency={currency}
+        timeValue={timeValue}
+        destination={destination}
+        departDate={departDate}
+        returnDate={returnDate}
+        tripType={tripType}
+        passengers={passengers}
+        isSaved={modalTarget ? savedOriginIatas.includes(modalTarget.result.airport.iata) : false}
+        onSaveTrip={onSaveTrip}
+        onSetBaseAirport={onSetBaseAirport}
+        onOpenCulturalGuide={onOpenCulturalGuide}
+      />
     </div>
   );
 }

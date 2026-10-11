@@ -1,0 +1,1513 @@
+[
+  {
+    "id": "trip_1791689355389_j01hh",
+    "createdAt": "2026-10-11T03:29:15.389Z",
+    "originIata": "MCO",
+    "originCity": "Orlando",
+    "destinationIata": "NRT",
+    "destinationCity": "Tokyo",
+    "destinationCountry": "JP",
+    "departDate": "2026-11-10",
+    "returnDate": "2026-11-17",
+    "tripType": "round",
+    "passengers": 1,
+    "farePrice": 913,
+    "currency": "USD",
+    "totalCost": 982.882319269131,
+    "savingsVsHome": 18.26768073086896,
+    "transferMode": "bus",
+    "transferPrice": 20.1,
+    "transferDurationHours": 3.318821284608734,
+    "airline": "Aviasales",
+    "bookingUrl": "https://www.aviasales.com/search/ORL1011TYO17111?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=ORL-TYO",
+    "notes": "",
+    "culturalInfo": {
+      "countryId": "JPN",
+      "countryName": "Japan",
+      "alpha2": "JP",
+      "flagUrl": "https://flagcdn.com/w160/jp.png",
+      "weatherInfo": "Japan has four distinct seasons with regional variations:\n\n• Spring (Mar–May): Cherry blossoms, mild 10–20°C (50–68°F)\n\n• Summer (Jun–Aug): Rainy season in June, humid 25–35°C (77–95°F), typhoons in Aug–Sep\n\n• Autumn (Sep–Nov): Comfortable 15–25°C (59–77°F), vibrant foliage\n\n• Winter (Dec–Feb): Snow in north (Hokkaido –10 to 0°C / 14 to 32°F), milder in Tokyo 5–10°C (41–50°F)\n\n• Subtropical Okinawa: year-round warmth 15–30°C (59–86°F)\n\n• Daylight: ~9 h in winter to ~14 h in summer",
+      "currencyInfo": {
+        "name": "Japanese Yen",
+        "code": "JPY",
+        "exchangeRate": "Approximately 110–150 JPY = 1 USD, 130–140 JPY = 1 EUR",
+        "tips": "• Cash remains king—carry sufficient yen\n\n• ATMs at 7‑Eleven, Post Offices & major banks accept international cards\n\n• Use Suica/Pasmo IC cards for transit & small purchases\n\n• No tipping culture—service is included\n\n• Exchange counters at airports and big cities"
+      },
+      "emergencyInfo": {
+        "police": "110",
+        "ambulance": "119",
+        "embassy": "U.S. Embassy in Tokyo: +81 3-3224-5000, https://jp.usembassy.gov/"
+      },
+      "essentialItems": [
+        {
+          "title": "Clothing",
+          "items": [
+            "Lightweight, breathable clothing for humid summers",
+            "Layered outfits for spring (Mar–May) and autumn (Sep–Nov)",
+            "Warm coat or jacket for winter (Dec–Feb), especially in northern areas",
+            "Rain jacket or compact travel umbrella (June rainy season)",
+            "Comfortable walking shoes for city exploration",
+            "Thermal base layers and sweaters for chilly evenings",
+            "Packable down jacket for sudden cold snaps",
+            "Hat and sunglasses for UV protection",
+            "Quick‑dry activewear for hiking or coastal trips",
+            "Moisture‑wicking socks to prevent blisters"
+          ]
+        },
+        {
+          "title": "Electronics",
+          "items": [
+            "Type A power adapter (100 V, 50/60 Hz)",
+            "Portable charger / power bank",
+            "Pocket Wi‑Fi device or Japanese SIM card",
+            "Camera for temples, shrines & landscapes",
+            "Rechargeable IC‑card (Suica/Pasmo) reader or charger",
+            "Download offline maps & translator apps",
+            "Headlamp or small flashlight for rural areas"
+          ]
+        },
+        {
+          "title": "Documents",
+          "items": [
+            "Valid passport (recommended ≥ 6 months beyond travel dates)",
+            "Visa or travel permit if required",
+            "Travel insurance policy & contacts",
+            "International Driving Permit (if renting a car)",
+            "Credit/debit cards (notify your bank in advance)",
+            "Digital backups of passports, visas & insurance"
+          ]
+        },
+        {
+          "title": "Health & Personal Care",
+          "items": [
+            "Prescription meds with English labels & doctor's note",
+            "Sunscreen (even on cloudy days)",
+            "Hand sanitizer and wet wipes",
+            "Lip balm with SPF",
+            "Insect repellent for summer months",
+            "Small first‑aid kit (bandages, pain relievers)",
+            "Moisturizer for dry indoor heating in winter",
+            "Disposable masks (widely used and expected)"
+          ]
+        },
+        {
+          "title": "Outdoor Gear",
+          "items": [
+            "Reusable water bottle (stay hydrated!)",
+            "Daypack for excursions & temple visits",
+            "Compact umbrella or rain cover",
+            "Foldable shopping bag for groceries & souvenirs",
+            "Portable shoe covers for temples/ryokan",
+            "Hiking poles for mountain trails",
+            "Quick‑dry travel towel for onsen visits"
+          ]
+        }
+      ],
+      "localCustoms": [
+        {
+          "title": "Bowing Etiquette",
+          "description": "Depth and duration of bows vary by context—from a small nod to a deep bow—used for greetings, apologies, and thanks."
+        },
+        {
+          "title": "Shoe Removal",
+          "description": "Always remove shoes indoors (homes, ryokan, some temples). Look for genkan (entryway) as the cue."
+        },
+        {
+          "title": "Gift Giving",
+          "description": "Present and receive items with both hands. Offer souvenirs (“omiyage”) after trips as a polite gesture."
+        },
+        {
+          "title": "Quiet Public Transit",
+          "description": "Keep phone calls off trains/buses. Speak softly and set devices to silent mode."
+        },
+        {
+          "title": "Orderly Queuing",
+          "description": "Stand in marked lines at stations, bus stops, and ticket machines. Respect personal space."
+        },
+        {
+          "title": "Business Card Exchange",
+          "description": "Use both hands, read the card before putting it away carefully in a holder (not back pocket)."
+        },
+        {
+          "title": "Punctuality",
+          "description": "Trains and meetings run exactly on time. Arrive 5 minutes early whenever possible."
+        },
+        {
+          "title": "No Tipping",
+          "description": "Tipping can cause confusion or offense—excellent service is included in the price."
+        }
+      ],
+      "culturalTaboos": [
+        {
+          "title": "Eating or drinking while walking",
+          "description": ""
+        },
+        {
+          "title": "Talking loudly on public transport",
+          "description": ""
+        },
+        {
+          "title": "Pointing with your finger",
+          "description": ""
+        },
+        {
+          "title": "Blowing your nose at the table",
+          "description": ""
+        },
+        {
+          "title": "Wearing shoes indoors",
+          "description": ""
+        },
+        {
+          "title": "Ignoring recycling and trash separation rules",
+          "description": ""
+        },
+        {
+          "title": "Public displays of affection",
+          "description": ""
+        },
+        {
+          "title": "Skipping a bow when greeting",
+          "description": ""
+        },
+        {
+          "title": "Leaving chopsticks stuck vertically in rice",
+          "description": ""
+        },
+        {
+          "title": "Tipping service staff",
+          "description": ""
+        }
+      ],
+      "safetyTips": [
+        {
+          "title": "General Safety",
+          "description": "One of the world's safest countries with very low violent crime. Standard precautions suffice."
+        },
+        {
+          "title": "Natural Disasters",
+          "description": "Be prepared for earthquakes, tsunamis, and typhoons. Download the J‑Alert app and familiarize yourself with evacuation routes."
+        },
+        {
+          "title": "Theft Prevention",
+          "description": "Petty theft is rare but stay aware in crowded stations—keep wallets in front pockets or inside zipped bags."
+        },
+        {
+          "title": "Winter Caution",
+          "description": "Icy sidewalks in Hokkaido and northern Honshu—use sturdy shoes and walk carefully."
+        },
+        {
+          "title": "Rush‑Hour Crowds",
+          "description": "Tokyo and Osaka trains are extremely crowded during weekday mornings/evenings—avoid peak hours if possible."
+        },
+        {
+          "title": "Mountain Safety",
+          "description": "Weather in the Japanese Alps can change rapidly; pack rain gear and inform someone of your hiking plans."
+        }
+      ],
+      "commonScams": [
+        {
+          "title": "ATM Access & Fees",
+          "description": "Not all ATMs accept foreign cards and fees can be high. Look for international-friendly ATMs at 7‑Eleven, Japan Post, or major banks."
+        },
+        {
+          "title": "Taxi Extra Charges",
+          "description": "Night surcharge (22:00–05:00) and luggage fees are standard. Confirm approximate fare or use app‑based services where available."
+        },
+        {
+          "title": "Fake Tour Guides",
+          "description": "Unlicensed guides may offer unsolicited city tours. Always use accredited agencies or those recommended by hotels."
+        },
+        {
+          "title": "Pachinko Over‑Spending",
+          "description": "Pachinko parlors can be addictive and costly. Set strict limits or avoid entirely if you're not comfortable."
+        },
+        {
+          "title": "Charity Solicitation",
+          "description": "Occasional street requests for donation to unfamiliar causes—politely decline or ask for official credentials."
+        }
+      ],
+      "usefulPhrases": [
+        {
+          "phrase": "Hello",
+          "phonetic": "konnichiwa",
+          "translation": "こんにちは"
+        },
+        {
+          "phrase": "Thank you",
+          "phonetic": "arigatō gozaimasu",
+          "translation": "ありがとうございます"
+        },
+        {
+          "phrase": "Yes / No",
+          "phonetic": "hai / iie",
+          "translation": "はい / いいえ"
+        },
+        {
+          "phrase": "Excuse me / I'm sorry",
+          "phonetic": "sumimasen",
+          "translation": "すみません"
+        },
+        {
+          "phrase": "Do you speak English?",
+          "phonetic": "eigo o hanasemasu ka?",
+          "translation": "英語を話せますか？"
+        },
+        {
+          "phrase": "I don't understand",
+          "phonetic": "wakarimasen",
+          "translation": "分かりません"
+        },
+        {
+          "phrase": "Where is the bathroom?",
+          "phonetic": "toire wa doko desu ka?",
+          "translation": "トイレはどこですか？"
+        },
+        {
+          "phrase": "How much is this?",
+          "phonetic": "kore wa ikura desu ka?",
+          "translation": "これはいくらですか？"
+        },
+        {
+          "phrase": "Please",
+          "phonetic": "onegaishimasu",
+          "translation": "お願いします"
+        },
+        {
+          "phrase": "Cheers! (toast)",
+          "phonetic": "kanpai!",
+          "translation": "乾杯！"
+        }
+      ],
+      "languages": [
+        {
+          "languageName": "Japanese (日本語)",
+          "interestingFacts": [
+            "Uses three writing scripts: Hiragana, Katakana, and Kanji.",
+            "Politeness and honorifics (keigo) are essential in social interactions."
+          ],
+          "speakerInfo": {
+            "languageFamily": "Japonic",
+            "writingDirection": "Left-to-Right"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "trip_1791673386876_umgw7",
+    "createdAt": "2026-10-10T23:03:06.876Z",
+    "originIata": "MIA",
+    "originCity": "Miami",
+    "destinationIata": "NRT",
+    "destinationCity": "Tokyo",
+    "destinationCountry": "JP",
+    "departDate": "2026-11-10",
+    "returnDate": "2026-11-17",
+    "tripType": "round",
+    "passengers": 1,
+    "farePrice": 720,
+    "currency": "USD",
+    "totalCost": 847,
+    "savingsVsHome": 71.75,
+    "transferMode": "train",
+    "transferPrice": 79,
+    "transferDurationHours": 3.2,
+    "airline": "DEMO",
+    "bookingUrl": "https://www.aviasales.com/search/MIA1011NRT17111?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=MIA-NRT",
+    "notes": "",
+    "culturalInfo": {
+      "countryId": "JPN",
+      "countryName": "Japan",
+      "alpha2": "JP",
+      "flagUrl": "https://flagcdn.com/w160/jp.png",
+      "weatherInfo": "Japan has four distinct seasons with regional variations:\n\n• Spring (Mar–May): Cherry blossoms, mild 10–20°C (50–68°F)\n\n• Summer (Jun–Aug): Rainy season in June, humid 25–35°C (77–95°F), typhoons in Aug–Sep\n\n• Autumn (Sep–Nov): Comfortable 15–25°C (59–77°F), vibrant foliage\n\n• Winter (Dec–Feb): Snow in north (Hokkaido –10 to 0°C / 14 to 32°F), milder in Tokyo 5–10°C (41–50°F)\n\n• Subtropical Okinawa: year-round warmth 15–30°C (59–86°F)\n\n• Daylight: ~9 h in winter to ~14 h in summer",
+      "currencyInfo": {
+        "name": "Japanese Yen",
+        "code": "JPY",
+        "exchangeRate": "Approximately 110–150 JPY = 1 USD, 130–140 JPY = 1 EUR",
+        "tips": "• Cash remains king—carry sufficient yen\n\n• ATMs at 7‑Eleven, Post Offices & major banks accept international cards\n\n• Use Suica/Pasmo IC cards for transit & small purchases\n\n• No tipping culture—service is included\n\n• Exchange counters at airports and big cities"
+      },
+      "emergencyInfo": {
+        "police": "110",
+        "ambulance": "119",
+        "embassy": "U.S. Embassy in Tokyo: +81 3-3224-5000, https://jp.usembassy.gov/"
+      },
+      "essentialItems": [
+        {
+          "title": "Clothing",
+          "items": [
+            "Lightweight, breathable clothing for humid summers",
+            "Layered outfits for spring (Mar–May) and autumn (Sep–Nov)",
+            "Warm coat or jacket for winter (Dec–Feb), especially in northern areas",
+            "Rain jacket or compact travel umbrella (June rainy season)",
+            "Comfortable walking shoes for city exploration",
+            "Thermal base layers and sweaters for chilly evenings",
+            "Packable down jacket for sudden cold snaps",
+            "Hat and sunglasses for UV protection",
+            "Quick‑dry activewear for hiking or coastal trips",
+            "Moisture‑wicking socks to prevent blisters"
+          ]
+        },
+        {
+          "title": "Electronics",
+          "items": [
+            "Type A power adapter (100 V, 50/60 Hz)",
+            "Portable charger / power bank",
+            "Pocket Wi‑Fi device or Japanese SIM card",
+            "Camera for temples, shrines & landscapes",
+            "Rechargeable IC‑card (Suica/Pasmo) reader or charger",
+            "Download offline maps & translator apps",
+            "Headlamp or small flashlight for rural areas"
+          ]
+        },
+        {
+          "title": "Documents",
+          "items": [
+            "Valid passport (recommended ≥ 6 months beyond travel dates)",
+            "Visa or travel permit if required",
+            "Travel insurance policy & contacts",
+            "International Driving Permit (if renting a car)",
+            "Credit/debit cards (notify your bank in advance)",
+            "Digital backups of passports, visas & insurance"
+          ]
+        },
+        {
+          "title": "Health & Personal Care",
+          "items": [
+            "Prescription meds with English labels & doctor's note",
+            "Sunscreen (even on cloudy days)",
+            "Hand sanitizer and wet wipes",
+            "Lip balm with SPF",
+            "Insect repellent for summer months",
+            "Small first‑aid kit (bandages, pain relievers)",
+            "Moisturizer for dry indoor heating in winter",
+            "Disposable masks (widely used and expected)"
+          ]
+        },
+        {
+          "title": "Outdoor Gear",
+          "items": [
+            "Reusable water bottle (stay hydrated!)",
+            "Daypack for excursions & temple visits",
+            "Compact umbrella or rain cover",
+            "Foldable shopping bag for groceries & souvenirs",
+            "Portable shoe covers for temples/ryokan",
+            "Hiking poles for mountain trails",
+            "Quick‑dry travel towel for onsen visits"
+          ]
+        }
+      ],
+      "localCustoms": [
+        {
+          "title": "Bowing Etiquette",
+          "description": "Depth and duration of bows vary by context—from a small nod to a deep bow—used for greetings, apologies, and thanks."
+        },
+        {
+          "title": "Shoe Removal",
+          "description": "Always remove shoes indoors (homes, ryokan, some temples). Look for genkan (entryway) as the cue."
+        },
+        {
+          "title": "Gift Giving",
+          "description": "Present and receive items with both hands. Offer souvenirs (“omiyage”) after trips as a polite gesture."
+        },
+        {
+          "title": "Quiet Public Transit",
+          "description": "Keep phone calls off trains/buses. Speak softly and set devices to silent mode."
+        },
+        {
+          "title": "Orderly Queuing",
+          "description": "Stand in marked lines at stations, bus stops, and ticket machines. Respect personal space."
+        },
+        {
+          "title": "Business Card Exchange",
+          "description": "Use both hands, read the card before putting it away carefully in a holder (not back pocket)."
+        },
+        {
+          "title": "Punctuality",
+          "description": "Trains and meetings run exactly on time. Arrive 5 minutes early whenever possible."
+        },
+        {
+          "title": "No Tipping",
+          "description": "Tipping can cause confusion or offense—excellent service is included in the price."
+        }
+      ],
+      "culturalTaboos": [
+        {
+          "title": "Eating or drinking while walking",
+          "description": ""
+        },
+        {
+          "title": "Talking loudly on public transport",
+          "description": ""
+        },
+        {
+          "title": "Pointing with your finger",
+          "description": ""
+        },
+        {
+          "title": "Blowing your nose at the table",
+          "description": ""
+        },
+        {
+          "title": "Wearing shoes indoors",
+          "description": ""
+        },
+        {
+          "title": "Ignoring recycling and trash separation rules",
+          "description": ""
+        },
+        {
+          "title": "Public displays of affection",
+          "description": ""
+        },
+        {
+          "title": "Skipping a bow when greeting",
+          "description": ""
+        },
+        {
+          "title": "Leaving chopsticks stuck vertically in rice",
+          "description": ""
+        },
+        {
+          "title": "Tipping service staff",
+          "description": ""
+        }
+      ],
+      "safetyTips": [
+        {
+          "title": "General Safety",
+          "description": "One of the world's safest countries with very low violent crime. Standard precautions suffice."
+        },
+        {
+          "title": "Natural Disasters",
+          "description": "Be prepared for earthquakes, tsunamis, and typhoons. Download the J‑Alert app and familiarize yourself with evacuation routes."
+        },
+        {
+          "title": "Theft Prevention",
+          "description": "Petty theft is rare but stay aware in crowded stations—keep wallets in front pockets or inside zipped bags."
+        },
+        {
+          "title": "Winter Caution",
+          "description": "Icy sidewalks in Hokkaido and northern Honshu—use sturdy shoes and walk carefully."
+        },
+        {
+          "title": "Rush‑Hour Crowds",
+          "description": "Tokyo and Osaka trains are extremely crowded during weekday mornings/evenings—avoid peak hours if possible."
+        },
+        {
+          "title": "Mountain Safety",
+          "description": "Weather in the Japanese Alps can change rapidly; pack rain gear and inform someone of your hiking plans."
+        }
+      ],
+      "commonScams": [
+        {
+          "title": "ATM Access & Fees",
+          "description": "Not all ATMs accept foreign cards and fees can be high. Look for international-friendly ATMs at 7‑Eleven, Japan Post, or major banks."
+        },
+        {
+          "title": "Taxi Extra Charges",
+          "description": "Night surcharge (22:00–05:00) and luggage fees are standard. Confirm approximate fare or use app‑based services where available."
+        },
+        {
+          "title": "Fake Tour Guides",
+          "description": "Unlicensed guides may offer unsolicited city tours. Always use accredited agencies or those recommended by hotels."
+        },
+        {
+          "title": "Pachinko Over‑Spending",
+          "description": "Pachinko parlors can be addictive and costly. Set strict limits or avoid entirely if you're not comfortable."
+        },
+        {
+          "title": "Charity Solicitation",
+          "description": "Occasional street requests for donation to unfamiliar causes—politely decline or ask for official credentials."
+        }
+      ],
+      "usefulPhrases": [
+        {
+          "phrase": "Hello",
+          "phonetic": "konnichiwa",
+          "translation": "こんにちは"
+        },
+        {
+          "phrase": "Thank you",
+          "phonetic": "arigatō gozaimasu",
+          "translation": "ありがとうございます"
+        },
+        {
+          "phrase": "Yes / No",
+          "phonetic": "hai / iie",
+          "translation": "はい / いいえ"
+        },
+        {
+          "phrase": "Excuse me / I'm sorry",
+          "phonetic": "sumimasen",
+          "translation": "すみません"
+        },
+        {
+          "phrase": "Do you speak English?",
+          "phonetic": "eigo o hanasemasu ka?",
+          "translation": "英語を話せますか？"
+        },
+        {
+          "phrase": "I don't understand",
+          "phonetic": "wakarimasen",
+          "translation": "分かりません"
+        },
+        {
+          "phrase": "Where is the bathroom?",
+          "phonetic": "toire wa doko desu ka?",
+          "translation": "トイレはどこですか？"
+        },
+        {
+          "phrase": "How much is this?",
+          "phonetic": "kore wa ikura desu ka?",
+          "translation": "これはいくらですか？"
+        },
+        {
+          "phrase": "Please",
+          "phonetic": "onegaishimasu",
+          "translation": "お願いします"
+        },
+        {
+          "phrase": "Cheers! (toast)",
+          "phonetic": "kanpai!",
+          "translation": "乾杯！"
+        }
+      ],
+      "languages": [
+        {
+          "languageName": "Japanese (日本語)",
+          "interestingFacts": [
+            "Uses three writing scripts: Hiragana, Katakana, and Kanji.",
+            "Politeness and honorifics (keigo) are essential in social interactions."
+          ],
+          "speakerInfo": {
+            "languageFamily": "Japonic",
+            "writingDirection": "Left-to-Right"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "trip_1791664230208_81gf3",
+    "createdAt": "2026-10-10T20:30:30.208Z",
+    "originIata": "MCO",
+    "originCity": "Orlando",
+    "destinationIata": "FCO",
+    "destinationCity": "Rome",
+    "destinationCountry": "IT",
+    "departDate": "2026-12-10",
+    "returnDate": "2026-12-20",
+    "tripType": "round",
+    "passengers": 1,
+    "farePrice": 580,
+    "currency": "USD",
+    "bookingUrl": null,
+    "notes": "Trip to the Colosseum",
+    "culturalInfo": {
+      "countryId": "ITA",
+      "countryName": "Italy",
+      "alpha2": "IT",
+      "flagUrl": "https://flagcdn.com/w160/it.png",
+      "weatherInfo": "Italy has varied climates from north to south:\n\n• Spring (Mar–May): Mild 10–20°C (50–68°F), occasional rain\n\n• Summer (Jun–Aug): Hot 25–35°C (77–95°F), very hot in south 30–40°C (86–104°F)\n\n• Autumn (Sep–Nov): Pleasant 15–25°C (59–77°F), rainier in north\n\n• Winter (Dec–Feb): Cold in north 0–10°C (32–50°F), milder in south 10–15°C (50–59°F)\n\n• Alps: Winter snow, below freezing −5–0°C (23–32°F)\n\n• Sicily/Sardinia: Mild winters 10–15°C (50–59°F), hot summers 30–35°C (86–95°F)",
+      "currencyInfo": {
+        "name": "Euro",
+        "code": "EUR",
+        "exchangeRate": "Approximately 0.85–0.95 EUR = 1 USD",
+        "tips": "• ATMs widely available in cities and towns\n\n• Many smaller establishments prefer cash\n\n• Credit cards accepted at most hotels and larger restaurants\n\n• Notify your bank of travel plans to avoid card blocks\n\n• Keep small cash denominations for cafés and small purchases\n\n• Service charge often included; small tips appreciated\n\n• Currency exchange offices charge high fees—better to use ATMs"
+      },
+      "emergencyInfo": {
+        "police": "112",
+        "ambulance": "118",
+        "embassy": "U.S. Embassy in Rome: +39 06-4674-1, https://it.usembassy.gov/"
+      },
+      "essentialItems": [
+        {
+          "title": "Clothing",
+          "items": [
+            "Light, breathable clothing for summer (Jun–Aug)",
+            "Layered clothing for spring (Mar–May) and autumn (Sep–Nov)",
+            "Warm jacket and sweaters for winter (Dec–Feb)",
+            "Comfortable walking shoes for cobblestone streets",
+            "Modest attire for visiting religious sites (shoulders and knees covered)",
+            "Swimwear for beaches and coastal towns",
+            "Light raincoat or umbrella (especially in spring)",
+            "Sunglasses and sun hat in summer",
+            "Dressier outfit for upscale restaurants",
+            "Scarves for style and modesty when visiting churches"
+          ]
+        },
+        {
+          "title": "Electronics",
+          "items": [
+            "Type F/L power adapter (230V, 50Hz)",
+            "Portable charger for full days of exploring",
+            "Camera for capturing architecture and landscapes",
+            "Phone with offline maps downloaded",
+            "EU SIM card or international data plan",
+            "Portable fan for summer heat (Jun–Aug)",
+            "Small flashlight for poorly lit ancient sites"
+          ]
+        },
+        {
+          "title": "Documents",
+          "items": [
+            "Valid passport (6+ months beyond travel dates)",
+            "Visa if required (not needed for EU citizens or US tourists staying less than 90 days)",
+            "Travel insurance details",
+            "Driver's license and International Driving Permit if renting a car",
+            "Printed hotel reservations",
+            "Train tickets or flight confirmations",
+            "Emergency contact information",
+            "Copy of prescriptions for medications"
+          ]
+        },
+        {
+          "title": "Health & Personal Care",
+          "items": [
+            "Prescription medications in original packaging",
+            "Sunscreen (especially in summer)",
+            "Insect repellent (for rural areas and summer evenings)",
+            "Basic first-aid supplies",
+            "Hand sanitizer and wet wipes",
+            "Motion sickness remedies for boat rides and winding roads",
+            "Pain relievers and digestive aids",
+            "Lip balm with SPF"
+          ]
+        },
+        {
+          "title": "Outdoor Gear",
+          "items": [
+            "Daypack for sightseeing",
+            "Reusable water bottle (tap water is generally safe)",
+            "Travel umbrella",
+            "Picnic blanket for parks and vineyard visits",
+            "Binoculars for scenic viewpoints",
+            "Anti-theft bag or money belt",
+            "Packable tote bag for shopping and markets"
+          ]
+        }
+      ],
+      "localCustoms": [
+        {
+          "title": "Dining Etiquette",
+          "description": "Eat dinner later (7:30–9:00pm). Keep hands visible on table, not in lap. Don't rush meals—they're social events."
+        },
+        {
+          "title": "Greetings",
+          "description": "Double cheek kisses are common between friends (left cheek first). Handshakes for business settings."
+        },
+        {
+          "title": "Dress Code",
+          "description": "Italians dress well even for casual outings. Avoid sportswear in cities. Cover shoulders and knees when visiting churches."
+        },
+        {
+          "title": "Riposo (Afternoon Break)",
+          "description": "Many shops close from roughly 1:00–4:00pm, especially in smaller towns. Plan your shopping accordingly."
+        },
+        {
+          "title": "Coffee Culture",
+          "description": "Drink cappuccino only before 11:00am. Order at the register first, then take receipt to the bar. Standing at the bar costs less than table service."
+        },
+        {
+          "title": "Personal Space",
+          "description": "Italians stand closer when conversing than many northern Europeans or Americans. Stepping back might be perceived as coldness."
+        },
+        {
+          "title": "Tipping",
+          "description": "Service (servizio) is often included. If not, 5–10% is appreciated but not expected. Round up taxi fares."
+        },
+        {
+          "title": "Volume",
+          "description": "Animated conversations are normal. Talking loudly isn't considered rude in many social settings."
+        }
+      ],
+      "culturalTaboos": [
+        {
+          "title": "Touching produce at markets without asking (let vendors select for you)",
+          "description": ""
+        },
+        {
+          "title": "Eating on the go in formal settings",
+          "description": "(gelato is an exception"
+        },
+        {
+          "title": "Requesting cheese on seafood pasta dishes",
+          "description": ""
+        },
+        {
+          "title": "Ordering cappuccino with or after dinner",
+          "description": ""
+        },
+        {
+          "title": "Speaking loudly inside churches or museums",
+          "description": ""
+        },
+        {
+          "title": "Wearing revealing clothing in religious sites",
+          "description": ""
+        },
+        {
+          "title": "Being overly rigid about schedules and timing",
+          "description": ""
+        },
+        {
+          "title": "Eating bread before the main course arrives",
+          "description": ""
+        },
+        {
+          "title": "Requesting substitutions at traditional restaurants",
+          "description": ""
+        },
+        {
+          "title": "Declining offered food or drink in someone's home",
+          "description": ""
+        }
+      ],
+      "safetyTips": [
+        {
+          "title": "Pickpocketing",
+          "description": "Common in tourist areas of Rome, Florence, Naples, and on public transport. Use anti-theft bags and keep valuables secure."
+        },
+        {
+          "title": "Tourist Scams",
+          "description": "Be wary of \"friendship bracelet\" offers, fake petitions, or distraction techniques. Always verify prices before ordering at restaurants."
+        },
+        {
+          "title": "Traffic Safety",
+          "description": "Driving can be aggressive in cities. Pedestrians should use crosswalks and be alert—cars may not always stop."
+        },
+        {
+          "title": "Evening Safety",
+          "description": "Train stations and their surroundings can be sketchy at night. Take official taxis after dark."
+        },
+        {
+          "title": "Natural Hazards",
+          "description": "Italy has seismic activity. Follow local guidance during earthquakes. Summer wildfires can occur in dry regions."
+        },
+        {
+          "title": "Beach Safety",
+          "description": "Respect flag warnings at beaches. Red flags mean dangerous conditions. Be cautious of strong currents and underwater rocks."
+        }
+      ],
+      "commonScams": [
+        {
+          "title": "Unofficial Guides",
+          "description": "Only use licensed guides with official badges. Unauthorized guides may overcharge or provide inaccurate information."
+        },
+        {
+          "title": "Taxi Overcharging",
+          "description": "Use official taxis (white with meters) and confirm approximate fare before departing. Some drivers take longer routes for tourists."
+        },
+        {
+          "title": "Restaurant Tricks",
+          "description": "Check if bread and water are free before consuming. Review bill carefully for unexpected \"coperto\" (cover charge) or service fees."
+        },
+        {
+          "title": "Designer Knockoffs",
+          "description": "Buying counterfeit goods is illegal and can result in hefty fines. Street vendors selling designer items are selling fakes."
+        },
+        {
+          "title": "Helpful \"Strangers\"",
+          "description": "Be suspicious of overly helpful strangers at train ticket machines who may be trying to confuse you and steal your money or credit card."
+        }
+      ],
+      "usefulPhrases": [
+        {
+          "phrase": "Hello",
+          "phonetic": "chow",
+          "translation": "Ciao"
+        },
+        {
+          "phrase": "Good morning",
+          "phonetic": "bwon-jor-no",
+          "translation": "Buongiorno"
+        },
+        {
+          "phrase": "Good evening",
+          "phonetic": "bwon-a-say-ra",
+          "translation": "Buonasera"
+        },
+        {
+          "phrase": "Please",
+          "phonetic": "pair fah-vor-ay",
+          "translation": "Per favore"
+        },
+        {
+          "phrase": "Thank you",
+          "phonetic": "grat-see-ay",
+          "translation": "Grazie"
+        },
+        {
+          "phrase": "You're welcome",
+          "phonetic": "pray-go",
+          "translation": "Prego"
+        },
+        {
+          "phrase": "Excuse me",
+          "phonetic": "mee skoo-zee",
+          "translation": "Mi scusi"
+        },
+        {
+          "phrase": "Do you speak English?",
+          "phonetic": "par-la in-glay-zay",
+          "translation": "Parla inglese?"
+        },
+        {
+          "phrase": "I don't understand",
+          "phonetic": "non ca-pee-sko",
+          "translation": "Non capisco"
+        },
+        {
+          "phrase": "How much is it?",
+          "phonetic": "kwan-to kos-ta",
+          "translation": "Quanto costa?"
+        }
+      ],
+      "languages": [
+        {
+          "languageName": "Italian (Italiano)",
+          "interestingFacts": [
+            "Evolved directly from Vulgar Latin.",
+            "Hand gestures are famously integral to everyday spoken expression."
+          ],
+          "speakerInfo": {
+            "languageFamily": "Romance (Indo-European)",
+            "writingDirection": "Left-to-Right"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "trip_1791664152219_76ftk",
+    "createdAt": "2026-10-10T20:29:12.219Z",
+    "originIata": "MCO",
+    "originCity": "Orlando",
+    "destinationIata": "FCO",
+    "destinationCity": "Rome",
+    "destinationCountry": "IT",
+    "departDate": "2026-12-10",
+    "returnDate": "2026-12-20",
+    "tripType": "round",
+    "passengers": 1,
+    "farePrice": 580,
+    "currency": "USD",
+    "bookingUrl": null,
+    "notes": "Trip to the Colosseum",
+    "culturalInfo": {
+      "countryId": "ITA",
+      "countryName": "Italy",
+      "alpha2": "IT",
+      "flagUrl": "https://flagcdn.com/w160/it.png",
+      "weatherInfo": "Italy has varied climates from north to south:\n\n• Spring (Mar–May): Mild 10–20°C (50–68°F), occasional rain\n\n• Summer (Jun–Aug): Hot 25–35°C (77–95°F), very hot in south 30–40°C (86–104°F)\n\n• Autumn (Sep–Nov): Pleasant 15–25°C (59–77°F), rainier in north\n\n• Winter (Dec–Feb): Cold in north 0–10°C (32–50°F), milder in south 10–15°C (50–59°F)\n\n• Alps: Winter snow, below freezing −5–0°C (23–32°F)\n\n• Sicily/Sardinia: Mild winters 10–15°C (50–59°F), hot summers 30–35°C (86–95°F)",
+      "currencyInfo": {
+        "name": "Euro",
+        "code": "EUR",
+        "exchangeRate": "Approximately 0.85–0.95 EUR = 1 USD",
+        "tips": "• ATMs widely available in cities and towns\n\n• Many smaller establishments prefer cash\n\n• Credit cards accepted at most hotels and larger restaurants\n\n• Notify your bank of travel plans to avoid card blocks\n\n• Keep small cash denominations for cafés and small purchases\n\n• Service charge often included; small tips appreciated\n\n• Currency exchange offices charge high fees—better to use ATMs"
+      },
+      "emergencyInfo": {
+        "police": "112",
+        "ambulance": "118",
+        "embassy": "U.S. Embassy in Rome: +39 06-4674-1, https://it.usembassy.gov/"
+      },
+      "essentialItems": [
+        {
+          "title": "Clothing",
+          "items": [
+            "Light, breathable clothing for summer (Jun–Aug)",
+            "Layered clothing for spring (Mar–May) and autumn (Sep–Nov)",
+            "Warm jacket and sweaters for winter (Dec–Feb)",
+            "Comfortable walking shoes for cobblestone streets",
+            "Modest attire for visiting religious sites (shoulders and knees covered)",
+            "Swimwear for beaches and coastal towns",
+            "Light raincoat or umbrella (especially in spring)",
+            "Sunglasses and sun hat in summer",
+            "Dressier outfit for upscale restaurants",
+            "Scarves for style and modesty when visiting churches"
+          ]
+        },
+        {
+          "title": "Electronics",
+          "items": [
+            "Type F/L power adapter (230V, 50Hz)",
+            "Portable charger for full days of exploring",
+            "Camera for capturing architecture and landscapes",
+            "Phone with offline maps downloaded",
+            "EU SIM card or international data plan",
+            "Portable fan for summer heat (Jun–Aug)",
+            "Small flashlight for poorly lit ancient sites"
+          ]
+        },
+        {
+          "title": "Documents",
+          "items": [
+            "Valid passport (6+ months beyond travel dates)",
+            "Visa if required (not needed for EU citizens or US tourists staying less than 90 days)",
+            "Travel insurance details",
+            "Driver's license and International Driving Permit if renting a car",
+            "Printed hotel reservations",
+            "Train tickets or flight confirmations",
+            "Emergency contact information",
+            "Copy of prescriptions for medications"
+          ]
+        },
+        {
+          "title": "Health & Personal Care",
+          "items": [
+            "Prescription medications in original packaging",
+            "Sunscreen (especially in summer)",
+            "Insect repellent (for rural areas and summer evenings)",
+            "Basic first-aid supplies",
+            "Hand sanitizer and wet wipes",
+            "Motion sickness remedies for boat rides and winding roads",
+            "Pain relievers and digestive aids",
+            "Lip balm with SPF"
+          ]
+        },
+        {
+          "title": "Outdoor Gear",
+          "items": [
+            "Daypack for sightseeing",
+            "Reusable water bottle (tap water is generally safe)",
+            "Travel umbrella",
+            "Picnic blanket for parks and vineyard visits",
+            "Binoculars for scenic viewpoints",
+            "Anti-theft bag or money belt",
+            "Packable tote bag for shopping and markets"
+          ]
+        }
+      ],
+      "localCustoms": [
+        {
+          "title": "Dining Etiquette",
+          "description": "Eat dinner later (7:30–9:00pm). Keep hands visible on table, not in lap. Don't rush meals—they're social events."
+        },
+        {
+          "title": "Greetings",
+          "description": "Double cheek kisses are common between friends (left cheek first). Handshakes for business settings."
+        },
+        {
+          "title": "Dress Code",
+          "description": "Italians dress well even for casual outings. Avoid sportswear in cities. Cover shoulders and knees when visiting churches."
+        },
+        {
+          "title": "Riposo (Afternoon Break)",
+          "description": "Many shops close from roughly 1:00–4:00pm, especially in smaller towns. Plan your shopping accordingly."
+        },
+        {
+          "title": "Coffee Culture",
+          "description": "Drink cappuccino only before 11:00am. Order at the register first, then take receipt to the bar. Standing at the bar costs less than table service."
+        },
+        {
+          "title": "Personal Space",
+          "description": "Italians stand closer when conversing than many northern Europeans or Americans. Stepping back might be perceived as coldness."
+        },
+        {
+          "title": "Tipping",
+          "description": "Service (servizio) is often included. If not, 5–10% is appreciated but not expected. Round up taxi fares."
+        },
+        {
+          "title": "Volume",
+          "description": "Animated conversations are normal. Talking loudly isn't considered rude in many social settings."
+        }
+      ],
+      "culturalTaboos": [
+        {
+          "title": "Touching produce at markets without asking (let vendors select for you)",
+          "description": ""
+        },
+        {
+          "title": "Eating on the go in formal settings",
+          "description": "(gelato is an exception"
+        },
+        {
+          "title": "Requesting cheese on seafood pasta dishes",
+          "description": ""
+        },
+        {
+          "title": "Ordering cappuccino with or after dinner",
+          "description": ""
+        },
+        {
+          "title": "Speaking loudly inside churches or museums",
+          "description": ""
+        },
+        {
+          "title": "Wearing revealing clothing in religious sites",
+          "description": ""
+        },
+        {
+          "title": "Being overly rigid about schedules and timing",
+          "description": ""
+        },
+        {
+          "title": "Eating bread before the main course arrives",
+          "description": ""
+        },
+        {
+          "title": "Requesting substitutions at traditional restaurants",
+          "description": ""
+        },
+        {
+          "title": "Declining offered food or drink in someone's home",
+          "description": ""
+        }
+      ],
+      "safetyTips": [
+        {
+          "title": "Pickpocketing",
+          "description": "Common in tourist areas of Rome, Florence, Naples, and on public transport. Use anti-theft bags and keep valuables secure."
+        },
+        {
+          "title": "Tourist Scams",
+          "description": "Be wary of \"friendship bracelet\" offers, fake petitions, or distraction techniques. Always verify prices before ordering at restaurants."
+        },
+        {
+          "title": "Traffic Safety",
+          "description": "Driving can be aggressive in cities. Pedestrians should use crosswalks and be alert—cars may not always stop."
+        },
+        {
+          "title": "Evening Safety",
+          "description": "Train stations and their surroundings can be sketchy at night. Take official taxis after dark."
+        },
+        {
+          "title": "Natural Hazards",
+          "description": "Italy has seismic activity. Follow local guidance during earthquakes. Summer wildfires can occur in dry regions."
+        },
+        {
+          "title": "Beach Safety",
+          "description": "Respect flag warnings at beaches. Red flags mean dangerous conditions. Be cautious of strong currents and underwater rocks."
+        }
+      ],
+      "commonScams": [
+        {
+          "title": "Unofficial Guides",
+          "description": "Only use licensed guides with official badges. Unauthorized guides may overcharge or provide inaccurate information."
+        },
+        {
+          "title": "Taxi Overcharging",
+          "description": "Use official taxis (white with meters) and confirm approximate fare before departing. Some drivers take longer routes for tourists."
+        },
+        {
+          "title": "Restaurant Tricks",
+          "description": "Check if bread and water are free before consuming. Review bill carefully for unexpected \"coperto\" (cover charge) or service fees."
+        },
+        {
+          "title": "Designer Knockoffs",
+          "description": "Buying counterfeit goods is illegal and can result in hefty fines. Street vendors selling designer items are selling fakes."
+        },
+        {
+          "title": "Helpful \"Strangers\"",
+          "description": "Be suspicious of overly helpful strangers at train ticket machines who may be trying to confuse you and steal your money or credit card."
+        }
+      ],
+      "usefulPhrases": [
+        {
+          "phrase": "Hello",
+          "phonetic": "chow",
+          "translation": "Ciao"
+        },
+        {
+          "phrase": "Good morning",
+          "phonetic": "bwon-jor-no",
+          "translation": "Buongiorno"
+        },
+        {
+          "phrase": "Good evening",
+          "phonetic": "bwon-a-say-ra",
+          "translation": "Buonasera"
+        },
+        {
+          "phrase": "Please",
+          "phonetic": "pair fah-vor-ay",
+          "translation": "Per favore"
+        },
+        {
+          "phrase": "Thank you",
+          "phonetic": "grat-see-ay",
+          "translation": "Grazie"
+        },
+        {
+          "phrase": "You're welcome",
+          "phonetic": "pray-go",
+          "translation": "Prego"
+        },
+        {
+          "phrase": "Excuse me",
+          "phonetic": "mee skoo-zee",
+          "translation": "Mi scusi"
+        },
+        {
+          "phrase": "Do you speak English?",
+          "phonetic": "par-la in-glay-zay",
+          "translation": "Parla inglese?"
+        },
+        {
+          "phrase": "I don't understand",
+          "phonetic": "non ca-pee-sko",
+          "translation": "Non capisco"
+        },
+        {
+          "phrase": "How much is it?",
+          "phonetic": "kwan-to kos-ta",
+          "translation": "Quanto costa?"
+        }
+      ],
+      "languages": [
+        {
+          "languageName": "Italian (Italiano)",
+          "interestingFacts": [
+            "Evolved directly from Vulgar Latin.",
+            "Hand gestures are famously integral to everyday spoken expression."
+          ],
+          "speakerInfo": {
+            "languageFamily": "Romance (Indo-European)",
+            "writingDirection": "Left-to-Right"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "trip_1791663136322_6ru18",
+    "createdAt": "2026-10-10T20:12:16.322Z",
+    "originIata": "BSL",
+    "originCity": "Bâle / Mulhouse",
+    "destinationIata": "IST",
+    "destinationCity": "Istanbul",
+    "destinationCountry": "TR",
+    "departDate": "2026-11-09",
+    "returnDate": null,
+    "tripType": "oneway",
+    "passengers": 1,
+    "farePrice": 41,
+    "currency": "EUR",
+    "totalCost": 110.93811084550272,
+    "savingsVsHome": -33.18811084550272,
+    "transferMode": "bus",
+    "transferPrice": 19.01,
+    "transferDurationHours": 3.395207389700181,
+    "airline": "Aviasales",
+    "bookingUrl": "https://www.aviasales.com/search/BSL0911SAW1?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=BSL-SAW",
+    "notes": "",
+    "culturalInfo": {
+      "countryId": "TUR",
+      "countryName": "Turkey",
+      "alpha2": "TR",
+      "weatherInfo": "Varied Mediterranean & continental climate:\n• Spring (Apr–May): 15–23°C, pleasant blooms\n• Summer (Jun–Aug): Hot & dry, 28–35°C (82–95°F)\n• Autumn (Sep–Oct): Warm sea & mild cities, 18–26°C\n• Winter (Nov–Feb): Chilly 5–12°C with rain in Istanbul, snow in Cappadocia",
+      "currencyInfo": {
+        "name": "Turkish Lira",
+        "code": "TRY",
+        "exchangeRate": "Fluctuates regularly (~32–36 TRY = 1 USD)",
+        "tips": "• Cash is needed for small shops, public restrooms, taxis, and bazaars\n• Pay by credit card for hotels and major restaurants to get official bank rates\n• Tipping 10% in cash directly to waitstaff is appreciated in restaurants"
+      },
+      "emergencyInfo": {
+        "police": "155 / 112",
+        "ambulance": "112",
+        "embassy": "US Embassy Ankara: +90 312 455 5555 | Consulate Istanbul: +90 212 335 9000"
+      },
+      "essentialItems": [
+        {
+          "title": "Modesty & Exploration",
+          "items": [
+            "Modest attire covering shoulders, knees, and chest for visiting mosques (Blue Mosque, Hagia Sophia)",
+            "Lightweight headscarf or pashmina for women when entering functioning mosques",
+            "Easy slip-on walking shoes (shoes must be removed and placed in plastic bags at mosque entrances)",
+            "Sturdy flat walking shoes with excellent tread for steep, slick cobblestone streets (Galata, Sultanahmet)",
+            "Breathable linen clothing for summer heat, or warm windproof coat for winter along the Bosphorus",
+            "Polarized sunglasses and high-SPF sun protection"
+          ]
+        },
+        {
+          "title": "Electronics & Power",
+          "items": [
+            "Type C / F European two-pin round plug adapter (standard 230V, 50Hz)",
+            "Istanbulkart transit app or reloadable transit card for Bosphorus ferries, trams, and metro",
+            "BiTaksi app for licensed, metered yellow and turquoise taxi dispatch",
+            "High-capacity portable battery pack for all-day photography and map lookups",
+            "Turkish travel eSIM for dependable mobile data across cities and coastlines"
+          ]
+        },
+        {
+          "title": "Documents, Currency & Health",
+          "items": [
+            "Physical passport valid for at least 6 months from entry date with blank pages for entry/exit stamps",
+            "Turkish Lira (TRY) cash reserve in small banknotes for bazaars, street vendors, tips, and public restrooms",
+            "Credit or debit card with 0% foreign transaction fees",
+            "Comprehensive travel health insurance policy document",
+            "Personal medications, motion sickness pills for ferry rides, and probiotic stomach remedies"
+          ]
+        }
+      ],
+      "localCustoms": [
+        {
+          "title": "Hospitality & Tea (Çay)",
+          "description": "Accepting a small tulip glass of hot Turkish tea is a gesture of friendship and warmth. It is often offered for free in carpet shops and bazaars."
+        },
+        {
+          "title": "Shoe Removal in Mosques & Homes",
+          "description": "Always remove shoes before stepping onto carpets in mosques and Turkish homes."
+        }
+      ],
+      "culturalTaboos": [
+        {
+          "title": "Disrespecting Atatürk or the Flag",
+          "description": "Insulting the Turkish Republic, its founder Mustafa Kemal Atatürk, or defacing the flag is strictly illegal."
+        }
+      ],
+      "safetyTips": [
+        {
+          "title": "Taxi Meter Enforcement",
+          "description": "Always verify the driver turns on the digital meter in the rearview mirror ('Taksimetre açar mısınız?')."
+        }
+      ],
+      "commonScams": [
+        {
+          "title": "Shoe Shine Brush Drop",
+          "description": "A shoe shiner walking ahead 'accidentally' drops his brush. If you pick it up, he will offer a free thank-you shine and then aggressively demand $10–$20."
+        },
+        {
+          "title": "Befriending for Nightclub Drinks",
+          "description": "Strangers around Taksim inviting you to a club where you are trapped with a massive bill."
+        }
+      ],
+      "usefulPhrases": [
+        {
+          "phrase": "Hello",
+          "translation": "Merhaba",
+          "phonetic": "MARE-hah-bah"
+        },
+        {
+          "phrase": "Thank you",
+          "translation": "Teşekkür ederim",
+          "phonetic": "Teh-shek-KOOR eh-deh-reem"
+        },
+        {
+          "phrase": "Please",
+          "translation": "Lütfen",
+          "phonetic": "LEWT-fen"
+        },
+        {
+          "phrase": "How much?",
+          "translation": "Ne kadar?",
+          "phonetic": "Neh kah-DAHR"
+        },
+        {
+          "phrase": "The check, please",
+          "translation": "Hesap, lütfen",
+          "phonetic": "Heh-SAHP lewt-fen"
+        },
+        {
+          "phrase": "Delicious!",
+          "translation": "Çok lezzetli!",
+          "phonetic": "Chok lez-ZET-lee"
+        }
+      ],
+      "languages": [
+        {
+          "languageName": "Turkish (Türkçe)",
+          "interestingFacts": [
+            "An agglutinative language featuring vowel harmony.",
+            "Uses a modified Latin alphabet introduced in 1928."
+          ],
+          "speakerInfo": {
+            "languageFamily": "Turkic",
+            "writingDirection": "Left-to-Right"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "trip_1791662864101_l58fw",
+    "createdAt": "2026-10-10T20:07:44.101Z",
+    "originIata": "MIA",
+    "originCity": "Miami",
+    "destinationIata": "NRT",
+    "destinationCity": "Tokyo",
+    "destinationCountry": "JP",
+    "departDate": "2026-11-09",
+    "returnDate": "2026-11-16",
+    "tripType": "round",
+    "passengers": 1,
+    "farePrice": 670,
+    "currency": "EUR",
+    "totalCost": 791.1,
+    "savingsVsHome": 28.549999999999955,
+    "transferMode": "train",
+    "transferPrice": 73.1,
+    "transferDurationHours": 3.2,
+    "airline": "DEMO",
+    "bookingUrl": "https://www.aviasales.com/search/MIA0911NRT16111?marker=708226&utm_source=flightdeck&utm_medium=affiliate&utm_campaign=reverse-search&utm_content=MIA-NRT",
+    "notes": "",
+    "culturalInfo": {
+      "countryId": "JPN",
+      "countryName": "Japan",
+      "alpha2": "JP",
+      "weatherInfo": "Japan has four distinct seasons:\n• Spring (Mar–May): Cherry blossoms, mild 10–20°C (50–68°F)\n• Summer (Jun–Aug): Rainy season in June, humid 25–35°C (77–95°F), typhoons Aug–Sep\n• Autumn (Sep–Nov): Comfortable 15–25°C (59–77°F), vibrant foliage\n• Winter (Dec–Feb): Snow in the north (Hokkaido –10 to 0°C), milder in Tokyo 5–10°C (41–50°F)",
+      "currencyInfo": {
+        "name": "Japanese Yen",
+        "code": "JPY",
+        "exchangeRate": "Approximately 140–160 JPY = 1 USD / 150–170 JPY = 1 EUR",
+        "tips": "• Cash remains widely used—carry sufficient yen bills\n• ATMs at 7-Eleven, Japan Post & major convenience stores accept foreign cards\n• Use Suica/Pasmo/IC cards for subways, buses & vending machines\n• Strictly no tipping culture—it can cause confusion or be considered impolite\n• Exchange currency at airports or major bank counters"
+      },
+      "emergencyInfo": {
+        "police": "110",
+        "ambulance": "119",
+        "embassy": "US Embassy Tokyo: +81 3-3224-5000 | UK Embassy Tokyo: +81 3-5275-3200"
+      },
+      "essentialItems": [
+        {
+          "title": "Clothing",
+          "items": [
+            "Slip-on shoes (you will remove shoes frequently at shrines, ryokans & restaurants)",
+            "Comfortable walking shoes for 15,000+ daily steps",
+            "Layered clothing for varying indoor heating / air conditioning",
+            "Compact travel umbrella (or buy clear umbrella at konbini)",
+            "Modest clothing for visiting temples and shrines",
+            "Thermal base layers for winter trips"
+          ]
+        },
+        {
+          "title": "Electronics & Connectivity",
+          "items": [
+            "Type A power adapter (two-prong flat, 100V, 50/60Hz)",
+            "High-capacity portable charger / power bank for navigating transit",
+            "eSIM or Pocket Wi-Fi device (essential for Tokyo train navigation)",
+            "Suica or Pasmo digital transit card loaded on Apple/Google Wallet",
+            "Google Maps & Google Translate with offline Japanese dictionary downloaded"
+          ]
+        },
+        {
+          "title": "Documents & Essentials",
+          "items": [
+            "Passport (law requires tourists to carry physical passport at all times)",
+            "Visit Japan Web QR codes (fast-track customs & immigration)",
+            "Small coin purse (yen uses many high-value 100, 500 yen coins)",
+            "Small plastic bag or pouch for trash (public trash cans are rare)",
+            "Hand towel or handkerchief (many public restrooms lack paper towels)"
+          ]
+        }
+      ],
+      "localCustoms": [
+        {
+          "title": "Bowing Etiquette",
+          "description": "Depth and duration of bows vary by context—from a subtle head nod to a respectful bow—used for greetings, gratitude, and apologies."
+        },
+        {
+          "title": "Shoe Removal (Genkan)",
+          "description": "Always remove shoes indoors at homes, traditional ryokan, tatami seating, and temples. Slippers are provided, but remove them before stepping on tatami."
+        },
+        {
+          "title": "Train & Transit Etiquette",
+          "description": "Keep phones on silent (Manner Mode). Avoid phone calls on trains. Speak in hushed tones and take your backpack off your back in crowded cars."
+        },
+        {
+          "title": "No Tipping Culture",
+          "description": "Tipping does not exist in Japan and can create awkward situations. Great service is built into the culture and price."
+        }
+      ],
+      "culturalTaboos": [
+        {
+          "title": "Chopstick Mistakes",
+          "description": "Never stick chopsticks vertically into a bowl of rice (resembles funeral incense) or pass food directly chopstick-to-chopstick."
+        },
+        {
+          "title": "Walking While Eating",
+          "description": "Eating or drinking while walking down streets is considered impolite. Eat near the vending machine or store where purchased."
+        },
+        {
+          "title": "Tattoos in Onsen (Hot Springs)",
+          "description": "Many traditional onsens forbid visible tattoos. Seek tattoo-friendly baths or private kashikiri ryokan baths."
+        }
+      ],
+      "safetyTips": [
+        {
+          "title": "One of the World's Safest Destinations",
+          "description": "Violent crime is exceedingly rare. Lost items are routinely turned into Koban (police boxes) and recovered intact."
+        },
+        {
+          "title": "Earthquake Preparedness",
+          "description": "Japan experiences regular seismic activity. Download the 'Safety Tips' app from the Japan National Tourism Organization (JNTO)."
+        },
+        {
+          "title": "Pedestrian & Traffic Discipline",
+          "description": "Follow pedestrian lights strictly even on quiet streets; cars drive on the left side of the road."
+        }
+      ],
+      "commonScams": [
+        {
+          "title": "Kabukicho / Roppongi Touts",
+          "description": "Do not follow nightlife touts offering 'cheap drinks' or free entry in nightlife districts; patrons may face exorbitant hidden cover fees."
+        },
+        {
+          "title": "Fake Monks Soliciting Donations",
+          "description": "Near major tourist temples (e.g., Asakusa), fraudulent people dressed as monks may offer bracelets and demand immediate cash."
+        }
+      ],
+      "usefulPhrases": [
+        {
+          "phrase": "Hello / Good day",
+          "translation": "こんにちは",
+          "phonetic": "Konnichiwa"
+        },
+        {
+          "phrase": "Thank you very much",
+          "translation": "ありがとうございます",
+          "phonetic": "Arigatō gozaimasu"
+        },
+        {
+          "phrase": "Excuse me / Sorry",
+          "translation": "すみません",
+          "phonetic": "Sumimasen"
+        },
+        {
+          "phrase": "Please (requesting)",
+          "translation": "お願いします",
+          "phonetic": "Onegaishimasu"
+        },
+        {
+          "phrase": "How much is this?",
+          "translation": "これはいくらですか？",
+          "phonetic": "Kore wa ikura desu ka?"
+        },
+        {
+          "phrase": "Where is the station?",
+          "translation": "駅はどこですか？",
+          "phonetic": "Eki wa doko desu ka?"
+        },
+        {
+          "phrase": "Check, please",
+          "translation": "お会計をお願いします",
+          "phonetic": "O-kaikei o onegaishimasu"
+        },
+        {
+          "phrase": "Delicious!",
+          "translation": "美味しいです！",
+          "phonetic": "Oishii desu!"
+        },
+        {
+          "phrase": "Do you speak English?",
+          "translation": "英語を話せますか？",
+          "phonetic": "Eigo o hanasemasu ka?"
+        }
+      ],
+      "languages": [
+        {
+          "languageName": "Japanese (日本語)",
+          "interestingFacts": [
+            "Uses three writing scripts: Hiragana, Katakana, and Kanji.",
+            "Politeness and honorifics (keigo) are essential in social interactions."
+          ],
+          "speakerInfo": {
+            "languageFamily": "Japonic",
+            "writingDirection": "Left-to-Right"
+          }
+        }
+      ]
+    }
+  }
+]

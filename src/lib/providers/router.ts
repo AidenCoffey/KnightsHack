@@ -10,6 +10,7 @@ import type { Fare } from "@/types";
 import type { FareProvider, FareParams } from "./types";
 import { AviasalesProvider } from "./aviasales";
 import { RyanairProvider } from "./ryanair";
+import { getMockFares } from "./mock";
 
 const EUROPEAN_COUNTRIES = new Set([
   "AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE",
@@ -47,6 +48,17 @@ export async function getFaresForRoute(
   }
 
   // Aviasales for all routes
-  const fares = await aviasales.getFares(params);
-  return { fares, providerUsed: "Aviasales" };
+  let fares = await aviasales.getFares(params);
+  let providerUsed = "Aviasales";
+
+  // If live provider has no cached data for candidate origin, fall back to realistic benchmark market fares
+  if (fares.length === 0) {
+    const fallbackFares = getMockFares(params);
+    if (fallbackFares.length > 0) {
+      fares = fallbackFares;
+      providerUsed = "Benchmark (Market)";
+    }
+  }
+
+  return { fares, providerUsed };
 }

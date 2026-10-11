@@ -31,6 +31,8 @@ export interface FareParams {
   origin: string;     // IATA
   destination: string; // IATA
   dateFrom: string;   // YYYY-MM-DD
-  dateTo: string;     // YYYY-MM-DD
+  dateTo?: string;     // YYYY-MM-DD (optional for one-way)
+  tripType?: "round" | "oneway";
+  passengers?: number;
   currency: string;
 }
